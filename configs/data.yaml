@@ -1,0 +1,68 @@
+# ==============================================================================
+# Neural Process Twin - Physical Problem & Data Generation Configuration
+# ==============================================================================
+# SCIENTIFIC STATUS NOTICE:
+# The values below represent PROVISIONAL defaults established for Milestone 00.
+# They have NOT yet been validated through spatial mesh-refinement convergence
+# studies or manufactured solution error budgets. Numerical validation of the
+# grid resolution and conductivity contrast will be conducted in Milestone 01.
+# ==============================================================================
+
+version: "0.1.0"
+config_status: "provisional"
+
+# Spatial domain definition: 2D rectangle Omega = [x_min, x_max] x [y_min, y_max]
+domain:
+  x_min: 0.0
+  x_max: 1.0
+  y_min: 0.0
+  y_max: 1.0
+  length_unit: "meter"
+
+# Discretization grid for reference numerical solver & surrogate input tensor
+grid:
+  nx: 64                  # number of control volumes (cells) along x-axis
+  ny: 64                  # number of control volumes (cells) along y-axis
+  coordinate_system: "cartesian_2d"
+  grid_type: "cell_centered"  # cell-centred finite volume discretization
+
+# Physical problem specification: Steady-State Heat Conduction
+# Governing PDE: -div(k(x, y) * grad(T(x, y))) = q(x, y)
+physics:
+  problem_type: "steady_state_heat_conduction"
+  governing_equation: "-div(k(x, y) * grad(T(x, y))) = q(x, y)"
+  conductivity:
+    distribution: "gaussian_random_field"  # options: uniform, piecewise_constant, gaussian_random_field
+    k_min: 0.1          # positive lower bound ensuring strict ellipticity [W/(m*K)]
+    k_max: 10.0         # conductivity upper bound [W/(m*K)]
+    length_scale: 0.2   # provisional correlation length for GRF synthesis [m]
+  source_term:
+    distribution: "gaussian_blobs"         # options: zero, uniform, gaussian_blobs
+    q_min: 0.0          # volumetric heat generation minimum [W/m^3]
+    q_max: 1000.0       # volumetric heat generation maximum [W/m^3]
+    num_peaks: 3        # number of localized thermal sources
+
+# Boundary conditions across the 4 rectangular boundaries
+# Supported types: "dirichlet" (prescribed T in K) or "neumann" (heat flux in W/m^2)
+boundary_conditions:
+  left:
+    type: "dirichlet"
+    value: 300.0        # Dirichlet boundary: 300.0 K
+  right:
+    type: "dirichlet"
+    value: 350.0        # Dirichlet boundary: 350.0 K (establishes primary macro-gradient)
+  bottom:
+    type: "neumann"
+    value: 0.0          # Adiabatic / insulated boundary: zero normal heat flux
+  top:
+    type: "neumann"
+    value: 0.0          # Adiabatic / insulated boundary: zero normal heat flux
+
+# Dataset generation ensemble sizes and partitioning
+dataset:
+  seed: 42
+  num_train: 1000       # provisional training ensemble count
+  num_val: 200          # provisional validation ensemble count
+  num_test_iid: 200     # in-distribution test samples (same generation parameters)
+  num_test_ood: 100     # out-of-distribution test samples (unseen contrast / topology)
+  storage_format: "hdf5"

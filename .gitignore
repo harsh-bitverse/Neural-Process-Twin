@@ -1,0 +1,99 @@
+# ==============================================================================
+# Neural Process Twin - Git Ignore Configuration
+# ==============================================================================
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Node / Frontend
+node_modules/
+dist/
+.vite/
+
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# IDE and editor state
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.directory
+.project
+.pydevproject
+.settings/
+
+# Generated datasets and simulation data (Milestones 01+)
+data/raw/
+data/processed/
+data/splits/
+*.h5
+*.hdf5
+*.npz
+*.npy
+*.pt
+*.pth
+
+# Model checkpoints, weights, and run outputs
+checkpoints/
+models/weights/
+runs/
+wandb/
+lightning_logs/
+tensorboard/
+*.ckpt
+*.onnx
+
+# Experiment artifacts and scratch directories
+artifacts/checkpoints/
+artifacts/cache/
+experiments/*/checkpoints/
+experiments/*/outputs/
+
+# Environment files and credentials
+.env
+.env.*
+!.env.example
+
+# Operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini

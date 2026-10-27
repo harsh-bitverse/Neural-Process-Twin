@@ -1,0 +1,45 @@
+# ==============================================================================
+# Neural Process Twin - Quick Smoke Test Configuration
+# ==============================================================================
+experiment_name: "smoke_test"
+description: "Ultra-fast pipeline verification configuration (2 epochs, minimal batch size)"
+config_status: "active"
+
+model:
+  architecture: "fno2d"
+  in_channels: 12
+  out_channels: 1
+  modes_x: 6
+  modes_y: 6
+  width: 16
+  depth: 2
+
+optimization:
+  optimizer: "adamw"
+  learning_rate: 0.005
+  weight_decay: 0.0
+  scheduler: null
+
+loss:
+  data_loss:
+    type: "relative_l2"
+    weight: 1.0
+  physics_loss:
+    enabled: false
+    weight: 0.0
+
+training:
+  seed: 42
+  batch_size: 4
+  epochs: 2
+  gradient_clip_norm: 1.0
+  checkpoint_frequency: 1
+  early_stopping:
+    enabled: false
+    patience: 10
+    metric: "val_loss"
+
+hardware:
+  device: "cpu"
+  num_workers: 0
+  mixed_precision: false

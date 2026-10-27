@@ -1,0 +1,54 @@
+# ==============================================================================
+# Neural Process Twin - Scaled Experiment: CNN with PDE Residual and BC Losses
+# ==============================================================================
+version: "0.2.0"
+config_status: "active"
+experiment_name: "scaled_cnn_physics_bc"
+description: "CNN-2D trained with data, interior PDE loss, and boundary condition loss (w_data=1.0, w_pde=0.005, w_bc=0.05)"
+
+model:
+  architecture: "cnn2d"
+  in_channels: 12
+  out_channels: 1
+  width: 32
+  depth: 4
+  kernel_size: 3
+  padding_mode: "replicate"
+  use_residual: true
+
+optimization:
+  optimizer: "adamw"
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  scheduler:
+    type: "cosine_annealing"
+    warmup_epochs: 3
+    min_lr: 1.0e-6
+
+loss:
+  data_loss:
+    type: "relative_l2"
+    weight: 1.0
+  physics_loss:
+    enabled: true
+    weight: 0.005
+    bc_weight: 0.05
+    residual_type: "interior"
+    q_floor: 1.0
+    norm_type: "l2"
+
+training:
+  seed: 42
+  batch_size: 32
+  epochs: 30
+  gradient_clip_norm: 1.0
+  checkpoint_frequency: 10
+  early_stopping:
+    enabled: true
+    patience: 10
+    metric: "val_loss"
+
+hardware:
+  device: "auto"
+  num_workers: 0
+  mixed_precision: false

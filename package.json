@@ -1,0 +1,26 @@
+{
+  "name": "neural-process-twin",
+  "version": "1.0.0",
+  "description": "> **Physics-Aware Machine Learning Surrogate Simulator for Physical Field Prediction**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harsh-bitverse/Neural-Process-Twin.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/harsh-bitverse/Neural-Process-Twin/issues"
+  },
+  "homepage": "https://github.com/harsh-bitverse/Neural-Process-Twin#readme",
+  "devDependencies": {
+    "puppeteer-core": "^25.16.0"
+  }
+}

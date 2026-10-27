@@ -1,0 +1,47 @@
+{
+  "dataset_name": "multires_dataset",
+  "file_path": "artifacts\\data\\multires_dataset.h5",
+  "file_size_bytes": 257150680,
+  "sha256": "0e336c026453ac2ca0825b4d579de45c2b34818667d74d8381205da4735ce1c0",
+  "timestamp": "2026-10-27T13:30:17Z",
+  "resolutions": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "splits": {
+    "train": {
+      "num_samples": 1000,
+      "resolutions": [
+        32,
+        64
+      ]
+    },
+    "validation": {
+      "num_samples": 150,
+      "resolutions": [
+        32,
+        64
+      ]
+    },
+    "test_iid": {
+      "num_samples": 200,
+      "resolutions": [
+        32,
+        64,
+        128,
+        256
+      ]
+    },
+    "test_ood": {
+      "num_samples": 200,
+      "resolutions": [
+        32,
+        64,
+        128,
+        256
+      ]
+    }
+  }
+}

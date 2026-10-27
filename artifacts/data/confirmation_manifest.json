@@ -1,0 +1,36 @@
+{
+  "dataset_name": "touchstone_confirmation_dataset",
+  "file_path": "artifacts\\data\\confirmation_dataset.h5",
+  "file_size_bytes": 63028432,
+  "sha256": "ca615ab6c4cd27436f66551728bb5e9aca24d76149782b68335523678deadf20",
+  "timestamp": "2026-10-27T13:23:59Z",
+  "resolutions": [
+    32,
+    64
+  ],
+  "splits": {
+    "confirmation_iid": {
+      "num_samples": 200,
+      "seed_range": [
+        500000,
+        500199
+      ],
+      "description": "200 unseen in-distribution smooth GRF conductivity fields"
+    },
+    "confirmation_ood": {
+      "num_samples": 200,
+      "seed_range": [
+        501000,
+        501199
+      ],
+      "subgroups": {
+        "high_contrast_inclusions": 138,
+        "short_correlation_grf": 62
+      },
+      "description": "200 unseen out-of-distribution physical fields (138 High-Contrast Inclusions + 62 Short-Correlation GRF)"
+    }
+  },
+  "governance_status": "ESCROW_LOCKED",
+  "inaccessible_for_training": true,
+  "inaccessible_for_hyperparameters": true
+}

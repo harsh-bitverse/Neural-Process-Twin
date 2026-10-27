@@ -1,0 +1,36 @@
+{
+  "grid_size": [
+    32,
+    32
+  ],
+  "batch_size": 32,
+  "repeats": 50,
+  "reference_solver": {
+    "name": "FiniteVolumeReferenceSolver",
+    "device": "cpu",
+    "batch_size": 1,
+    "single_sample_latency_mean_ms": 4.536780007183552,
+    "single_sample_latency_std_ms": 0.7499462386362367,
+    "single_sample_latency_median_ms": 4.454100038856268,
+    "single_sample_latency_p95_ms": 5.551880015991628,
+    "throughput_samples_per_sec": 220.42065042091457
+  },
+  "surrogate": {
+    "name": "CNNBaseline2D",
+    "device": "cpu",
+    "batch_size": 32,
+    "single_sample_latency_mean_ms": 0.8187079918570817,
+    "single_sample_latency_std_ms": 0.23611782374826204,
+    "single_sample_latency_median_ms": 0.7545500411652029,
+    "single_sample_latency_p95_ms": 1.2247400125488639,
+    "throughput_samples_per_sec": 8581.223427396853
+  },
+  "comparison": {
+    "reference_solver_latency_ms": 4.536780007183552,
+    "surrogate_latency_ms": 0.8187079918570817,
+    "single_sample_speedup": 5.54138966799718,
+    "reference_solver_throughput_sps": 220.42065042091457,
+    "surrogate_throughput_sps": 8581.223427396853,
+    "throughput_speedup": 38.93112288258916
+  }
+}

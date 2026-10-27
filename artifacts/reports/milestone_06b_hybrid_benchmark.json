@@ -1,0 +1,82 @@
+{
+  "benchmark_metadata": {
+    "grid_resolution": "32x32",
+    "device": "cpu",
+    "trials": 50,
+    "warmup_trials": 10,
+    "timestamp": "2026-10-26 22:26:01"
+  },
+  "direct_fvm_solver": {
+    "mean_ms": 4.363141995854676,
+    "std_ms": 0.7702075454921267,
+    "median_ms": 4.130450077354908,
+    "p95_ms": 5.318255152087659,
+    "min_ms": 3.1895001884549856,
+    "max_ms": 5.374799948185682,
+    "throughput_samples_per_sec": 229.19263249971644
+  },
+  "surrogate_fast_path": {
+    "total": {
+      "mean_ms": 57.16536202467978,
+      "std_ms": 13.115395576782282,
+      "median_ms": 60.14150008559227,
+      "p95_ms": 80.31513990135863,
+      "min_ms": 33.76339981332421,
+      "max_ms": 82.13850017637014,
+      "throughput_samples_per_sec": 17.493110593234306
+    },
+    "input_validation": {
+      "mean_ms": 0.08398003410547972,
+      "std_ms": 0.022563972855239936,
+      "median_ms": 0.09775010403245687,
+      "p95_ms": 0.10535998735576868,
+      "min_ms": 0.04770001396536827,
+      "max_ms": 0.1205001026391983,
+      "throughput_samples_per_sec": 11907.592211072342
+    },
+    "surrogate_inference": {
+      "mean_ms": 53.48786199931055,
+      "std_ms": 12.727647931281345,
+      "median_ms": 56.168399984017015,
+      "p95_ms": 76.09153996454552,
+      "min_ms": 30.727799981832504,
+      "max_ms": 78.0050999019295,
+      "throughput_samples_per_sec": 18.695830467347708
+    },
+    "diagnostics_evaluation": {
+      "mean_ms": 3.469506003893912,
+      "std_ms": 0.5002609300974726,
+      "median_ms": 3.6990500520914793,
+      "p95_ms": 4.012290050741285,
+      "min_ms": 2.381799975410104,
+      "max_ms": 4.0849000215530396,
+      "throughput_samples_per_sec": 288.22547039194495
+    }
+  },
+  "hybrid_fallback_path": {
+    "total": {
+      "mean_ms": 77.19081799965352,
+      "std_ms": 2.5819680174111745,
+      "median_ms": 76.24135003425181,
+      "p95_ms": 82.8922449145466,
+      "min_ms": 73.94580007530749,
+      "max_ms": 84.74090020172298,
+      "throughput_samples_per_sec": 12.954908704355079
+    },
+    "solver_portion": {
+      "mean_ms": 6.275893999263644,
+      "std_ms": 0.19096935417813535,
+      "median_ms": 6.213400047272444,
+      "p95_ms": 6.588434928562492,
+      "min_ms": 6.036499980837107,
+      "max_ms": 6.978800054639578,
+      "throughput_samples_per_sec": 159.33984865221288
+    }
+  },
+  "comparisons": {
+    "fvm_vs_surrogate_ratio": 13.101879810235678,
+    "fvm_speedup_over_surrogate": 13.101879810235678,
+    "surrogate_speedup_over_fvm": 0.0763249254674709,
+    "fallback_overhead_ratio": 17.691566782147085
+  }
+}

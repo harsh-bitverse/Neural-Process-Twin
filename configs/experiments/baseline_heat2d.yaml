@@ -1,0 +1,22 @@
+# ==============================================================================
+# Neural Process Twin - Baseline Experiment: 2D FNO Heat Conduction
+# ==============================================================================
+# This configuration file overrides baseline settings from configs/training.yaml
+# for the standard 2D steady-state heat conduction surrogate baseline.
+# ==============================================================================
+
+experiment_name: "fno2d_steady_heat_baseline"
+description: "Reference baseline training run using Fourier Neural Operator on 64x64 grid"
+config_status: "provisional"
+
+model:
+  architecture: "fno2d"
+  modes_x: 12
+  modes_y: 12
+  width: 32
+  depth: 4
+
+training:
+  seed: 42
+  batch_size: 32
+  epochs: 100

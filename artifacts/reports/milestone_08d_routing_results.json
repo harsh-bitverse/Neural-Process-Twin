@@ -1,0 +1,488 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-27 23:32:59",
+    "policy": "Fail-Closed Tri-Factor (sigma_max, contrast_ratio, pde_residual)",
+    "calibration_dataset": "artifacts\\data\\multires_calibration.h5",
+    "test_dataset": "artifacts\\data\\multires_dataset.h5"
+  },
+  "calibrated_thresholds": {
+    "U1_heteroscedastic": {
+      "tau_unc": 5.604846620559692,
+      "tau_k": 20.0,
+      "tau_res": 168.34161446406716
+    },
+    "U2_evidential": {
+      "tau_unc": 5.044202423095704,
+      "tau_k": 20.0,
+      "tau_res": 150.74255131109265
+    },
+    "U3_mc_dropout": {
+      "tau_unc": 6.140529155731201,
+      "tau_k": 20.0,
+      "tau_res": 122.20251361799059
+    },
+    "U4_distilled_student": {
+      "tau_unc": 3.7081218957901,
+      "tau_k": 20.0,
+      "tau_res": 175.93531199286963
+    }
+  },
+  "routing_evaluations": {
+    "U1_heteroscedastic": {
+      "res_32": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 2.365169754624367,
+          "raw_surrogate_mean_maxae_k": 9.53517921447754,
+          "hybrid_mean_rmse_k": 1.2124109649658203,
+          "hybrid_mean_maxae_k": 4.432703857421875,
+          "acceptance_rate": 0.585,
+          "escalation_rate": 0.41500000000000004,
+          "false_accept_rate": 0.7521367521367521,
+          "accepted_mean_rmse_k": 2.072497376009949,
+          "accepted_mean_maxae_k": 7.577271551148504,
+          "accepted_max_maxae_k": 21.3175048828125
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 24.571349719762804,
+          "raw_surrogate_mean_maxae_k": 76.68695621490478,
+          "hybrid_mean_rmse_k": 2.390244822502136,
+          "hybrid_mean_maxae_k": 6.940105590820313,
+          "acceptance_rate": 0.185,
+          "escalation_rate": 0.815,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 12.92024228379533,
+          "accepted_mean_maxae_k": 37.514084274704395,
+          "accepted_max_maxae_k": 70.35379028320312
+        }
+      },
+      "res_64": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 2.411721961200237,
+          "raw_surrogate_mean_maxae_k": 12.415954895019532,
+          "hybrid_mean_rmse_k": 1.0190112176537514,
+          "hybrid_mean_maxae_k": 4.680036163330078,
+          "acceptance_rate": 0.48,
+          "escalation_rate": 0.52,
+          "false_accept_rate": 0.8958333333333334,
+          "accepted_mean_rmse_k": 2.122940036778649,
+          "accepted_mean_maxae_k": 9.750075340270996,
+          "accepted_max_maxae_k": 25.2598876953125
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 24.63332650780678,
+          "raw_surrogate_mean_maxae_k": 82.56198673248291,
+          "hybrid_mean_rmse_k": 2.0929412341117857,
+          "hybrid_mean_maxae_k": 6.42693000793457,
+          "acceptance_rate": 0.16,
+          "escalation_rate": 0.84,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 13.080882713198662,
+          "accepted_mean_maxae_k": 40.168312549591064,
+          "accepted_max_maxae_k": 71.19485473632812
+        }
+      },
+      "res_128": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 2.4391096565127373,
+          "raw_surrogate_mean_maxae_k": 15.66212745666504,
+          "hybrid_mean_rmse_k": 0.9374903920292854,
+          "hybrid_mean_maxae_k": 5.663818511962891,
+          "acceptance_rate": 0.445,
+          "escalation_rate": 0.5549999999999999,
+          "false_accept_rate": 0.9775280898876404,
+          "accepted_mean_rmse_k": 2.106719982088282,
+          "accepted_mean_maxae_k": 12.72768204935481,
+          "accepted_max_maxae_k": 30.37890625
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 24.683709946870803,
+          "raw_surrogate_mean_maxae_k": 86.43744579315185,
+          "hybrid_mean_rmse_k": 1.8778823518753052,
+          "hybrid_mean_maxae_k": 6.170787048339844,
+          "acceptance_rate": 0.145,
+          "escalation_rate": 0.855,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 12.95091277155383,
+          "accepted_mean_maxae_k": 42.55715205751616,
+          "accepted_max_maxae_k": 71.2645263671875
+        }
+      },
+      "res_256": {
+        "test_iid": {
+          "n_samples": 50,
+          "raw_surrogate_mean_rmse_k": 2.422911204099655,
+          "raw_surrogate_mean_maxae_k": 16.682987365722656,
+          "hybrid_mean_rmse_k": 0.9966018235683441,
+          "hybrid_mean_maxae_k": 6.46465087890625,
+          "acceptance_rate": 0.46,
+          "escalation_rate": 0.54,
+          "false_accept_rate": 0.9565217391304348,
+          "accepted_mean_rmse_k": 2.1665257034094436,
+          "accepted_mean_maxae_k": 14.0535888671875,
+          "accepted_max_maxae_k": 23.840606689453125
+        },
+        "test_ood": {
+          "n_samples": 50,
+          "raw_surrogate_mean_rmse_k": 27.083072576522827,
+          "raw_surrogate_mean_maxae_k": 102.43642822265625,
+          "hybrid_mean_rmse_k": 0.31727903366088867,
+          "hybrid_mean_maxae_k": 1.3722576904296875,
+          "acceptance_rate": 0.04,
+          "escalation_rate": 0.96,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 7.931975841522217,
+          "accepted_mean_maxae_k": 34.30644226074219,
+          "accepted_max_maxae_k": 47.295562744140625
+        }
+      }
+    },
+    "U2_evidential": {
+      "res_32": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 2.363685463964939,
+          "raw_surrogate_mean_maxae_k": 9.791716766357421,
+          "hybrid_mean_rmse_k": 0.460770511329174,
+          "hybrid_mean_maxae_k": 1.8765896606445311,
+          "acceptance_rate": 0.25,
+          "escalation_rate": 0.75,
+          "false_accept_rate": 0.7,
+          "accepted_mean_rmse_k": 1.843082045316696,
+          "accepted_mean_maxae_k": 7.506358642578125,
+          "accepted_max_maxae_k": 19.446136474609375
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 24.870904734134673,
+          "raw_surrogate_mean_maxae_k": 78.04225490570069,
+          "hybrid_mean_rmse_k": 3.7291599178314208,
+          "hybrid_mean_maxae_k": 10.260208129882812,
+          "acceptance_rate": 0.25,
+          "escalation_rate": 0.75,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 14.916639671325683,
+          "accepted_mean_maxae_k": 41.04083251953125,
+          "accepted_max_maxae_k": 103.36471557617188
+        }
+      },
+      "res_64": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 2.4278171554207804,
+          "raw_surrogate_mean_maxae_k": 13.231175231933594,
+          "hybrid_mean_rmse_k": 0.27207810431718826,
+          "hybrid_mean_maxae_k": 1.628858642578125,
+          "acceptance_rate": 0.155,
+          "escalation_rate": 0.845,
+          "false_accept_rate": 0.967741935483871,
+          "accepted_mean_rmse_k": 1.7553426084979888,
+          "accepted_mean_maxae_k": 10.508765435987904,
+          "accepted_max_maxae_k": 24.741943359375
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 24.934121953248976,
+          "raw_surrogate_mean_maxae_k": 83.64283782958984,
+          "hybrid_mean_rmse_k": 2.609867342710495,
+          "hybrid_mean_maxae_k": 7.718344573974609,
+          "acceptance_rate": 0.185,
+          "escalation_rate": 0.815,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 14.107391041678351,
+          "accepted_mean_maxae_k": 41.720781480943835,
+          "accepted_max_maxae_k": 105.08892822265625
+        }
+      },
+      "res_128": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 2.4613149103522303,
+          "raw_surrogate_mean_maxae_k": 16.733922119140626,
+          "hybrid_mean_rmse_k": 0.23583424776792528,
+          "hybrid_mean_maxae_k": 1.9089646911621094,
+          "acceptance_rate": 0.14,
+          "escalation_rate": 0.86,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 1.684530341199466,
+          "accepted_mean_maxae_k": 13.635462079729352,
+          "accepted_max_maxae_k": 26.580047607421875
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 24.983293627500533,
+          "raw_surrogate_mean_maxae_k": 87.61679718017578,
+          "hybrid_mean_rmse_k": 2.226788829565048,
+          "hybrid_mean_maxae_k": 7.162573776245117,
+          "acceptance_rate": 0.17,
+          "escalation_rate": 0.83,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 13.098757820970873,
+          "accepted_mean_maxae_k": 42.13278691908892,
+          "accepted_max_maxae_k": 84.29736328125
+        }
+      },
+      "res_256": {
+        "test_iid": {
+          "n_samples": 50,
+          "raw_surrogate_mean_rmse_k": 2.3429522347450256,
+          "raw_surrogate_mean_maxae_k": 17.452662048339842,
+          "hybrid_mean_rmse_k": 0.12688867568969728,
+          "hybrid_mean_maxae_k": 1.1508917236328124,
+          "acceptance_rate": 0.08,
+          "escalation_rate": 0.92,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 1.5861084461212158,
+          "accepted_mean_maxae_k": 14.386146545410156,
+          "accepted_max_maxae_k": 25.737945556640625
+        },
+        "test_ood": {
+          "n_samples": 50,
+          "raw_surrogate_mean_rmse_k": 27.782405138015747,
+          "raw_surrogate_mean_maxae_k": 103.9063003540039,
+          "hybrid_mean_rmse_k": 2.2467406463623045,
+          "hybrid_mean_maxae_k": 6.5018243408203125,
+          "acceptance_rate": 0.12,
+          "escalation_rate": 0.88,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 18.72283871968587,
+          "accepted_mean_maxae_k": 54.18186950683594,
+          "accepted_max_maxae_k": 84.416015625
+        }
+      }
+    },
+    "U3_mc_dropout": {
+      "res_32": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 3.106930212378502,
+          "raw_surrogate_mean_maxae_k": 11.34113510131836,
+          "hybrid_mean_rmse_k": 0.6212943905591964,
+          "hybrid_mean_maxae_k": 2.0404608154296877,
+          "acceptance_rate": 0.245,
+          "escalation_rate": 0.755,
+          "false_accept_rate": 0.8367346938775511,
+          "accepted_mean_rmse_k": 2.5358954716701896,
+          "accepted_mean_maxae_k": 8.328411491549744,
+          "accepted_max_maxae_k": 18.829864501953125
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 22.4784974360466,
+          "raw_surrogate_mean_maxae_k": 67.90755115509033,
+          "hybrid_mean_rmse_k": 0.0,
+          "hybrid_mean_maxae_k": 0.0,
+          "acceptance_rate": 0.0,
+          "escalation_rate": 1.0,
+          "false_accept_rate": 0.0,
+          "accepted_mean_rmse_k": 0.0,
+          "accepted_mean_maxae_k": 0.0,
+          "accepted_max_maxae_k": 0.0
+        }
+      },
+      "res_64": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 3.2189142334461214,
+          "raw_surrogate_mean_maxae_k": 15.61159912109375,
+          "hybrid_mean_rmse_k": 0.619131036400795,
+          "hybrid_mean_maxae_k": 2.5060543823242187,
+          "acceptance_rate": 0.225,
+          "escalation_rate": 0.775,
+          "false_accept_rate": 0.9777777777777777,
+          "accepted_mean_rmse_k": 2.7516934951146443,
+          "accepted_mean_maxae_k": 11.138019476996528,
+          "accepted_max_maxae_k": 18.2071533203125
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 22.590525584220885,
+          "raw_surrogate_mean_maxae_k": 74.61125370025634,
+          "hybrid_mean_rmse_k": 0.0,
+          "hybrid_mean_maxae_k": 0.0,
+          "acceptance_rate": 0.0,
+          "escalation_rate": 1.0,
+          "false_accept_rate": 0.0,
+          "accepted_mean_rmse_k": 0.0,
+          "accepted_mean_maxae_k": 0.0,
+          "accepted_max_maxae_k": 0.0
+        }
+      },
+      "res_128": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 3.3202240121364595,
+          "raw_surrogate_mean_maxae_k": 19.052965774536133,
+          "hybrid_mean_rmse_k": 0.5761834526062012,
+          "hybrid_mean_maxae_k": 2.7627305603027343,
+          "acceptance_rate": 0.21,
+          "escalation_rate": 0.79,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 2.743730726696196,
+          "accepted_mean_maxae_k": 13.155859810965401,
+          "accepted_max_maxae_k": 24.870574951171875
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 22.45122189283371,
+          "raw_surrogate_mean_maxae_k": 79.06919799804687,
+          "hybrid_mean_rmse_k": 0.021761295795440675,
+          "hybrid_mean_maxae_k": 0.06903961181640625,
+          "acceptance_rate": 0.005,
+          "escalation_rate": 0.995,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 4.352259159088135,
+          "accepted_mean_maxae_k": 13.80792236328125,
+          "accepted_max_maxae_k": 13.80792236328125
+        }
+      },
+      "res_256": {
+        "test_iid": {
+          "n_samples": 50,
+          "raw_surrogate_mean_rmse_k": 3.2156533336639406,
+          "raw_surrogate_mean_maxae_k": 19.94220947265625,
+          "hybrid_mean_rmse_k": 0.4783566331863403,
+          "hybrid_mean_maxae_k": 2.91349853515625,
+          "acceptance_rate": 0.22,
+          "escalation_rate": 0.78,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 2.174348332665183,
+          "accepted_mean_maxae_k": 13.243175159801137,
+          "accepted_max_maxae_k": 22.847747802734375
+        },
+        "test_ood": {
+          "n_samples": 50,
+          "raw_surrogate_mean_rmse_k": 25.247712411880492,
+          "raw_surrogate_mean_maxae_k": 95.79472213745117,
+          "hybrid_mean_rmse_k": 0.0,
+          "hybrid_mean_maxae_k": 0.0,
+          "acceptance_rate": 0.0,
+          "escalation_rate": 1.0,
+          "false_accept_rate": 0.0,
+          "accepted_mean_rmse_k": 0.0,
+          "accepted_mean_maxae_k": 0.0,
+          "accepted_max_maxae_k": 0.0
+        }
+      }
+    },
+    "U4_distilled_student": {
+      "res_32": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 2.2072854179143904,
+          "raw_surrogate_mean_maxae_k": 8.496918716430663,
+          "hybrid_mean_rmse_k": 1.9883569586277008,
+          "hybrid_mean_maxae_k": 7.649133224487304,
+          "acceptance_rate": 0.89,
+          "escalation_rate": 0.10999999999999999,
+          "false_accept_rate": 0.7921348314606742,
+          "accepted_mean_rmse_k": 2.2341089422783154,
+          "accepted_mean_maxae_k": 8.594531712907084,
+          "accepted_max_maxae_k": 34.96424865722656
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 24.789088714122773,
+          "raw_surrogate_mean_maxae_k": 75.81690376281739,
+          "hybrid_mean_rmse_k": 4.630061297416687,
+          "hybrid_mean_maxae_k": 12.888937606811524,
+          "acceptance_rate": 0.29,
+          "escalation_rate": 0.71,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 15.96572861178168,
+          "accepted_mean_maxae_k": 44.444612437281116,
+          "accepted_max_maxae_k": 113.6796875
+        }
+      },
+      "res_64": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 2.242583291232586,
+          "raw_surrogate_mean_maxae_k": 10.791323852539062,
+          "hybrid_mean_rmse_k": 1.8814140605926513,
+          "hybrid_mean_maxae_k": 9.074941101074218,
+          "acceptance_rate": 0.805,
+          "escalation_rate": 0.19499999999999995,
+          "false_accept_rate": 0.9565217391304348,
+          "accepted_mean_rmse_k": 2.3371603237175793,
+          "accepted_mean_maxae_k": 11.273218759098409,
+          "accepted_max_maxae_k": 43.45762634277344
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 24.839963715076447,
+          "raw_surrogate_mean_maxae_k": 81.09640232086181,
+          "hybrid_mean_rmse_k": 4.154378027915954,
+          "hybrid_mean_maxae_k": 12.22449234008789,
+          "acceptance_rate": 0.26,
+          "escalation_rate": 0.74,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 15.97837703044598,
+          "accepted_mean_maxae_k": 47.01727823110727,
+          "accepted_max_maxae_k": 118.53839111328125
+        }
+      },
+      "res_128": {
+        "test_iid": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 2.269613369703293,
+          "raw_surrogate_mean_maxae_k": 14.033817672729493,
+          "hybrid_mean_rmse_k": 1.7163765928149224,
+          "hybrid_mean_maxae_k": 10.703529205322265,
+          "acceptance_rate": 0.72,
+          "escalation_rate": 0.28,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 2.3838563789096145,
+          "accepted_mean_maxae_k": 14.866012785169813,
+          "accepted_max_maxae_k": 48.42039489746094
+        },
+        "test_ood": {
+          "n_samples": 200,
+          "raw_surrogate_mean_rmse_k": 24.89062867641449,
+          "raw_surrogate_mean_maxae_k": 84.99335216522216,
+          "hybrid_mean_rmse_k": 3.655446619987488,
+          "hybrid_mean_maxae_k": 11.410891342163087,
+          "acceptance_rate": 0.235,
+          "escalation_rate": 0.765,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 15.555091999946757,
+          "accepted_mean_maxae_k": 48.556984434736535,
+          "accepted_max_maxae_k": 110.24533081054688
+        }
+      },
+      "res_256": {
+        "test_iid": {
+          "n_samples": 50,
+          "raw_surrogate_mean_rmse_k": 2.219288034439087,
+          "raw_surrogate_mean_maxae_k": 15.534219360351562,
+          "hybrid_mean_rmse_k": 1.6048144578933716,
+          "hybrid_mean_maxae_k": 11.262871398925782,
+          "acceptance_rate": 0.68,
+          "escalation_rate": 0.31999999999999995,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 2.3600212616078995,
+          "accepted_mean_maxae_k": 16.563046174890854,
+          "accepted_max_maxae_k": 33.67547607421875
+        },
+        "test_ood": {
+          "n_samples": 50,
+          "raw_surrogate_mean_rmse_k": 27.181035022735596,
+          "raw_surrogate_mean_maxae_k": 99.01017059326172,
+          "hybrid_mean_rmse_k": 3.0140490531921387,
+          "hybrid_mean_maxae_k": 8.969808959960938,
+          "acceptance_rate": 0.16,
+          "escalation_rate": 0.84,
+          "false_accept_rate": 1.0,
+          "accepted_mean_rmse_k": 18.837806582450867,
+          "accepted_mean_maxae_k": 56.06130599975586,
+          "accepted_max_maxae_k": 92.65142822265625
+        }
+      }
+    }
+  }
+}

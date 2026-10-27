@@ -1,0 +1,60 @@
+# ==============================================================================
+# Neural Process Twin - Surrogate Model Training Configuration
+# ==============================================================================
+# SCIENTIFIC STATUS NOTICE:
+# The hyperparameters below are PROVISIONAL baseline settings for initial
+# framework scaffolding. Learning rates, Fourier mode truncations, and loss
+# weightings have NOT been empirically tuned or validated on reference PDE data.
+# Systematic model training and validation will commence in Milestone 04.
+# ==============================================================================
+
+version: "0.1.0"
+config_status: "provisional"
+
+# Model architecture specification
+model:
+  architecture: "fno2d"  # fno2d (Fourier Neural Operator), cnn2d (CNN baseline)
+  in_channels: 12        # 12 canonical physical channels: [k, q, x, y, 8 boundary channels]
+  out_channels: 1        # output channel 0: predicted temperature field T(x,y)
+  modes_x: 12            # truncated Fourier modes in x
+  modes_y: 12            # truncated Fourier modes in y
+  width: 32              # channel width / hidden feature dimension
+  depth: 4               # number of Fourier neural operator layers
+
+# Optimization settings
+optimization:
+  optimizer: "adamw"     # adamw | adam
+  learning_rate: 0.001   # provisional initial learning rate (requires hyperparameter search)
+  weight_decay: 0.0001
+  scheduler:
+    type: "cosine_annealing"
+    warmup_epochs: 5
+    min_lr: 1.0e-6
+
+# Loss formulation: supervised data misfit + physics-informed residual regularization
+loss:
+  data_loss:
+    type: "relative_l2"  # relative L2 norm: ||T_pred - T_ref||_2 / ||T_ref||_2
+    weight: 1.0
+  physics_loss:
+    enabled: false       # provisional: disabled during initial baseline training
+    weight: 0.01         # provisional regularization weight when physics loss is active
+    residual_type: "interior_pde_l2"
+
+# Training run execution parameters
+training:
+  seed: 42
+  batch_size: 32         # provisional mini-batch size
+  epochs: 100            # provisional training budget
+  gradient_clip_norm: 1.0
+  checkpoint_frequency: 10
+  early_stopping:
+    enabled: true
+    patience: 15
+    metric: "val_relative_l2"
+
+# Execution hardware environment
+hardware:
+  device: "auto"         # auto (CUDA if available, CPU fallback)
+  num_workers: 4         # data loader worker processes
+  mixed_precision: false # automatic mixed precision (provisional: disabled)

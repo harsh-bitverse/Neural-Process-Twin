@@ -1,0 +1,57 @@
+{
+  "nominal_composite": {
+    "validation_code": 200,
+    "hybrid_code": 200,
+    "hybrid_status": "fallback_succeeded",
+    "hybrid_path": "solver_fallback_path",
+    "fvm_code": 200,
+    "fvm_rel_res": 2.2392461176027927e-15,
+    "comparison_code": 200,
+    "rmse_k": 2.3767851031766143,
+    "speedup_factor": 12.272931719643791
+  },
+  "high_contrast": {
+    "validation_code": 200,
+    "hybrid_code": 200,
+    "hybrid_status": "fallback_succeeded",
+    "hybrid_path": "solver_fallback_path",
+    "fvm_code": 200,
+    "fvm_rel_res": 1.6653963638859115e-14,
+    "comparison_code": 200,
+    "rmse_k": 34.7129620346955,
+    "speedup_factor": 12.327141884937122
+  },
+  "uniform_conduction": {
+    "validation_code": 200,
+    "hybrid_code": 200,
+    "hybrid_status": "accepted",
+    "hybrid_path": "surrogate_fast_path",
+    "fvm_code": 200,
+    "fvm_rel_res": 1.2700322181501417e-15,
+    "comparison_code": 200,
+    "rmse_k": 0.5288474892840064,
+    "speedup_factor": 13.191422089261094
+  },
+  "extreme_source": {
+    "validation_code": 200,
+    "hybrid_code": 200,
+    "hybrid_status": "fallback_succeeded",
+    "hybrid_path": "solver_fallback_path",
+    "fvm_code": 200,
+    "fvm_rel_res": 8.310257582129104e-16,
+    "comparison_code": 200,
+    "rmse_k": 2.4615850358457596,
+    "speedup_factor": 12.016597092780446
+  },
+  "grid_64": {
+    "validation_code": 200,
+    "hybrid_code": 200,
+    "hybrid_status": "fallback_succeeded",
+    "hybrid_path": "solver_fallback_path",
+    "fvm_code": 200,
+    "fvm_rel_res": 3.632409575504465e-15,
+    "comparison_code": 200,
+    "rmse_k": null,
+    "speedup_factor": 1.0336072365167066
+  }
+}

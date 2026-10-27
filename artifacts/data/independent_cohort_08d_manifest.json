@@ -1,0 +1,32 @@
+{
+  "dataset_name": "independent_evaluation_cohort_08d",
+  "file_path": "artifacts\\data\\independent_cohort_08d.h5",
+  "file_size_bytes": 227835280,
+  "sha256": "a6db512852236bef59cdc953e51734f2179bc7033b32be6ee48b4c5e7072e7be",
+  "timestamp": "2026-10-27T22:25:26Z",
+  "resolutions": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "splits": {
+    "eval_iid": {
+      "num_samples": 100,
+      "seed_range": [
+        600000,
+        600099
+      ]
+    },
+    "eval_ood": {
+      "num_samples": 100,
+      "seed_range": [
+        601000,
+        601099
+      ]
+    }
+  },
+  "governance_status": "LOCKED_INDEPENDENT_EVALUATION_COHORT",
+  "inaccessible_for_training": true,
+  "inaccessible_for_calibration": true
+}

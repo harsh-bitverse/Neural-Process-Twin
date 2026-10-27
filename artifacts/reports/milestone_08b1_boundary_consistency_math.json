@@ -1,0 +1,47 @@
+{
+  "case_1_linear_1d": {
+    "case": "1D Linear (q=0, k=const)",
+    "err_face_extrap_k": 1.1368683772161603e-13,
+    "err_t0_proj_k": 1.1368683772161603e-13,
+    "err_flux_west_w_per_m2": 1.0913936421275139e-11,
+    "max_fvm_residual_w": 2.2737367544323206e-12,
+    "is_extrapolation_exact": true
+  },
+  "case_2_quadratic_1d": {
+    "case": "1D Quadratic (q!=0, k=const)",
+    "q_val_w_m3": 10000.0,
+    "k_val_w_mk": 2.0,
+    "dx": 0.03125,
+    "err_face_extrap_measured_k": 2.4414062500002274,
+    "err_face_extrap_theory_k": 1.8310546875,
+    "err_t0_proj_measured_k": 1.6276041666668561,
+    "err_t0_proj_theory_k": 1.220703125,
+    "original_max_residual_w": 4.320099833421409e-12,
+    "projected_boundary_cell_residual_mean_w": 9.765625000000107,
+    "theoretical_projected_residual_w": 9.765625,
+    "is_extrapolation_exact": false
+  },
+  "case_3_variable_k_2d": {
+    "case": "2D Sinusoidal MMS Variable K",
+    "err_face_extrap_max_k": 0.005904953004971958,
+    "err_t0_proj_max_k": 0.0039366353366858675,
+    "err_exact_fvm_balance_k": 1.7053025658242404e-13,
+    "max_fvm_residual_w": 2.5011104298755527e-12,
+    "is_extrapolation_exact": false,
+    "is_fvm_balance_exact": true
+  },
+  "case_4_rectangular_thickness": {
+    "case": "Rectangular Grid & Non-Unit Thickness",
+    "dx": 0.0625,
+    "dy": 0.03125,
+    "aspect_ratio_dx_dy": 2.0,
+    "thickness": 0.05,
+    "area_x": 0.0015625,
+    "area_y": 0.003125,
+    "q_gen_total_w": 500.0,
+    "q_bnd_out_total_w": 500.00000000005207,
+    "flux_imbalance_w": 5.206857167650014e-11,
+    "relative_imbalance": 1.0413714335298943e-13,
+    "solver_converged": true
+  }
+}

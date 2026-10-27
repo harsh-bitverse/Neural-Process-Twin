@@ -1,0 +1,357 @@
+{
+  "ensemble_summary": {
+    "num_members": 5,
+    "member_names": [
+      "scaled_fno_supervised_seed42",
+      "scaled_fno_supervised_seed43",
+      "scaled_fno_supervised_seed44",
+      "scaled_fno_supervised_seed45",
+      "scaled_fno_supervised_seed46"
+    ],
+    "architecture": "fno2d"
+  },
+  "splits": {
+    "validation": {
+      "aggregate_error": {
+        "relative_l2_mean": 0.0024574613342880375,
+        "relative_l2_std": 0.0024116311832485925,
+        "rmse_kelvin_mean": 0.8038385885366842,
+        "rmse_kelvin_std": 0.7898402726578858,
+        "mae_kelvin_mean": 0.6220126297076544,
+        "mae_kelvin_std": 0.6127972446128392,
+        "max_error_kelvin_mean": 2.7918906656901044,
+        "max_error_kelvin_std": 2.6002993006103825,
+        "pde_residual_w_mean": 75.46361780556613,
+        "pde_residual_w_std": 36.165769611012514,
+        "flux_imbalance_w_mean": 66.88133317325669,
+        "flux_imbalance_w_std": 71.10819378482472
+      },
+      "uncertainty_quality": {
+        "mean_uncertainty_k": 0.5347703620791435,
+        "max_uncertainty_k": 1.8925943636894227,
+        "pearson_r_rmse": 0.8071123541869573,
+        "spearman_rho_rmse": 0.8644277523445488,
+        "pearson_r_rel_l2": 0.813982473949573,
+        "spearman_rho_rel_l2": 0.8626890084003734,
+        "worst_10pct_detection_auroc": 0.9353086419753087,
+        "worst_20pct_detection_auroc": 0.9394444444444445
+      },
+      "risk_coverage": {
+        "coverages": [
+          0.1,
+          0.2,
+          0.30000000000000004,
+          0.4,
+          0.5,
+          0.6,
+          0.7000000000000001,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "rmse_at_coverage": [
+          0.23440063878381553,
+          0.2480815508683757,
+          0.2940958337164912,
+          0.35064850391873326,
+          0.3806355133666715,
+          0.4424433195994968,
+          0.4906762977044923,
+          0.537634291512391,
+          0.6440337774497782,
+          0.8038385885366843
+        ],
+        "rel_l2_at_coverage": [
+          0.0720976838534971,
+          0.07714164991518073,
+          0.09078382654159788,
+          0.10748754687501157,
+          0.1166256779376365,
+          0.13553509811640388,
+          0.15046319745058165,
+          0.16471796131475192,
+          0.1970577388223897,
+          0.24574613342880378
+        ],
+        "aurc": 0.39073687017966796
+      }
+    },
+    "test_iid": {
+      "aggregate_error": {
+        "relative_l2_mean": 0.0023941404156371682,
+        "relative_l2_std": 0.00204114998685688,
+        "rmse_kelvin_mean": 0.7826027743139476,
+        "rmse_kelvin_std": 0.6647290714144977,
+        "mae_kelvin_mean": 0.6193523381650448,
+        "mae_kelvin_std": 0.5455887142035732,
+        "max_error_kelvin_mean": 2.5852650451660155,
+        "max_error_kelvin_std": 2.0326802595514493,
+        "pde_residual_w_mean": 76.27638347164198,
+        "pde_residual_w_std": 38.377849490780925,
+        "flux_imbalance_w_mean": 62.96282601993718,
+        "flux_imbalance_w_std": 72.50999411562994
+      },
+      "uncertainty_quality": {
+        "mean_uncertainty_k": 0.5328903557360172,
+        "max_uncertainty_k": 1.9024749037623405,
+        "pearson_r_rmse": 0.7993739046045698,
+        "spearman_rho_rmse": 0.8297367434185855,
+        "pearson_r_rel_l2": 0.7929841417128896,
+        "spearman_rho_rel_l2": 0.8304432610815271,
+        "worst_10pct_detection_auroc": 0.9552777777777777,
+        "worst_20pct_detection_auroc": 0.90796875
+      },
+      "risk_coverage": {
+        "coverages": [
+          0.1,
+          0.2,
+          0.30000000000000004,
+          0.4,
+          0.5,
+          0.6,
+          0.7000000000000001,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "rmse_at_coverage": [
+          0.2519776565405259,
+          0.2883076829386524,
+          0.329775157269529,
+          0.35893600187080643,
+          0.40352224343622306,
+          0.4532572514274991,
+          0.5023928333873362,
+          0.5611820241382153,
+          0.6431989593186906,
+          0.7826027743139476
+        ],
+        "rel_l2_at_coverage": [
+          0.07711399333752415,
+          0.08863576741565159,
+          0.10126463004611734,
+          0.10996773022113386,
+          0.12359377633095585,
+          0.13878565457513906,
+          0.1540689651175718,
+          0.1722675695076982,
+          0.19678735591828758,
+          0.23941404156371676
+        ],
+        "aurc": 0.40578623692141885
+      }
+    },
+    "test_ood": {
+      "aggregate_error": {
+        "relative_l2_mean": 0.1458364448731465,
+        "relative_l2_std": 0.05600504799259304,
+        "rmse_kelvin_mean": 53.11399181925169,
+        "rmse_kelvin_std": 24.617019103797485,
+        "mae_kelvin_mean": 48.28472061588429,
+        "mae_kelvin_std": 23.317158701362587,
+        "max_error_kelvin_mean": 110.25059717178345,
+        "max_error_kelvin_std": 56.81208743404093,
+        "pde_residual_w_mean": 11339.068648016331,
+        "pde_residual_w_std": 3960.3315135536304,
+        "flux_imbalance_w_mean": 19192.2325113248,
+        "flux_imbalance_w_std": 27602.78534752025
+      },
+      "uncertainty_quality": {
+        "mean_uncertainty_k": 22.90987967967987,
+        "max_uncertainty_k": 56.26926199913025,
+        "pearson_r_rmse": 0.5134692691170231,
+        "spearman_rho_rmse": 0.5169234230855773,
+        "pearson_r_rel_l2": 0.5969247036408187,
+        "spearman_rho_rel_l2": 0.5793744843621091,
+        "worst_10pct_detection_auroc": 0.6977777777777777,
+        "worst_20pct_detection_auroc": 0.7379687500000001
+      },
+      "risk_coverage": {
+        "coverages": [
+          0.1,
+          0.2,
+          0.30000000000000004,
+          0.4,
+          0.5,
+          0.6,
+          0.7000000000000001,
+          0.8,
+          0.9,
+          1.0
+        ],
+        "rmse_at_coverage": [
+          30.436348227312237,
+          36.106547531020745,
+          41.17783405174959,
+          42.01639897056585,
+          44.00521003462249,
+          45.1920141309898,
+          45.978238876885555,
+          47.88401975306702,
+          50.36705331600964,
+          53.11399181925168
+        ],
+        "rel_l2_at_coverage": [
+          8.334658399231548,
+          10.00977245027283,
+          11.157543163727356,
+          11.544712934638138,
+          12.144494707849725,
+          12.500050674690293,
+          12.748822454925257,
+          13.246586512743495,
+          13.907196349154535,
+          14.583644487314652
+        ],
+        "aurc": 39.450248668819256
+      }
+    }
+  },
+  "conformal_calibration": {
+    "simultaneous_90": {
+      "confidence_level": 0.9,
+      "coverage_type": "simultaneous",
+      "quantile_multiplier_q_hat": 20.797486315739718,
+      "splits": {
+        "validation": {
+          "empirical_coverage": 0.9066666666666666,
+          "mean_interval_width_k": 22.247918269922735,
+          "median_interval_width_k": 18.586059002393107
+        },
+        "test_iid": {
+          "empirical_coverage": 0.895,
+          "mean_interval_width_k": 22.16971927813561,
+          "median_interval_width_k": 18.235349990777735
+        },
+        "test_ood": {
+          "empirical_coverage": 0.765,
+          "mean_interval_width_k": 952.9399812694421,
+          "median_interval_width_k": 910.8124219964012
+        }
+      }
+    },
+    "pointwise_90": {
+      "confidence_level": 0.9,
+      "coverage_type": "pointwise",
+      "quantile_multiplier_q_hat": 2.698166558258984,
+      "splits": {
+        "validation": {
+          "empirical_coverage": 0.9000065104166667,
+          "mean_interval_width_k": 2.886338673599917,
+          "median_interval_width_k": 2.411266539078463
+        },
+        "test_iid": {
+          "empirical_coverage": 0.8870556640625,
+          "mean_interval_width_k": 2.876193509837029,
+          "median_interval_width_k": 2.3657672266877876
+        },
+        "test_ood": {
+          "empirical_coverage": 0.6870556640625,
+          "mean_interval_width_k": 123.62988249898508,
+          "median_interval_width_k": 118.16445413490591
+        }
+      }
+    },
+    "simultaneous_95": {
+      "confidence_level": 0.95,
+      "coverage_type": "simultaneous",
+      "quantile_multiplier_q_hat": 23.90980695438103,
+      "splits": {
+        "validation": {
+          "empirical_coverage": 0.96,
+          "mean_interval_width_k": 25.577294433323896,
+          "median_interval_width_k": 21.36744200926038
+        },
+        "test_iid": {
+          "empirical_coverage": 0.945,
+          "mean_interval_width_k": 25.487393049605117,
+          "median_interval_width_k": 20.96424978508572
+        },
+        "test_ood": {
+          "empirical_coverage": 0.81,
+          "mean_interval_width_k": 1095.546386969864,
+          "median_interval_width_k": 1047.1144854224472
+        }
+      }
+    },
+    "pointwise_95": {
+      "confidence_level": 0.95,
+      "coverage_type": "pointwise",
+      "quantile_multiplier_q_hat": 3.7102865083063628,
+      "splits": {
+        "validation": {
+          "empirical_coverage": 0.9500065104166666,
+          "mean_interval_width_k": 3.969044611527179,
+          "median_interval_width_k": 3.3157662859946644
+        },
+        "test_iid": {
+          "empirical_coverage": 0.94078125,
+          "mean_interval_width_k": 3.9550938551816217,
+          "median_interval_width_k": 3.253199546227024
+        },
+        "test_ood": {
+          "empirical_coverage": 0.8394140625,
+          "mean_interval_width_k": 170.00517764754557,
+          "median_interval_width_k": 162.48959079124617
+        }
+      }
+    }
+  },
+  "ood_detection": {
+    "ensemble_disagreement_mean": {
+      "detector_name": "ensemble_disagreement_mean",
+      "num_iid": 200,
+      "num_ood": 200,
+      "auroc": 1.0,
+      "auprc": 1.0,
+      "threshold": 1.0217445981979836,
+      "tpr_at_5pct_fpr": 1.0,
+      "optimal_f1": 0.9999999999995,
+      "accuracy_at_threshold": 0.975
+    },
+    "ensemble_disagreement_max": {
+      "detector_name": "ensemble_disagreement_max",
+      "num_iid": 200,
+      "num_ood": 200,
+      "auroc": 1.0,
+      "auprc": 1.0,
+      "threshold": 4.494853973388672,
+      "tpr_at_5pct_fpr": 1.0,
+      "optimal_f1": 0.9999999999995,
+      "accuracy_at_threshold": 0.975
+    },
+    "input_k_contrast": {
+      "detector_name": "input_k_contrast",
+      "num_iid": 200,
+      "num_ood": 200,
+      "auroc": 1.0,
+      "auprc": 1.0,
+      "threshold": 5.824930667877197,
+      "tpr_at_5pct_fpr": 1.0,
+      "optimal_f1": 0.9999999999995,
+      "accuracy_at_threshold": 0.975
+    },
+    "input_q_max": {
+      "detector_name": "input_q_max",
+      "num_iid": 200,
+      "num_ood": 200,
+      "auroc": 0.99975,
+      "auprc": 0.9997489714272053,
+      "threshold": 610.9182739257812,
+      "tpr_at_5pct_fpr": 1.0,
+      "optimal_f1": 0.9950248756213905,
+      "accuracy_at_threshold": 0.975
+    },
+    "input_composite": {
+      "detector_name": "input_composite",
+      "num_iid": 200,
+      "num_ood": 200,
+      "auroc": 1.0,
+      "auprc": 1.0,
+      "threshold": 0.8179164465579241,
+      "tpr_at_5pct_fpr": 1.0,
+      "optimal_f1": 0.9999999999995,
+      "accuracy_at_threshold": 0.975
+    }
+  }
+}

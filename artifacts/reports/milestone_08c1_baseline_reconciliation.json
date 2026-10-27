@@ -1,0 +1,217 @@
+{
+  "metadata": {
+    "description": "Historical Baseline Reconciliation Audit (Milestone 08C.1)",
+    "models_evaluated": [
+      "M0_fno_baseline",
+      "M1_cont_fno_res32",
+      "M3_logk_fno_mixed"
+    ],
+    "timestamp": "2026-10-27T15:25:00Z"
+  },
+  "evaluations": {
+    "M0": {
+      "scaled_dataset": {
+        "num_samples": 200,
+        "mean_rmse_k": 0.923208541572094,
+        "std_rmse_k": 0.685038516056545,
+        "median_rmse_k": 0.6942688524723053,
+        "min_rmse_k": 0.26638466119766235,
+        "max_rmse_k": 5.227131366729736,
+        "mean_max_ae_k": 3.508206634521484,
+        "subgroup_breakdown": {
+          "both_neumann": {
+            "count": 200,
+            "mean_rmse_k": 0.923208541572094
+          },
+          "has_top_bottom_dirichlet": {
+            "count": 0,
+            "mean_rmse_k": 0.0
+          }
+        }
+      },
+      "multires_dataset": {
+        "num_samples": 200,
+        "mean_rmse_k": 7.8125802963972095,
+        "std_rmse_k": 3.66531383679753,
+        "median_rmse_k": 7.515053987503052,
+        "min_rmse_k": 0.9100908041000366,
+        "max_rmse_k": 21.093141555786133,
+        "mean_max_ae_k": 29.985738143920898,
+        "subgroup_breakdown": {
+          "both_neumann": {
+            "count": 45,
+            "mean_rmse_k": 5.374764423900181
+          },
+          "has_top_bottom_dirichlet": {
+            "count": 155,
+            "mean_rmse_k": 8.520333291638282
+          }
+        }
+      },
+      "confirmation_dataset": {
+        "num_samples": 200,
+        "mean_rmse_k": 7.791469568014145,
+        "std_rmse_k": 4.805304807181258,
+        "median_rmse_k": 6.741254806518555,
+        "min_rmse_k": 1.1032289266586304,
+        "max_rmse_k": 23.40886688232422,
+        "mean_max_ae_k": 28.928407821655274,
+        "subgroup_breakdown": {
+          "both_neumann": {
+            "count": 57,
+            "mean_rmse_k": 4.90847026674371
+          },
+          "has_top_bottom_dirichlet": {
+            "count": 143,
+            "mean_rmse_k": 8.940637121667395
+          }
+        }
+      }
+    },
+    "M1": {
+      "scaled_dataset": {
+        "num_samples": 200,
+        "mean_rmse_k": 4.624186380505562,
+        "std_rmse_k": 2.3101815456341916,
+        "median_rmse_k": 3.887895941734314,
+        "min_rmse_k": 0.93320631980896,
+        "max_rmse_k": 11.848284721374512,
+        "mean_max_ae_k": 12.116544342041015,
+        "subgroup_breakdown": {
+          "both_neumann": {
+            "count": 200,
+            "mean_rmse_k": 4.624186380505562
+          },
+          "has_top_bottom_dirichlet": {
+            "count": 0,
+            "mean_rmse_k": 0.0
+          }
+        }
+      },
+      "multires_dataset": {
+        "num_samples": 200,
+        "mean_rmse_k": 2.675062525868416,
+        "std_rmse_k": 1.3782556557610415,
+        "median_rmse_k": 2.3819963932037354,
+        "min_rmse_k": 0.896213948726654,
+        "max_rmse_k": 9.3711519241333,
+        "mean_max_ae_k": 9.951826553344727,
+        "subgroup_breakdown": {
+          "both_neumann": {
+            "count": 45,
+            "mean_rmse_k": 3.6569957402017383
+          },
+          "has_top_bottom_dirichlet": {
+            "count": 155,
+            "mean_rmse_k": 2.3899851410619672
+          }
+        }
+      },
+      "confirmation_dataset": {
+        "num_samples": 200,
+        "mean_rmse_k": 2.937492673099041,
+        "std_rmse_k": 1.7301546343851695,
+        "median_rmse_k": 2.5053850412368774,
+        "min_rmse_k": 0.7934836745262146,
+        "max_rmse_k": 12.592172622680664,
+        "mean_max_ae_k": 10.37388885498047,
+        "subgroup_breakdown": {
+          "both_neumann": {
+            "count": 57,
+            "mean_rmse_k": 4.382033688980236
+          },
+          "has_top_bottom_dirichlet": {
+            "count": 143,
+            "mean_rmse_k": 2.3616966038317115
+          }
+        }
+      }
+    },
+    "M3": {
+      "scaled_dataset": {
+        "num_samples": 200,
+        "mean_rmse_k": 4.1800703465938565,
+        "std_rmse_k": 1.9855809151895432,
+        "median_rmse_k": 3.7125905752182007,
+        "min_rmse_k": 0.848992109298706,
+        "max_rmse_k": 10.596297264099121,
+        "mean_max_ae_k": 11.987725372314452,
+        "subgroup_breakdown": {
+          "both_neumann": {
+            "count": 200,
+            "mean_rmse_k": 4.1800703465938565
+          },
+          "has_top_bottom_dirichlet": {
+            "count": 0,
+            "mean_rmse_k": 0.0
+          }
+        }
+      },
+      "multires_dataset": {
+        "num_samples": 200,
+        "mean_rmse_k": 2.3616115131974222,
+        "std_rmse_k": 1.2042243006652833,
+        "median_rmse_k": 2.1240432262420654,
+        "min_rmse_k": 0.7232025861740112,
+        "max_rmse_k": 7.719306468963623,
+        "mean_max_ae_k": 9.272502212524413,
+        "subgroup_breakdown": {
+          "both_neumann": {
+            "count": 45,
+            "mean_rmse_k": 3.130802790323893
+          },
+          "has_top_bottom_dirichlet": {
+            "count": 155,
+            "mean_rmse_k": 2.1382979166123173
+          }
+        }
+      },
+      "confirmation_dataset": {
+        "num_samples": 200,
+        "mean_rmse_k": 2.6100070720911024,
+        "std_rmse_k": 1.5314785434342386,
+        "median_rmse_k": 2.1430060863494873,
+        "min_rmse_k": 0.8884498476982117,
+        "max_rmse_k": 10.271562576293945,
+        "mean_max_ae_k": 9.7047705078125,
+        "subgroup_breakdown": {
+          "both_neumann": {
+            "count": 57,
+            "mean_rmse_k": 3.767207465673748
+          },
+          "has_top_bottom_dirichlet": {
+            "count": 143,
+            "mean_rmse_k": 2.1487453767469713
+          }
+        }
+      }
+    }
+  },
+  "reconciliation_findings": {
+    "historical_0.92K_reproduced": true,
+    "m0_scaled_rmse_k": 0.923208541572094,
+    "m0_multires_rmse_k": 7.8125802963972095,
+    "m0_confirmation_rmse_k": 7.791469568014145,
+    "m3_scaled_rmse_k": 4.1800703465938565,
+    "m3_multires_rmse_k": 2.3616115131974222,
+    "root_causes": [
+      {
+        "cause": "Boundary Condition Regime Shift",
+        "evidence": "In scaled_dataset, bottom and top boundaries are strictly Neumann (100% of samples). In multires_dataset, bottom and top boundaries are mixed Dirichlet/Neumann (77.5% Dirichlet). M0's RMSE on multires samples with both Neumann is 5.375 K vs 8.520 K on samples with Dirichlet."
+      },
+      {
+        "cause": "Heat Generation Magnitude Shift",
+        "evidence": "Mean volumetric heat source q in multires_dataset is 102.67 W/m^3 (max 1563.3 W/m^3), compared to 43.58 W/m^3 (max 842.4 W/m^3) in scaled_dataset (a 2.35x elevation)."
+      },
+      {
+        "cause": "Macroscopic Temperature Gradient Shift",
+        "evidence": "In scaled_dataset, left and right Dirichlet boundaries are symmetric around 325.4 K. In multires_dataset, an explicit thermal gradient is imposed (left mean 314.2 K, right mean 334.1 K, creating an overall ~20 K cross-domain slope)."
+      },
+      {
+        "cause": "Bidirectional Cross-Distribution Transfer",
+        "evidence": "M3 (trained on multires) achieves 2.805 K in-distribution on multires, but degrades to 4.180 K when evaluated on scaled_dataset. This proves that M0 vs M3 in Milestone 08C compared models across non-matched physical distributions."
+      }
+    ],
+    "verdict": "MATCHED_TRAINING_TEST_DISTRIBUTIONS_FALSE: M0 and M3 in Milestone 08C did NOT represent matched training and test distributions. M0 was evaluated out-of-distribution."
+  }
+}

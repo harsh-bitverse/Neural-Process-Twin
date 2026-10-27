@@ -1,0 +1,64 @@
+# ==============================================================================
+# Neural Process Twin - Scaled Physical Problem & Data Generation Configuration
+# ==============================================================================
+# Configuration for Milestone 04B: Scaled Training & Physics-Loss Calibration
+# Grid resolution: 32x32 (1024 cells)
+# Partition target: 1000 train, 150 val, 200 test_iid, 200 test_ood (1550 total)
+# ==============================================================================
+
+version: "0.2.0"
+config_status: "active"
+
+# Spatial domain definition: 2D rectangle Omega = [x_min, x_max] x [y_min, y_max]
+domain:
+  x_min: 0.0
+  x_max: 1.0
+  y_min: 0.0
+  y_max: 1.0
+  length_unit: "meter"
+
+# Discretization grid for reference numerical solver & surrogate input tensor
+grid:
+  nx: 32                  # number of control volumes (cells) along x-axis
+  ny: 32                  # number of control volumes (cells) along y-axis
+  coordinate_system: "cartesian_2d"
+  grid_type: "cell_centered"
+
+# Physical problem specification: Steady-State Heat Conduction
+physics:
+  problem_type: "steady_state_heat_conduction"
+  governing_equation: "-div(k(x, y) * grad(T(x, y))) = q(x, y)"
+  conductivity:
+    distribution: "gaussian_random_field"
+    k_min: 0.1          # positive lower bound ensuring strict ellipticity [W/(m*K)]
+    k_max: 10.0         # conductivity upper bound [W/(m*K)]
+    length_scale: 0.2   # correlation length for GRF synthesis [m]
+  source_term:
+    distribution: "gaussian_blobs"
+    q_min: 0.0          # volumetric heat generation minimum [W/m^3]
+    q_max: 1000.0       # volumetric heat generation maximum [W/m^3]
+    num_peaks: 3        # number of localized thermal sources
+
+# Boundary conditions across the 4 rectangular boundaries
+boundary_conditions:
+  left:
+    type: "dirichlet"
+    value: 300.0        # Dirichlet boundary: 300.0 K
+  right:
+    type: "dirichlet"
+    value: 350.0        # Dirichlet boundary: 350.0 K
+  bottom:
+    type: "neumann"
+    value: 0.0          # Adiabatic / insulated boundary: zero normal heat flux
+  top:
+    type: "neumann"
+    value: 0.0          # Adiabatic / insulated boundary: zero normal heat flux
+
+# Scaled dataset generation ensemble sizes and partitioning
+dataset:
+  seed: 42
+  num_train: 1000       # scaled training ensemble count
+  num_val: 150          # scaled validation ensemble count
+  num_test_iid: 200     # in-distribution test samples
+  num_test_ood: 200     # out-of-distribution test samples
+  storage_format: "hdf5"

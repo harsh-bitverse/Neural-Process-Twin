@@ -1,0 +1,36 @@
+{
+  "grid_size": [
+    32,
+    32
+  ],
+  "batch_size": 32,
+  "repeats": 50,
+  "reference_solver": {
+    "name": "FiniteVolumeReferenceSolver",
+    "device": "cpu",
+    "batch_size": 1,
+    "single_sample_latency_mean_ms": 4.127031997777522,
+    "single_sample_latency_std_ms": 0.7979893226447872,
+    "single_sample_latency_median_ms": 3.9831000613048673,
+    "single_sample_latency_p95_ms": 5.315300030633807,
+    "throughput_samples_per_sec": 242.30488170155147
+  },
+  "surrogate": {
+    "name": "FourierNeuralOperator2D",
+    "device": "cpu",
+    "batch_size": 32,
+    "single_sample_latency_mean_ms": 8.43569400254637,
+    "single_sample_latency_std_ms": 2.5671365375831927,
+    "single_sample_latency_median_ms": 7.069600047543645,
+    "single_sample_latency_p95_ms": 12.325929937651381,
+    "throughput_samples_per_sec": 1254.1967579066436
+  },
+  "comparison": {
+    "reference_solver_latency_ms": 4.127031997777522,
+    "surrogate_latency_ms": 8.43569400254637,
+    "single_sample_speedup": 0.48923443602052774,
+    "reference_solver_throughput_sps": 242.30488170155147,
+    "surrogate_throughput_sps": 1254.1967579066436,
+    "throughput_speedup": 5.176110151389546
+  }
+}
