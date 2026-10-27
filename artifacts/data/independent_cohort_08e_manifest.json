@@ -1,0 +1,23 @@
+{
+  "dataset_filename": "independent_cohort_08e.h5",
+  "dataset_path": "artifacts\\data\\independent_cohort_08e.h5",
+  "sha256": "b28c103b864a98e9f3e29306a5700974f77eda4c160fc01d49f89c6d430402fd",
+  "creation_timestamp": "2026-10-28 01:37:02",
+  "governance_status": "LOCKED_INDEPENDENT_EVALUATION_COHORT_08E",
+  "num_iid_samples": 100,
+  "num_ood_samples": 100,
+  "iid_seed_range": [
+    800000,
+    800099
+  ],
+  "ood_seed_range": [
+    810000,
+    810099
+  ],
+  "resolutions": [
+    32,
+    64,
+    128,
+    256
+  ]
+}

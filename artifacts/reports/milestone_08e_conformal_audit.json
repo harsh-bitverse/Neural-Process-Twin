@@ -1,0 +1,410 @@
+{
+  "metadata": {
+    "timestamp": "2026-10-28 01:44:08",
+    "model": "U3_mc_dropout (T=5)",
+    "quantiles": {
+      "iid_only": {
+        "q_hat_ptwise_95": 3.459606063365935,
+        "q_hat_simult_95": 32.17577659606928
+      },
+      "combined": {
+        "q_hat_ptwise_95": 7.498269867897032,
+        "q_hat_simult_95": 55.30035030317298
+      }
+    }
+  },
+  "conditional_coverage": {
+    "res_32": {
+      "overall": {
+        "n_samples": 80,
+        "comb_ptwise_cov_pct": 94.4775390625,
+        "comb_simult_cov_pct": 100.0,
+        "iid_ptwise_cov_pct": 79.14306640625,
+        "iid_simult_cov_pct": 100.0,
+        "mean_mpiw_k": 69.84761402606964
+      },
+      "by_regime": {
+        "iid": {
+          "n_samples": 40,
+          "comb_ptwise_cov_pct": 99.89501953125,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 97.6318359375,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 44.01326994895935
+        },
+        "ood": {
+          "n_samples": 40,
+          "comb_ptwise_cov_pct": 89.06005859375,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 60.654296875,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 95.68195810317994
+        }
+      },
+      "by_contrast": {
+        "contrast_le_5": {
+          "n_samples": 7,
+          "comb_ptwise_cov_pct": 100.0,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 99.05133928571429,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 47.62960161481585
+        },
+        "contrast_5_to_20": {
+          "n_samples": 42,
+          "comb_ptwise_cov_pct": 98.89555431547619,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 90.60407366071429,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 54.11176213764009
+        },
+        "contrast_ge_20": {
+          "n_samples": 31,
+          "comb_ptwise_cov_pct": 87.24483366935483,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 59.11983366935484,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 96.18412583874118
+        }
+      },
+      "by_heat_source": {
+        "q_under_500": {
+          "n_samples": 7,
+          "comb_ptwise_cov_pct": 99.93024553571429,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 99.05133928571429,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 43.09054946899414
+        },
+        "q_500_to_1000": {
+          "n_samples": 30,
+          "comb_ptwise_cov_pct": 99.169921875,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 94.63541666666667,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 52.71299114227295
+        },
+        "q_ge_1000": {
+          "n_samples": 43,
+          "comb_ptwise_cov_pct": 90.31613372093024,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 65.09356831395348,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 86.15780329149823
+        }
+      },
+      "by_boundary_type": {
+        "pure_dirichlet": {
+          "n_samples": 21,
+          "comb_ptwise_cov_pct": 99.24200148809523,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 91.39694940476191,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 53.90849930899484
+        },
+        "mixed_neumann": {
+          "n_samples": 59,
+          "comb_ptwise_cov_pct": 92.78171345338984,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 74.78151483050848,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 75.52085824740135
+        }
+      }
+    },
+    "res_64": {
+      "overall": {
+        "n_samples": 80,
+        "comb_ptwise_cov_pct": 93.02398681640625,
+        "comb_simult_cov_pct": 100.0,
+        "iid_ptwise_cov_pct": 77.56591796875,
+        "iid_simult_cov_pct": 100.0,
+        "mean_mpiw_k": 66.6118896484375
+      },
+      "by_regime": {
+        "iid": {
+          "n_samples": 40,
+          "comb_ptwise_cov_pct": 99.635009765625,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 95.7421875,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 43.22084274291992
+        },
+        "ood": {
+          "n_samples": 40,
+          "comb_ptwise_cov_pct": 86.4129638671875,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 59.3896484375,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 90.00293655395508
+        }
+      },
+      "by_contrast": {
+        "contrast_le_5": {
+          "n_samples": 7,
+          "comb_ptwise_cov_pct": 99.58844866071429,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 94.67075892857143,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 48.45723015921457
+        },
+        "contrast_5_to_20": {
+          "n_samples": 42,
+          "comb_ptwise_cov_pct": 97.57486979166666,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 89.97337704613095,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 52.63294428870792
+        },
+        "contrast_ge_20": {
+          "n_samples": 31,
+          "comb_ptwise_cov_pct": 85.3759765625,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 56.89342867943549,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 89.65054518176663
+        }
+      },
+      "by_heat_source": {
+        "q_under_500": {
+          "n_samples": 7,
+          "comb_ptwise_cov_pct": 99.98256138392857,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 97.47140066964286,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 43.365574428013396
+        },
+        "q_500_to_1000": {
+          "n_samples": 30,
+          "comb_ptwise_cov_pct": 98.4130859375,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 91.60725911458333,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 48.66752300262451
+        },
+        "q_ge_1000": {
+          "n_samples": 43,
+          "comb_ptwise_cov_pct": 88.13135901162791,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 64.52920603197676,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 82.91549908837607
+        }
+      },
+      "by_boundary_type": {
+        "pure_dirichlet": {
+          "n_samples": 21,
+          "comb_ptwise_cov_pct": 99.00018601190477,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 92.43396577380952,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 57.39030774434408
+        },
+        "mixed_neumann": {
+          "n_samples": 59,
+          "comb_ptwise_cov_pct": 90.89686506885593,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 72.27390095338984,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 69.89414761430126
+        }
+      }
+    },
+    "res_128": {
+      "overall": {
+        "n_samples": 80,
+        "comb_ptwise_cov_pct": 93.32366943359375,
+        "comb_simult_cov_pct": 100.0,
+        "iid_ptwise_cov_pct": 78.54026794433594,
+        "iid_simult_cov_pct": 100.0,
+        "mean_mpiw_k": 65.9362663269043
+      },
+      "by_regime": {
+        "iid": {
+          "n_samples": 40,
+          "comb_ptwise_cov_pct": 99.70855712890625,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 96.50115966796875,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 41.44384508132934
+        },
+        "ood": {
+          "n_samples": 40,
+          "comb_ptwise_cov_pct": 86.93878173828125,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 60.57937622070313,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 90.42868757247925
+        }
+      },
+      "by_contrast": {
+        "contrast_le_5": {
+          "n_samples": 7,
+          "comb_ptwise_cov_pct": 99.77678571428571,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 95.66563197544643,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 44.80661473955427
+        },
+        "contrast_5_to_20": {
+          "n_samples": 41,
+          "comb_ptwise_cov_pct": 98.28178591844512,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 90.68156916920732,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 49.717364753164894
+        },
+        "contrast_ge_20": {
+          "n_samples": 32,
+          "comb_ptwise_cov_pct": 85.55946350097656,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 59.23805236816406,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 91.33884525299072
+        }
+      },
+      "by_heat_source": {
+        "q_under_500": {
+          "n_samples": 7,
+          "comb_ptwise_cov_pct": 99.94070870535714,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 98.40523856026786,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 42.551044191632954
+        },
+        "q_500_to_1000": {
+          "n_samples": 30,
+          "comb_ptwise_cov_pct": 97.5091552734375,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 91.810302734375,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 45.55128180185954
+        },
+        "q_ge_1000": {
+          "n_samples": 43,
+          "comb_ptwise_cov_pct": 89.32637059411337,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 66.04827171148256,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 83.96524518035179
+        }
+      },
+      "by_boundary_type": {
+        "pure_dirichlet": {
+          "n_samples": 21,
+          "comb_ptwise_cov_pct": 99.53729538690477,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 92.52348400297619,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 52.54213196890695
+        },
+        "mixed_neumann": {
+          "n_samples": 59,
+          "comb_ptwise_cov_pct": 91.11203985699152,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 73.56319104210806,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 70.70367008144572
+        }
+      }
+    },
+    "res_256": {
+      "overall": {
+        "n_samples": 80,
+        "comb_ptwise_cov_pct": 93.41625213623047,
+        "comb_simult_cov_pct": 100.0,
+        "iid_ptwise_cov_pct": 76.9525146484375,
+        "iid_simult_cov_pct": 100.0,
+        "mean_mpiw_k": 64.77836120128632
+      },
+      "by_regime": {
+        "iid": {
+          "n_samples": 40,
+          "comb_ptwise_cov_pct": 99.73583221435547,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 95.89286804199219,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 42.493870210647586
+        },
+        "ood": {
+          "n_samples": 40,
+          "comb_ptwise_cov_pct": 87.09667205810547,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 58.01216125488281,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 87.06285219192505
+        }
+      },
+      "by_contrast": {
+        "contrast_le_5": {
+          "n_samples": 7,
+          "comb_ptwise_cov_pct": 99.79313441685268,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 95.47467912946429,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 42.04347256251744
+        },
+        "contrast_5_to_20": {
+          "n_samples": 40,
+          "comb_ptwise_cov_pct": 98.97270202636719,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 91.279296875,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 50.56332778930664
+        },
+        "contrast_ge_20": {
+          "n_samples": 33,
+          "comb_ptwise_cov_pct": 85.32848936138731,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 55.657774029356055,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 86.83125686645508
+        }
+      },
+      "by_heat_source": {
+        "q_under_500": {
+          "n_samples": 7,
+          "comb_ptwise_cov_pct": 99.93068150111607,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 98.07695661272321,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 40.86370004926409
+        },
+        "q_500_to_1000": {
+          "n_samples": 30,
+          "comb_ptwise_cov_pct": 98.2262674967448,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 91.38076782226562,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 49.1470095316569
+        },
+        "q_ge_1000": {
+          "n_samples": 43,
+          "comb_ptwise_cov_pct": 88.99993896484375,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 63.44742885855741,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 79.57703976298488
+        }
+      },
+      "by_boundary_type": {
+        "pure_dirichlet": {
+          "n_samples": 21,
+          "comb_ptwise_cov_pct": 99.37693277994791,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 91.93355015345982,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 55.966844013759065
+        },
+        "mixed_neumann": {
+          "n_samples": 59,
+          "comb_ptwise_cov_pct": 91.294653941009,
+          "comb_simult_cov_pct": 100.0,
+          "iid_ptwise_cov_pct": 71.62028167207363,
+          "iid_simult_cov_pct": 100.0,
+          "mean_mpiw_k": 67.91466392905025
+        }
+      }
+    }
+  }
+}

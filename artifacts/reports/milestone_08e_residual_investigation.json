@@ -1,0 +1,113 @@
+{
+  "scaling_data": {
+    "res_32": {
+      "n_samples": 50,
+      "mean_maxae_k": 8.77628387451172,
+      "pde_residual_relative": {
+        "mean": 0.008558727819440233,
+        "p50": 0.007510011836359778,
+        "p90": 0.01386060224965154,
+        "p95": 0.015348302219887177
+      },
+      "pde_residual_l2_w": {
+        "mean": 154.4418676774127,
+        "p50": 129.95811082974225
+      },
+      "system_b_l2_w": {
+        "mean": 18119.865561301795
+      },
+      "heat_balance_relative_imbalance_pct": {
+        "mean": 86.92039441730392,
+        "p50": 80.89017025761711,
+        "p90": 139.29250725348268,
+        "p95": 167.27769351674362
+      },
+      "flux_imbalance_abs_w": {
+        "mean": 333.4112999203107,
+        "p50": 243.97199958692363
+      }
+    },
+    "res_64": {
+      "n_samples": 50,
+      "mean_maxae_k": 11.126850280761719,
+      "pde_residual_relative": {
+        "mean": 0.009909288856720315,
+        "p50": 0.008915108249173673,
+        "p90": 0.016149843750837323,
+        "p95": 0.01752650511237714
+      },
+      "pde_residual_l2_w": {
+        "mean": 253.18718994023945,
+        "p50": 224.74347552947714
+      },
+      "system_b_l2_w": {
+        "mean": 25371.505433670973
+      },
+      "heat_balance_relative_imbalance_pct": {
+        "mean": 91.98715505328943,
+        "p50": 92.46883170839472,
+        "p90": 140.47321313181095,
+        "p95": 169.9324843203938
+      },
+      "flux_imbalance_abs_w": {
+        "mean": 657.4658489851139,
+        "p50": 363.93952839009216
+      }
+    },
+    "res_128": {
+      "n_samples": 50,
+      "mean_maxae_k": 14.2255322265625,
+      "pde_residual_relative": {
+        "mean": 0.011039980763061922,
+        "p50": 0.010334063766781747,
+        "p90": 0.017189174330761604,
+        "p95": 0.01931937118785136
+      },
+      "pde_residual_l2_w": {
+        "mean": 400.7159278065347,
+        "p50": 353.01532139739646
+      },
+      "system_b_l2_w": {
+        "mean": 35698.158148768016
+      },
+      "heat_balance_relative_imbalance_pct": {
+        "mean": 103.03254815457365,
+        "p50": 100.66291100071933,
+        "p90": 128.60922257104025,
+        "p95": 158.97111286294194
+      },
+      "flux_imbalance_abs_w": {
+        "mean": 1454.1991510181904,
+        "p50": 730.7425575508278
+      }
+    },
+    "res_256": {
+      "n_samples": 50,
+      "mean_maxae_k": 16.682987365722656,
+      "pde_residual_relative": {
+        "mean": 0.011318913577171916,
+        "p50": 0.010348163063257117,
+        "p90": 0.01759802678826399,
+        "p95": 0.02030756018890325
+      },
+      "pde_residual_l2_w": {
+        "mean": 583.0694674187891,
+        "p50": 498.01976315157776
+      },
+      "system_b_l2_w": {
+        "mean": 50354.619868090034
+      },
+      "heat_balance_relative_imbalance_pct": {
+        "mean": 103.57942201521838,
+        "p50": 100.72894592535258,
+        "p90": 112.40915881436517,
+        "p95": 126.12139538746315
+      },
+      "flux_imbalance_abs_w": {
+        "mean": 3171.960022824635,
+        "p50": 1844.3702938798706
+      }
+    }
+  },
+  "explanation": "Investigation of the historical 122.2 threshold:\n1. In Milestone 08D, line 285 in experiment_milestone_08d_routing.py computed:\n   res_norm = float(diag.relative_imbalance * 100.0) from compute_heat_balance().\n   This represents the dimensionless BOUNDARY HEAT FLUX IMBALANCE in PERCENT (0-200%),\n   NOT the cell-wise algebraic PDE residual ||A T - b||_2 / ||b||_2.\n2. The 90th percentile of this boundary flux relative imbalance on accurate calibration samples\n   was 122.2%.\n3. In contrast, the cell-centred algebraic relative residual ||A T - b||_2 / ||b||_2 scales as\n   O(sqrt(N)) across mesh refinements because ||A T - b||_2 grows with the total cell count N^2,\n   scaling as: 32x32: ~34.8 -> 64x64: ~101.1 -> 128x128: ~325.9 -> 256x256: ~1017.1.\n4. Applying a constant scalar threshold of 122.2 to ||A T - b||_2 / ||b||_2 at 256x256 would\n   falsely reject 100% of accurate predictions, whereas applying it to relative boundary flux\n   imbalance evaluates heat conservation consistency.\n"
+}
