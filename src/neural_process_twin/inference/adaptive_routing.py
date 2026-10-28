@@ -774,3 +774,28 @@ def compute_wilson_ci(k: int, n: int, confidence: float = 0.95) -> tuple[float, 
     ci_lower = 0.0 if k == 0 else max(0.0, float(center - margin))
     ci_upper = 1.0 if k == n else min(1.0, float(center + margin))
     return p_hat, ci_lower, ci_upper
+
+
+def calculate_wilson_interval(
+    k: int, n: int, confidence: float = 0.95
+) -> tuple[float | None, float | None, float | None]:
+    """Calculate exact Wilson score confidence interval handling empty cohorts.
+
+    Args:
+        k: Number of events (e.g. failures).
+        n: Total trials.
+        confidence: Desired confidence level (default: 0.95).
+
+    Returns:
+        (p_hat, ci_lower, ci_upper), or (None, None, None) if n == 0.
+    """
+    if n == 0:
+        return None, None, None
+    p_hat = float(k / n)
+    z = 1.959963984540054
+    denom = 1.0 + (z**2) / n
+    center = (p_hat + (z**2) / (2 * n)) / denom
+    margin = (z * np.sqrt((p_hat * (1 - p_hat) / n) + ((z**2) / (4 * n**2)))) / denom
+    ci_lower = 0.0 if k == 0 else max(0.0, float(center - margin))
+    ci_upper = 1.0 if k == n else min(1.0, float(center + margin))
+    return p_hat, ci_lower, ci_upper
