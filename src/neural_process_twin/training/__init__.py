@@ -21,15 +21,25 @@ from neural_process_twin.training.physics_loss import (
     DiscretePDEResidual,
     PhysicsAwareLoss,
 )
+from neural_process_twin.training.refined_loss import (
+    BoundaryLayerLoss,
+    InterfaceGradientLoss,
+    LogSumExpMaxLoss,
+    RefinedLocalizedLoss,
+)
 from neural_process_twin.training.trainer import Trainer
 
 __all__ = [
     "BoundaryConditionLoss",
+    "BoundaryLayerLoss",
     "DimensionlessPDELoss",
     "DiscretePDEResidual",
     "FaceConsistentBoundaryLoss",
     "FaceConsistentPhysicsLoss",
+    "InterfaceGradientLoss",
+    "LogSumExpMaxLoss",
     "PhysicsAwareLoss",
+    "RefinedLocalizedLoss",
     "RelativeL2Loss",
     "Trainer",
     "build_loss",

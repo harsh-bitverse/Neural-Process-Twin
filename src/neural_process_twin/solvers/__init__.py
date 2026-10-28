@@ -36,6 +36,7 @@ from neural_process_twin.solvers.diagnostics import (
     compute_heat_balance,
 )
 from neural_process_twin.solvers.grid import Grid2D
+from neural_process_twin.solvers.physics_smoother import JacobiPhysicsSmoother
 from neural_process_twin.solvers.solver import (
     HeatConductionSolver2D,
     SolverResult,
@@ -50,6 +51,7 @@ __all__ = [
     "EnergyBalanceDiagnostics",
     "Grid2D",
     "HeatConductionSolver2D",
+    "JacobiPhysicsSmoother",
     "LinearSystem",
     "PureNeumannSingularError",
     "SolverDiagnostics",

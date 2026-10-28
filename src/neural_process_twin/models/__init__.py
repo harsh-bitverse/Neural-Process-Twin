@@ -19,6 +19,7 @@ from neural_process_twin.models.boundary_aware_fno import (
 from neural_process_twin.models.cnn import CNNBaseline2D, ConvBlock2D
 from neural_process_twin.models.factory import build_model
 from neural_process_twin.models.fno2d import FourierNeuralOperator2D, SpectralConv2D
+from neural_process_twin.models.refined_fno import LocalRefinementBlock, RefinedFNO2D
 from neural_process_twin.models.uncertainty_fno import (
     DistilledStudentFNO2D,
     EvidentialFNO2D,
@@ -35,7 +36,9 @@ __all__ = [
     "EvidentialFNO2D",
     "FourierNeuralOperator2D",
     "HeteroscedasticFNO2D",
+    "LocalRefinementBlock",
     "MCDropoutFNO2D",
+    "RefinedFNO2D",
     "SpectralConv2D",
     "SurrogateModel",
     "build_model",

@@ -1,0 +1,228 @@
+{
+  "n_samples": 50,
+  "maxae_distribution": {
+    "min": 7.264923095703125,
+    "p25": 10.388542175292969,
+    "median": 16.4443359375,
+    "p75": 21.65570831298828,
+    "p90": 27.039721679687503,
+    "p95": 29.16880645751953,
+    "max": 36.46012878417969
+  },
+  "threshold_violations": {
+    "count_over_5k": 50,
+    "pct_over_5k": 100.0,
+    "count_over_10k": 39,
+    "pct_over_10k": 78.0,
+    "count_over_15k": 28,
+    "pct_over_15k": 56.00000000000001,
+    "count_over_20k": 19,
+    "pct_over_20k": 38.0,
+    "count_over_30k": 2,
+    "pct_over_30k": 4.0
+  },
+  "mean_rmse_k": 3.751833097934723,
+  "mean_peak_distance_to_boundary": 0.01546875,
+  "pct_peaks_within_3_cells_of_boundary": 92.0,
+  "dominant_failure_mechanism_counts": {
+    "BOUNDARY_LAYER_ERROR": 45,
+    "SPECTRAL_GIBBS_RINGING": 5
+  },
+  "top_5_worst_cases": [
+    {
+      "sample_index": 48,
+      "maxae_k": 36.46012878417969,
+      "rmse_k": 4.386236190795898,
+      "rel_l2_pct": 1.3381946831941605,
+      "peak_location": {
+        "grid_idx": [
+          255,
+          83
+        ],
+        "phys_coord": [
+          0.326171875,
+          0.998046875
+        ],
+        "d_min_boundary": 0.001953125,
+        "closest_boundary": "top",
+        "closest_boundary_type": "neumann"
+      },
+      "local_physics_at_peak": {
+        "conductivity_w_mk": 0.6364772915840149,
+        "grad_k_mag": 2.422410488128662,
+        "overall_k_contrast": 7.895015716552734,
+        "heat_source_w_m3": 3.4217810025438666e-05,
+        "cell_pde_residual_w": 2.9006370755206903
+      },
+      "uncertainty_at_peak": {
+        "u1_std_k": 11.693742752075195,
+        "u3_std_k": 7.386789798736572,
+        "u3_max_std_k": 10.676216125488281
+      },
+      "error_decomposition": {
+        "global_offset_k": 1.9102064371109009,
+        "boundary_maxae_k": 36.46012878417969,
+        "interior_maxae_k": 31.97845458984375,
+        "interface_maxae_k": 6.816162109375,
+        "flux_imbalance_pct": 114.90283623307396
+      },
+      "classification": "BOUNDARY_LAYER_ERROR"
+    },
+    {
+      "sample_index": 34,
+      "maxae_k": 32.428466796875,
+      "rmse_k": 5.154222011566162,
+      "rel_l2_pct": 1.6418470069766045,
+      "peak_location": {
+        "grid_idx": [
+          0,
+          29
+        ],
+        "phys_coord": [
+          0.115234375,
+          0.001953125
+        ],
+        "d_min_boundary": 0.001953125,
+        "closest_boundary": "bottom",
+        "closest_boundary_type": "neumann"
+      },
+      "local_physics_at_peak": {
+        "conductivity_w_mk": 0.5389648079872131,
+        "grad_k_mag": 1.679280161857605,
+        "overall_k_contrast": 8.950462341308594,
+        "heat_source_w_m3": 0.0824882760643959,
+        "cell_pde_residual_w": 2.886462348907486
+      },
+      "uncertainty_at_peak": {
+        "u1_std_k": 5.78129243850708,
+        "u3_std_k": 11.064011573791504,
+        "u3_max_std_k": 16.5664119720459
+      },
+      "error_decomposition": {
+        "global_offset_k": 1.2944998741149902,
+        "boundary_maxae_k": 32.428466796875,
+        "interior_maxae_k": 27.507568359375,
+        "interface_maxae_k": 17.62066650390625,
+        "flux_imbalance_pct": 86.52975242954919
+      },
+      "classification": "BOUNDARY_LAYER_ERROR"
+    },
+    {
+      "sample_index": 9,
+      "maxae_k": 29.6129150390625,
+      "rmse_k": 2.6542420387268066,
+      "rel_l2_pct": 0.848495215177536,
+      "peak_location": {
+        "grid_idx": [
+          255,
+          4
+        ],
+        "phys_coord": [
+          0.017578125,
+          0.998046875
+        ],
+        "d_min_boundary": 0.001953125,
+        "closest_boundary": "top",
+        "closest_boundary_type": "dirichlet"
+      },
+      "local_physics_at_peak": {
+        "conductivity_w_mk": 4.152150630950928,
+        "grad_k_mag": 4.265705108642578,
+        "overall_k_contrast": 5.252852916717529,
+        "heat_source_w_m3": 0.0001340769958915189,
+        "cell_pde_residual_w": 281.23197419486496
+      },
+      "uncertainty_at_peak": {
+        "u1_std_k": 3.6496293544769287,
+        "u3_std_k": 6.6500325202941895,
+        "u3_max_std_k": 14.036092758178711
+      },
+      "error_decomposition": {
+        "global_offset_k": 1.1222386360168457,
+        "boundary_maxae_k": 29.6129150390625,
+        "interior_maxae_k": 22.2774658203125,
+        "interface_maxae_k": 3.928863525390625,
+        "flux_imbalance_pct": 101.6461853028589
+      },
+      "classification": "BOUNDARY_LAYER_ERROR"
+    },
+    {
+      "sample_index": 1,
+      "maxae_k": 28.626007080078125,
+      "rmse_k": 7.554296016693115,
+      "rel_l2_pct": 2.4331700056791306,
+      "peak_location": {
+        "grid_idx": [
+          0,
+          73
+        ],
+        "phys_coord": [
+          0.287109375,
+          0.001953125
+        ],
+        "d_min_boundary": 0.001953125,
+        "closest_boundary": "bottom",
+        "closest_boundary_type": "neumann"
+      },
+      "local_physics_at_peak": {
+        "conductivity_w_mk": 2.1555328369140625,
+        "grad_k_mag": 20.551137924194336,
+        "overall_k_contrast": 6.753403663635254,
+        "heat_source_w_m3": 77.1576156616211,
+        "cell_pde_residual_w": 6.915766433251179
+      },
+      "uncertainty_at_peak": {
+        "u1_std_k": 7.492445945739746,
+        "u3_std_k": 15.44764232635498,
+        "u3_max_std_k": 17.079626083374023
+      },
+      "error_decomposition": {
+        "global_offset_k": 5.7714314460754395,
+        "boundary_maxae_k": 28.626007080078125,
+        "interior_maxae_k": 25.41180419921875,
+        "interface_maxae_k": 28.626007080078125,
+        "flux_imbalance_pct": 102.91959207068811
+      },
+      "classification": "BOUNDARY_LAYER_ERROR"
+    },
+    {
+      "sample_index": 41,
+      "maxae_k": 28.490631103515625,
+      "rmse_k": 6.187842845916748,
+      "rel_l2_pct": 1.8319200724363327,
+      "peak_location": {
+        "grid_idx": [
+          0,
+          2
+        ],
+        "phys_coord": [
+          0.009765625,
+          0.001953125
+        ],
+        "d_min_boundary": 0.001953125,
+        "closest_boundary": "bottom",
+        "closest_boundary_type": "dirichlet"
+      },
+      "local_physics_at_peak": {
+        "conductivity_w_mk": 2.7586498260498047,
+        "grad_k_mag": 12.089570045471191,
+        "overall_k_contrast": 5.241359233856201,
+        "heat_source_w_m3": 0.0027953556273132563,
+        "cell_pde_residual_w": 200.33265642109177
+      },
+      "uncertainty_at_peak": {
+        "u1_std_k": 2.9757487773895264,
+        "u3_std_k": 2.9713985919952393,
+        "u3_max_std_k": 13.141666412353516
+      },
+      "error_decomposition": {
+        "global_offset_k": 4.425121307373047,
+        "boundary_maxae_k": 28.490631103515625,
+        "interior_maxae_k": 18.70098876953125,
+        "interface_maxae_k": 28.490631103515625,
+        "flux_imbalance_pct": 90.34445413823501
+      },
+      "classification": "BOUNDARY_LAYER_ERROR"
+    }
+  ]
+}
