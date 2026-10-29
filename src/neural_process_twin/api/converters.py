@@ -422,35 +422,38 @@ def format_experimental_simulation_response(
     t_min = float(np.min(surr_res.temperature))
     t_max = float(np.max(surr_res.temperature))
 
-    hb = surr_res.heat_balance
-    signed_imb = hb.q_boundary_out_total - hb.q_generated_total
+    diag_resp = None
+    if surr_res.heat_balance is not None:
+        hb = surr_res.heat_balance
+        signed_imb = hb.q_boundary_out_total - hb.q_generated_total
+        diag_resp = PhysicalDiagnosticsResponse(
+            pde_residual_l2_w=surr_res.pde_residual_l2_w,
+            pde_residual_relative=surr_res.pde_residual_relative,
+            pde_residual_linf_w=surr_res.pde_residual_linf_w,
+            q_generated_total_w=hb.q_generated_total,
+            q_boundary_out_total_w=hb.q_boundary_out_total,
+            signed_net_imbalance_w=signed_imb,
+            absolute_flux_imbalance_w=hb.flux_imbalance,
+            relative_flux_imbalance=hb.relative_imbalance,
+            boundary_heat_flow_out_w=hb.boundary_heat_flow_out,
+        )
 
-    diag_resp = PhysicalDiagnosticsResponse(
-        pde_residual_l2_w=surr_res.pde_residual_l2_w,
-        pde_residual_relative=surr_res.pde_residual_relative,
-        pde_residual_linf_w=surr_res.pde_residual_linf_w,
-        q_generated_total_w=hb.q_generated_total,
-        q_boundary_out_total_w=hb.q_boundary_out_total,
-        signed_net_imbalance_w=signed_imb,
-        absolute_flux_imbalance_w=hb.flux_imbalance,
-        relative_flux_imbalance=hb.relative_imbalance,
-        boundary_heat_flow_out_w=hb.boundary_heat_flow_out,
-    )
-
-    exp_diag = ExperimentalDiagnostics(
-        pde_residual_l2_w=surr_res.pde_residual_l2_w,
-        pde_residual_linf_w=surr_res.pde_residual_linf_w,
-        pde_residual_relative=surr_res.pde_residual_relative,
-        pointwise_jacobi_residual_max_k=surr_res.jacobi_residual_max_k,
-        indicator_taxonomy=(
-            "Pointwise Jacobi residual is a localized numerical indicator in Kelvin. "
-            "It is NOT a mathematically certified upper bound on true MaxAE."
-        ),
-        safety_disclosure=(
-            "EXPERIMENTAL SURROGATE: Not certified to satisfy MaxAE <= 10 K. "
-            "Audited failure rate is 36% to 80% on fine grids. Never deploy for safety-critical heat balance."
-        ),
-    )
+    exp_diag = None
+    if surr_res.pde_residual_l2_w is not None and surr_res.jacobi_residual_max_k is not None:
+        exp_diag = ExperimentalDiagnostics(
+            pde_residual_l2_w=surr_res.pde_residual_l2_w,
+            pde_residual_linf_w=surr_res.pde_residual_linf_w,
+            pde_residual_relative=surr_res.pde_residual_relative,
+            pointwise_jacobi_residual_max_k=surr_res.jacobi_residual_max_k,
+            indicator_taxonomy=(
+                "Pointwise Jacobi residual is a localized numerical indicator in Kelvin. "
+                "It is NOT a mathematically certified upper bound on true MaxAE."
+            ),
+            safety_disclosure=(
+                "EXPERIMENTAL SURROGATE: Not certified to satisfy MaxAE <= 10 K. "
+                "Audited failure rate is 36% to 80% on fine grids. Never deploy for safety-critical heat balance."
+            ),
+        )
 
     bcs_summary = {
         "left": f"{bcs.left.bc_type.value}: {bcs.left.value}",

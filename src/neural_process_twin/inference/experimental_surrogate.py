@@ -47,7 +47,7 @@ def compute_file_sha256(path: Path) -> str:
 
 @dataclass(frozen=True)
 class ExperimentalSurrogateResult:
-    """Result of experimental neural surrogate execution with diagnostics."""
+    """Result of experimental neural surrogate execution with optional diagnostics."""
 
     temperature: np.ndarray
     resolution: tuple[int, int]
@@ -55,11 +55,11 @@ class ExperimentalSurrogateResult:
     inference_time_ms: float
     correction_time_ms: float
     total_time_ms: float
-    pde_residual_l2_w: float
-    pde_residual_linf_w: float
-    pde_residual_relative: float
-    jacobi_residual_max_k: float
-    heat_balance: EnergyBalanceDiagnostics
+    pde_residual_l2_w: float | None
+    pde_residual_linf_w: float | None
+    pde_residual_relative: float | None
+    jacobi_residual_max_k: float | None
+    heat_balance: EnergyBalanceDiagnostics | None
     warnings: list[str]
     disclaimers: list[str]
     provenance: dict[str, Any]
@@ -164,6 +164,7 @@ class ExperimentalSurrogateService:
         q_field: np.ndarray,
         bcs: BoundaryConditions,
         apply_physics_correction: bool = False,
+        compute_diagnostics: bool = True,
     ) -> ExperimentalSurrogateResult:
         """Run experimental neural surrogate inference with physical diagnostics.
 
@@ -173,6 +174,7 @@ class ExperimentalSurrogateService:
             q_field: Volumetric heat source field [W/m^3].
             bcs: Domain boundary conditions.
             apply_physics_correction: Whether to apply Selective Boundary Jacobi (A4).
+            compute_diagnostics: Whether to assemble system and compute PDE residual / heat balance.
 
         Returns:
             ExperimentalSurrogateResult containing predicted temperature and scientific diagnostics.
@@ -216,9 +218,11 @@ class ExperimentalSurrogateService:
 
         # 3. Optional Physics Correction (Selective Boundary Jacobi)
         t_corr_ms = 0.0
-        sys = assemble_steady_heat_system(grid, k_field, q_field, bcs)
+        sys = None
+        if apply_physics_correction or compute_diagnostics:
+            sys = assemble_steady_heat_system(grid, k_field, q_field, bcs)
 
-        if apply_physics_correction:
+        if apply_physics_correction and sys is not None:
             t_corr_start = time.perf_counter()
             t_final = self.apply_selective_boundary_jacobi(
                 t_init=t_pred_raw,
@@ -235,19 +239,26 @@ class ExperimentalSurrogateService:
         t_total_ms = (time.perf_counter() - t_start) * 1000.0
 
         # 4. Independent Physical Diagnostics
-        a_csr = sys.A.tocsr()
-        t_flat = t_final.ravel()
-        r = sys.b - a_csr.dot(t_flat)
-        r_l2 = float(np.linalg.norm(r))
-        r_linf = float(np.max(np.abs(r)))
-        b_norm = float(np.linalg.norm(sys.b))
-        r_rel = r_l2 / max(b_norm, 1e-12)
+        r_l2 = None
+        r_linf = None
+        r_rel = None
+        jac_res_max_k = None
+        heat_balance = None
 
-        diag_a = a_csr.diagonal()
-        inv_diag = np.where(np.abs(diag_a) > 1e-12, 1.0 / diag_a, 0.0)
-        jac_res_max_k = float(np.max(np.abs(inv_diag * r)))
+        if compute_diagnostics and sys is not None:
+            a_csr = sys.A.tocsr()
+            t_flat = t_final.ravel()
+            r = sys.b - a_csr.dot(t_flat)
+            r_l2 = float(np.linalg.norm(r))
+            r_linf = float(np.max(np.abs(r)))
+            b_norm = float(np.linalg.norm(sys.b))
+            r_rel = r_l2 / max(b_norm, 1e-12)
 
-        heat_balance = compute_heat_balance(grid, t_final, k_field, q_field, bcs)
+            diag_a = a_csr.diagonal()
+            inv_diag = np.where(np.abs(diag_a) > 1e-12, 1.0 / diag_a, 0.0)
+            jac_res_max_k = float(np.max(np.abs(inv_diag * r)))
+
+            heat_balance = compute_heat_balance(grid, t_final, k_field, q_field, bcs)
 
         # Explicit warnings and scientific disclaimers
         warnings = [

@@ -433,6 +433,7 @@ def run_simulation(req: SimulationRequestModel) -> SimulationResponse:
                 q_field=q_field,
                 bcs=bcs,
                 apply_physics_correction=apply_correction,
+                compute_diagnostics=req.compute_diagnostics,
             )
         except ValueError as exc:
             raise HTTPException(

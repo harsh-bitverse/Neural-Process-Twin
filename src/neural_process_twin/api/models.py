@@ -302,6 +302,10 @@ class SimulationRequestModel(BaseModel):
     source: HeatSourcePatternModel = Field(default_factory=HeatSourcePatternModel)
     boundary_conditions: BoundaryConditionsModel
     options: OptionsModel = Field(default_factory=OptionsModel)
+    compute_diagnostics: bool = Field(
+        True,
+        description="Whether to compute physical residuals and energy balance diagnostics. Disabling this enables sub-10ms neural inference.",
+    )
 
 
 class NumericalSolverInfo(BaseModel):
