@@ -6,7 +6,12 @@ export type BoundarySide = 'left' | 'right' | 'bottom' | 'top';
 export type BoundaryType = 'dirichlet' | 'neumann';
 export type ConductivityPatternType = 'uniform' | 'inclusion' | 'gradient' | 'custom';
 export type HeatSourcePatternType = 'uniform' | 'gaussian_spot' | 'custom';
-export type SimulationMode = 'hybrid' | 'fvm' | 'comparison';
+export type SimulationMode =
+  | 'numerical_fvm'
+  | 'experimental_neural'
+  | 'experimental_neural_corrected'
+  | 'comparison'
+  | 'legacy_hybrid';
 
 export interface GridConfig {
   x_min: number;
@@ -184,4 +189,58 @@ export interface CapabilitiesInfo {
   };
   physical_units: Record<string, string>;
   performance_disclosure: string;
+}
+
+export interface NumericalSolverInfo {
+  method: string;
+  linear_solver: string;
+  is_converged: boolean;
+  algebraic_residual_norm: number;
+  discretization_order: string;
+  notice: string;
+}
+
+export interface ExperimentalDiagnostics {
+  pde_residual_l2_w: number;
+  pde_residual_linf_w: number;
+  pde_residual_relative: number;
+  pointwise_jacobi_residual_max_k: number;
+  indicator_taxonomy: string;
+  safety_disclosure: string;
+}
+
+export interface SimulationResponse {
+  mode: string;
+  status: string;
+  is_verified_numerical: boolean;
+  temperature: number[][] | null;
+  temperature_min_k: number | null;
+  temperature_max_k: number | null;
+  grid_resolution: [number, number];
+  boundary_condition_summary: Record<string, string>;
+  diagnostics: PhysicalDiagnostics | null;
+  numerical_solver_info: NumericalSolverInfo | null;
+  experimental_diagnostics: ExperimentalDiagnostics | null;
+  warnings: string[];
+  disclaimers: string[];
+  latency_ms: Record<string, number>;
+  provenance: Record<string, any>;
+  conductivity_field: number[][];
+  source_field: number[][];
+  x_coords: number[];
+  y_coords: number[];
+}
+
+export interface DualModeComparisonResponse {
+  problem_summary: Record<string, any>;
+  numerical_reference: SimulationResponse;
+  experimental_surrogate: SimulationResponse;
+  temperature_difference_field: number[][] | null;
+  rmse_k: number | null;
+  relative_l2_error_pct: number | null;
+  max_absolute_error_k: number | null;
+  fvm_latency_ms: number;
+  surrogate_latency_ms: number;
+  speedup_factor: number;
+  evaluation_notice: string;
 }

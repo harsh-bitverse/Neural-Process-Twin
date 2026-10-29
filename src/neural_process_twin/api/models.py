@@ -15,8 +15,8 @@ class GridModel(BaseModel):
     x_max: float = Field(1.0, description="Maximum x-coordinate in meters [m].")
     y_min: float = Field(0.0, description="Minimum y-coordinate in meters [m].")
     y_max: float = Field(1.0, description="Maximum y-coordinate in meters [m].")
-    nx: int = Field(32, ge=4, le=128, description="Number of grid cells along x.")
-    ny: int = Field(32, ge=4, le=128, description="Number of grid cells along y.")
+    nx: int = Field(32, ge=4, le=256, description="Number of grid cells along x.")
+    ny: int = Field(32, ge=4, le=256, description="Number of grid cells along y.")
     thickness: float = Field(1.0, gt=0.0, description="Slab thickness in meters [m].")
 
     @model_validator(mode="after")
@@ -272,4 +272,104 @@ class ComparisonResponse(BaseModel):
     fvm_latency_ms: float
     fvm_speedup_factor: float
     surrogate_acceptance_status: str
+    evaluation_notice: str
+
+
+# =============================================================================
+# Milestone 09: Dual-Mode Platform Integration Models
+# =============================================================================
+
+
+class SimulationRequestModel(BaseModel):
+    """Unified physical simulation request supporting both Verified Numerical and Experimental Neural modes."""
+
+    mode: Literal[
+        "numerical_fvm",
+        "experimental_neural",
+        "experimental_neural_corrected",
+        "legacy_hybrid",
+    ] = Field(
+        "numerical_fvm",
+        description=(
+            "Operating mode: 'numerical_fvm' (default trusted numerical reference), "
+            "'experimental_neural' (fast A3 RefinedFNO surrogate), "
+            "'experimental_neural_corrected' (A3 + Selective Boundary Jacobi), or "
+            "'legacy_hybrid' (32x32 ensemble with fallback)."
+        ),
+    )
+    grid: GridModel = Field(default_factory=GridModel)
+    conductivity: FieldPatternModel = Field(default_factory=FieldPatternModel)
+    source: HeatSourcePatternModel = Field(default_factory=HeatSourcePatternModel)
+    boundary_conditions: BoundaryConditionsModel
+    options: OptionsModel = Field(default_factory=OptionsModel)
+
+
+class NumericalSolverInfo(BaseModel):
+    """Detailed numerical solver provenance, convergence, and discretization metadata."""
+
+    method: str = "Cell-Centered Finite Volume Method (FVM) with Harmonic Interface Conductivities"
+    linear_solver: str = "Direct Sparse LU Factorization (SuperLU via SciPy)"
+    is_converged: bool = True
+    algebraic_residual_norm: float
+    discretization_order: str = "Second-Order Spatial Truncation Error O(h^2)"
+    notice: str = (
+        "Numerical convergence denotes exact solution of the discrete linear system A*T=b. "
+        "It is NOT mathematically exact in the continuous sense due to finite grid cell discretization."
+    )
+
+
+class ExperimentalDiagnostics(BaseModel):
+    """Physical diagnostics and empirical quality indicators for experimental neural surrogates."""
+
+    pde_residual_l2_w: float
+    pde_residual_linf_w: float
+    pde_residual_relative: float
+    pointwise_jacobi_residual_max_k: float
+    indicator_taxonomy: str = (
+        "Pointwise Jacobi residual is a localized numerical indicator in Kelvin. "
+        "It is NOT a mathematically certified upper bound on true MaxAE."
+    )
+    safety_disclosure: str = (
+        "EXPERIMENTAL SURROGATE: Not certified to satisfy MaxAE <= 10 K. "
+        "Audited failure rate is 36% to 80% on fine grids. Never deploy for safety-critical heat balance."
+    )
+
+
+class SimulationResponse(BaseModel):
+    """Unified dual-mode simulation response cleanly separating verified numerical from experimental outputs."""
+
+    mode: str
+    status: str
+    is_verified_numerical: bool
+    temperature: list[list[float]] | None
+    temperature_min_k: float | None
+    temperature_max_k: float | None
+    grid_resolution: tuple[int, int]
+    boundary_condition_summary: dict[str, str]
+    diagnostics: PhysicalDiagnosticsResponse | None
+    numerical_solver_info: NumericalSolverInfo | None
+    experimental_diagnostics: ExperimentalDiagnostics | None
+    warnings: list[str]
+    disclaimers: list[str]
+    latency_ms: dict[str, float]
+    provenance: dict[str, Any]
+    conductivity_field: list[list[float]]
+    source_field: list[list[float]]
+    x_coords: list[float]
+    y_coords: list[float]
+
+
+class DualModeComparisonResponse(BaseModel):
+    """Side-by-side scientific comparison between Verified Numerical FVM and Experimental Neural Surrogate."""
+
+    problem_summary: dict[str, Any]
+    numerical_reference: SimulationResponse
+    experimental_surrogate: SimulationResponse
+    temperature_difference_field: list[list[float]] | None
+    rmse_k: float | None
+    relative_l2_error_pct: float | None
+    max_absolute_error_k: float | None
+    fvm_latency_ms: float
+    surrogate_latency_ms: float
+    speedup_factor: float
     evaluation_notice: str

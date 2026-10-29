@@ -10,14 +10,17 @@ from neural_process_twin.api.models import (
     BoundaryConditionsModel,
     ConformalIntervalsResponse,
     ExecutionLatencyResponse,
+    ExperimentalDiagnostics,
     FieldPatternModel,
     GridModel,
     HeatSourcePatternModel,
     InferenceRequestModel,
     InferenceResponse,
+    NumericalSolverInfo,
     OptionsModel,
     PhysicalDiagnosticsResponse,
     RejectionRecordResponse,
+    SimulationResponse,
 )
 from neural_process_twin.inference.contracts import (
     HybridInferenceResult,
@@ -313,6 +316,240 @@ def format_solver_result_to_response(
             "sparse_linear_solver": "scipy.sparse.linalg.spsolve (SuperLU)",
             "matrix_condition_converged": solver_res.diagnostics.is_converged,
         },
+        conductivity_field=k_field.tolist(),
+        source_field=q_field.tolist(),
+        x_coords=grid.x_centers.tolist(),
+        y_coords=grid.y_centers.tolist(),
+    )
+
+
+def format_fvm_simulation_response(
+    solver_res: SolverResult,
+    grid: Grid2D,
+    k_field: np.ndarray,
+    q_field: np.ndarray,
+    bcs: BoundaryConditions,
+    latency_ms: float,
+) -> SimulationResponse:
+    """Format reference FVM solver result into public SimulationResponse."""
+    t_min = float(np.min(solver_res.temperature))
+    t_max = float(np.max(solver_res.temperature))
+
+    linf = float(
+        np.max(
+            np.abs(
+                solver_res.linear_system.A.dot(solver_res.temperature.ravel())
+                - solver_res.linear_system.b
+            )
+        )
+    )
+
+    signed_imb = (
+        solver_res.diagnostics.energy_balance.q_boundary_out_total
+        - solver_res.diagnostics.energy_balance.q_generated_total
+    )
+
+    diag_resp = PhysicalDiagnosticsResponse(
+        pde_residual_l2_w=solver_res.diagnostics.linear_residual_l2,
+        pde_residual_relative=solver_res.diagnostics.relative_residual,
+        pde_residual_linf_w=linf,
+        q_generated_total_w=solver_res.diagnostics.energy_balance.q_generated_total,
+        q_boundary_out_total_w=solver_res.diagnostics.energy_balance.q_boundary_out_total,
+        signed_net_imbalance_w=signed_imb,
+        absolute_flux_imbalance_w=solver_res.diagnostics.energy_balance.flux_imbalance,
+        relative_flux_imbalance=solver_res.diagnostics.energy_balance.relative_imbalance,
+        boundary_heat_flow_out_w=solver_res.diagnostics.energy_balance.boundary_heat_flow_out,
+    )
+
+    solver_info = NumericalSolverInfo(
+        method="Cell-Centered Finite Volume Method (FVM) with Harmonic Interface Conductivities",
+        linear_solver="Direct Sparse LU Factorization (SuperLU via SciPy)",
+        is_converged=solver_res.diagnostics.is_converged,
+        algebraic_residual_norm=solver_res.diagnostics.linear_residual_l2,
+        discretization_order="Second-Order Spatial Truncation Error O(h^2)",
+        notice=(
+            "Numerical convergence denotes exact solution of the discrete linear system A*T=b. "
+            "It is NOT mathematically exact in the continuous sense due to finite grid cell discretization."
+        ),
+    )
+
+    bcs_summary = {
+        "left": f"{bcs.left.bc_type.value}: {bcs.left.value}",
+        "right": f"{bcs.right.bc_type.value}: {bcs.right.value}",
+        "bottom": f"{bcs.bottom.bc_type.value}: {bcs.bottom.value}",
+        "top": f"{bcs.top.bc_type.value}: {bcs.top.value}",
+    }
+
+    return SimulationResponse(
+        mode="numerical_fvm",
+        status="numerical_reference_computed",
+        is_verified_numerical=True,
+        temperature=solver_res.temperature.tolist(),
+        temperature_min_k=t_min,
+        temperature_max_k=t_max,
+        grid_resolution=(grid.nx, grid.ny),
+        boundary_condition_summary=bcs_summary,
+        diagnostics=diag_resp,
+        numerical_solver_info=solver_info,
+        experimental_diagnostics=None,
+        warnings=[],
+        disclaimers=[
+            "Verified Numerical Mode: Conservative reference solution. Governed by O(h^2) discrete FVM truncation error."
+        ],
+        latency_ms={"solver_ms": latency_ms, "total_ms": latency_ms},
+        provenance={
+            "mode": "numerical_fvm",
+            "solver": "HeatConductionSolver2D",
+            "discretization": "FVM (Harmonic Averaging)",
+            "tolerance": 1e-10,
+        },
+        conductivity_field=k_field.tolist(),
+        source_field=q_field.tolist(),
+        x_coords=grid.x_centers.tolist(),
+        y_coords=grid.y_centers.tolist(),
+    )
+
+
+def format_experimental_simulation_response(
+    surr_res: Any,
+    grid: Grid2D,
+    k_field: np.ndarray,
+    q_field: np.ndarray,
+    bcs: BoundaryConditions,
+    mode_name: str = "experimental_neural",
+) -> SimulationResponse:
+    """Format ExperimentalSurrogateResult into public SimulationResponse."""
+    t_min = float(np.min(surr_res.temperature))
+    t_max = float(np.max(surr_res.temperature))
+
+    hb = surr_res.heat_balance
+    signed_imb = hb.q_boundary_out_total - hb.q_generated_total
+
+    diag_resp = PhysicalDiagnosticsResponse(
+        pde_residual_l2_w=surr_res.pde_residual_l2_w,
+        pde_residual_relative=surr_res.pde_residual_relative,
+        pde_residual_linf_w=surr_res.pde_residual_linf_w,
+        q_generated_total_w=hb.q_generated_total,
+        q_boundary_out_total_w=hb.q_boundary_out_total,
+        signed_net_imbalance_w=signed_imb,
+        absolute_flux_imbalance_w=hb.flux_imbalance,
+        relative_flux_imbalance=hb.relative_imbalance,
+        boundary_heat_flow_out_w=hb.boundary_heat_flow_out,
+    )
+
+    exp_diag = ExperimentalDiagnostics(
+        pde_residual_l2_w=surr_res.pde_residual_l2_w,
+        pde_residual_linf_w=surr_res.pde_residual_linf_w,
+        pde_residual_relative=surr_res.pde_residual_relative,
+        pointwise_jacobi_residual_max_k=surr_res.jacobi_residual_max_k,
+        indicator_taxonomy=(
+            "Pointwise Jacobi residual is a localized numerical indicator in Kelvin. "
+            "It is NOT a mathematically certified upper bound on true MaxAE."
+        ),
+        safety_disclosure=(
+            "EXPERIMENTAL SURROGATE: Not certified to satisfy MaxAE <= 10 K. "
+            "Audited failure rate is 36% to 80% on fine grids. Never deploy for safety-critical heat balance."
+        ),
+    )
+
+    bcs_summary = {
+        "left": f"{bcs.left.bc_type.value}: {bcs.left.value}",
+        "right": f"{bcs.right.bc_type.value}: {bcs.right.value}",
+        "bottom": f"{bcs.bottom.bc_type.value}: {bcs.bottom.value}",
+        "top": f"{bcs.top.bc_type.value}: {bcs.top.value}",
+    }
+
+    return SimulationResponse(
+        mode=mode_name,
+        status="experimental_prediction_computed",
+        is_verified_numerical=False,
+        temperature=surr_res.temperature.tolist(),
+        temperature_min_k=t_min,
+        temperature_max_k=t_max,
+        grid_resolution=surr_res.resolution,
+        boundary_condition_summary=bcs_summary,
+        diagnostics=diag_resp,
+        numerical_solver_info=None,
+        experimental_diagnostics=exp_diag,
+        warnings=surr_res.warnings,
+        disclaimers=surr_res.disclaimers,
+        latency_ms={
+            "inference_ms": surr_res.inference_time_ms,
+            "correction_ms": surr_res.correction_time_ms,
+            "total_ms": surr_res.total_time_ms,
+        },
+        provenance=surr_res.provenance,
+        conductivity_field=k_field.tolist(),
+        source_field=q_field.tolist(),
+        x_coords=grid.x_centers.tolist(),
+        y_coords=grid.y_centers.tolist(),
+    )
+
+
+def format_legacy_hybrid_simulation_response(
+    hybrid_res: HybridInferenceResult,
+    grid: Grid2D,
+    k_field: np.ndarray,
+    q_field: np.ndarray,
+    bcs: BoundaryConditions,
+) -> SimulationResponse:
+    """Format legacy HybridInferenceResult into public SimulationResponse."""
+    t_min = float(np.min(hybrid_res.temperature)) if hybrid_res.temperature is not None else None
+    t_max = float(np.max(hybrid_res.temperature)) if hybrid_res.temperature is not None else None
+
+    is_verified = (
+        hybrid_res.execution_path == "solver_fallback_path"
+        or hybrid_res.status == InferenceStatus.FALLBACK_SUCCEEDED
+    )
+
+    diag_resp = None
+    if hybrid_res.diagnostics is not None:
+        d = hybrid_res.diagnostics
+        diag_resp = PhysicalDiagnosticsResponse(
+            pde_residual_l2_w=d.pde_residual_l2_w,
+            pde_residual_relative=d.pde_residual_relative,
+            pde_residual_linf_w=d.pde_residual_linf_w,
+            q_generated_total_w=d.q_generated_total_w,
+            q_boundary_out_total_w=d.q_boundary_out_total_w,
+            signed_net_imbalance_w=d.signed_net_imbalance_w,
+            absolute_flux_imbalance_w=d.absolute_flux_imbalance_w,
+            relative_flux_imbalance=d.relative_flux_imbalance,
+            boundary_heat_flow_out_w=d.boundary_heat_flow_out_w,
+        )
+
+    bcs_summary = {
+        "left": f"{bcs.left.bc_type.value}: {bcs.left.value}",
+        "right": f"{bcs.right.bc_type.value}: {bcs.right.value}",
+        "bottom": f"{bcs.bottom.bc_type.value}: {bcs.bottom.value}",
+        "top": f"{bcs.top.bc_type.value}: {bcs.top.value}",
+    }
+
+    warnings = []
+    if not is_verified:
+        warnings.append(
+            "LEGACY HYBRID SURROGATE: Evaluated via 32x32 deep ensemble with disagreement screening."
+        )
+
+    return SimulationResponse(
+        mode="legacy_hybrid",
+        status=hybrid_res.status.value,
+        is_verified_numerical=is_verified,
+        temperature=hybrid_res.temperature.tolist() if hybrid_res.temperature is not None else None,
+        temperature_min_k=t_min,
+        temperature_max_k=t_max,
+        grid_resolution=(grid.nx, grid.ny),
+        boundary_condition_summary=bcs_summary,
+        diagnostics=diag_resp,
+        numerical_solver_info=None,
+        experimental_diagnostics=None,
+        warnings=warnings,
+        disclaimers=["Legacy hybrid screening route from Milestone 06."],
+        latency_ms={
+            "surrogate_ms": hybrid_res.latency.surrogate_inference_ms,
+            "fallback_ms": hybrid_res.latency.solver_fallback_ms,
+            "total_ms": hybrid_res.latency.total_pipeline_ms,
+        },
+        provenance={"execution_path": hybrid_res.execution_path},
         conductivity_field=k_field.tolist(),
         source_field=q_field.tolist(),
         x_coords=grid.x_centers.tolist(),

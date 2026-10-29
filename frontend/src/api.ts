@@ -5,9 +5,12 @@
 import type {
   CapabilitiesInfo,
   ComparisonResult,
+  DualModeComparisonResponse,
   HealthInfo,
   InferenceRequestPayload,
   InferenceResult,
+  SimulationMode,
+  SimulationResponse,
   ValidationResult,
 } from './types';
 
@@ -89,6 +92,50 @@ export async function runComparison(
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}));
     throw new Error(errorData.detail || `Comparison solve failed with status ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function runSimulation(
+  payload: InferenceRequestPayload,
+  mode: SimulationMode,
+  signal?: AbortSignal
+): Promise<SimulationResponse> {
+  const reqBody = {
+    ...payload,
+    mode: mode === 'comparison' ? 'numerical_fvm' : mode,
+  };
+  const res = await fetch(`${API_BASE}/simulate`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(reqBody),
+    signal,
+  });
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.detail || `Simulation failed with status ${res.status}`);
+  }
+  return res.json();
+}
+
+export async function runDualModeComparison(
+  payload: InferenceRequestPayload,
+  mode: 'experimental_neural' | 'experimental_neural_corrected' = 'experimental_neural',
+  signal?: AbortSignal
+): Promise<DualModeComparisonResponse> {
+  const reqBody = {
+    ...payload,
+    mode,
+  };
+  const res = await fetch(`${API_BASE}/compare`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(reqBody),
+    signal,
+  });
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.detail || `Dual-mode comparison failed with status ${res.status}`);
   }
   return res.json();
 }

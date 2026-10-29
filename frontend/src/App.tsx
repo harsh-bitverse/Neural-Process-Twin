@@ -7,9 +7,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
   fetchCapabilities,
   fetchHealth,
-  runComparison,
-  runFvmInference,
-  runHybridInference,
+  runDualModeComparison,
+  runSimulation,
   validateProblem,
 } from './api';
 import './App.css';
@@ -21,11 +20,12 @@ import { ProvenanceModal } from './components/ProvenanceModal';
 import { StatusBadge } from './components/StatusBadge';
 import type {
   CapabilitiesInfo,
-  ComparisonResult,
+  DualModeComparisonResponse,
   HealthInfo,
   InferenceRequestPayload,
   InferenceResult,
   SimulationMode,
+  SimulationResponse,
   ValidationResult,
 } from './types';
 
@@ -77,7 +77,7 @@ type ActiveFieldTab = 'temperature' | 'disagreement' | 'conductivity' | 'source'
 
 export const App: React.FC = () => {
   const [config, setConfig] = useState<InferenceRequestPayload>(DEFAULT_CONFIG);
-  const [mode, setMode] = useState<SimulationMode>('hybrid');
+  const [mode, setMode] = useState<SimulationMode>('numerical_fvm');
   const [activeTab, setActiveTab] = useState<ActiveFieldTab>('temperature');
 
   // Server state
@@ -86,8 +86,8 @@ export const App: React.FC = () => {
   const [validationResult, setValidationResult] = useState<ValidationResult | null>(null);
 
   // Result state
-  const [result, setResult] = useState<InferenceResult | null>(null);
-  const [comparisonResult, setComparisonResult] = useState<ComparisonResult | null>(null);
+  const [result, setResult] = useState<SimulationResponse | InferenceResult | null>(null);
+  const [comparisonResult, setComparisonResult] = useState<DualModeComparisonResponse | null>(null);
 
   // UI state
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -143,21 +143,31 @@ export const App: React.FC = () => {
     setErrorMessage(null);
 
     try {
-      if (mode === 'hybrid') {
-        setLoadingStep('Evaluating physical gates & neural surrogate ensemble...');
-        const res = await runHybridInference(config, controller.signal);
+      if (mode === 'numerical_fvm') {
+        setLoadingStep('Solving conservative discrete system with SuperLU reference FVM...');
+        const res = await runSimulation(config, 'numerical_fvm', controller.signal);
         setResult(res);
         setComparisonResult(null);
-      } else if (mode === 'fvm') {
-        setLoadingStep('Solving conservative discrete system with SuperLU reference FVM...');
-        const res = await runFvmInference(config, controller.signal);
+      } else if (mode === 'experimental_neural') {
+        setLoadingStep('Evaluating fast multi-resolution A3 RefinedFNO2D surrogate on CPU...');
+        const res = await runSimulation(config, 'experimental_neural', controller.signal);
+        setResult(res);
+        setComparisonResult(null);
+      } else if (mode === 'experimental_neural_corrected') {
+        setLoadingStep('Evaluating A3 RefinedFNO2D + Selective Boundary Jacobi physics correction...');
+        const res = await runSimulation(config, 'experimental_neural_corrected', controller.signal);
         setResult(res);
         setComparisonResult(null);
       } else if (mode === 'comparison') {
-        setLoadingStep('Running dual evaluation: Neural Ensemble + Reference FVM...');
-        const comp = await runComparison(config, controller.signal);
+        setLoadingStep('Executing dual-mode evaluation: Reference FVM + Experimental Surrogate...');
+        const comp = await runDualModeComparison(config, 'experimental_neural', controller.signal);
         setComparisonResult(comp);
-        setResult(comp.hybrid_inference);
+        setResult(comp.experimental_surrogate);
+      } else if (mode === 'legacy_hybrid') {
+        setLoadingStep('Evaluating legacy R1 hybrid screener & ensemble...');
+        const res = await runSimulation(config, 'legacy_hybrid', controller.signal);
+        setResult(res);
+        setComparisonResult(null);
       }
     } catch (err: any) {
       if (err.name !== 'AbortError') {
@@ -214,17 +224,78 @@ export const App: React.FC = () => {
         </div>
       </header>
 
-      {/* Performance Disclosure Banner */}
-      <div className="performance-disclosure-banner">
-        <div className="disclosure-inner">
-          <span>ℹ️</span>
-          <span>
-            <strong>Scientific Performance Note:</strong> Direct FVM SuperLU solve is ~11–13× faster
-            on single 32×32 CPU problems than evaluating the 5-member neural surrogate ensemble. The
-            neural operator is designed for batched GPU workloads and rapid parameter sweeps.
-          </span>
+      {/* Mode Status & Disclosure Banner */}
+      {(mode === 'experimental_neural' || mode === 'experimental_neural_corrected') && (
+        <div
+          className="performance-disclosure-banner"
+          style={{
+            borderColor: 'rgba(245, 158, 11, 0.4)',
+            backgroundColor: 'rgba(245, 158, 11, 0.12)',
+            color: '#fef3c7',
+          }}
+        >
+          <div className="disclosure-inner">
+            <span style={{ fontSize: '18px' }}>⚠️</span>
+            <span>
+              <strong>EXPERIMENTAL NEURAL SURROGATE MODE ACTIVE:</strong> Using fast multi-resolution neural
+              operator ({mode === 'experimental_neural_corrected' ? 'A3 + A4 Jacobi' : 'A3 RefinedFNO2D'}).
+              Predictions are <strong>not certified to satisfy MaxAE ≤ 10 K</strong> (historical audit failure rate ~36%–80% on fine meshes).
+              For authoritative or safety-critical calculations, switch to <strong>Verified Numerical Mode</strong>.
+            </span>
+          </div>
         </div>
-      </div>
+      )}
+
+      {mode === 'numerical_fvm' && (
+        <div
+          className="performance-disclosure-banner"
+          style={{
+            borderColor: 'rgba(16, 185, 129, 0.35)',
+            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+            color: '#d1fae5',
+          }}
+        >
+          <div className="disclosure-inner">
+            <span style={{ fontSize: '18px' }}>✓</span>
+            <span>
+              <strong>VERIFIED NUMERICAL MODE (DEFAULT TRUSTED REFERENCE):</strong> Conservative Finite Volume Method (FVM)
+              with harmonic interface conductivities and direct SuperLU factorization. Continuous discretization error is second-order O(h²);
+              discrete algebraic linear system solved to residual norm &lt; 10⁻¹² W.
+            </span>
+          </div>
+        </div>
+      )}
+
+      {mode === 'comparison' && (
+        <div
+          className="performance-disclosure-banner"
+          style={{
+            borderColor: 'rgba(99, 102, 241, 0.35)',
+            backgroundColor: 'rgba(99, 102, 241, 0.1)',
+            color: '#e0e7ff',
+          }}
+        >
+          <div className="disclosure-inner">
+            <span style={{ fontSize: '18px' }}>🔬</span>
+            <span>
+              <strong>DUAL-MODE SCIENTIFIC COMPARISON:</strong> Solves both Verified Numerical FVM and Experimental Neural Surrogate
+              on the identical problem. Computes true error metrics (RMSE, Rel L2, MaxAE) against the actual numerical reference.
+            </span>
+          </div>
+        </div>
+      )}
+
+      {mode === 'legacy_hybrid' && (
+        <div className="performance-disclosure-banner">
+          <div className="disclosure-inner">
+            <span>🛡️</span>
+            <span>
+              <strong>Legacy Hybrid Engine (Milestone 06):</strong> 32×32 5-member ensemble screener with automatic fallback
+              to direct FVM solve on out-of-distribution inputs. Direct FVM SuperLU solve is ~11–13× faster on single 32×32 CPU problems.
+            </span>
+          </div>
+        </div>
+      )}
 
       {/* Main Container */}
       <main className="dashboard-main">
@@ -360,13 +431,13 @@ export const App: React.FC = () => {
 
                 {activeTab === 'disagreement' && (
                   <FieldCanvas
-                    data={result.ensemble_disagreement_k}
+                    data={'ensemble_disagreement_k' in result ? (result as any).ensemble_disagreement_k : null}
                     title="Ensemble Pointwise Epistemic Uncertainty (Std Dev)"
                     unit="K"
                     colormap="viridis"
                     xBounds={xBounds}
                     yBounds={yBounds}
-                    emptyMessage="Uncertainty unavailable. Direct FVM reference solve is strictly deterministic and does not fabricate uncertainty."
+                    emptyMessage="Epistemic uncertainty unavailable. Direct FVM reference solve is strictly deterministic. Single-pass neural surrogate does not fabricate uncertainty without ensemble/dropout."
                   />
                 )}
 
@@ -398,7 +469,9 @@ export const App: React.FC = () => {
             {result && (
               <DiagnosticsPanel
                 diagnostics={result.diagnostics}
-                intervals={result.conformal_intervals}
+                intervals={'conformal_intervals' in result ? (result as any).conformal_intervals : null}
+                solverInfo={'numerical_solver_info' in result ? (result as any).numerical_solver_info : null}
+                experimentalDiagnostics={'experimental_diagnostics' in result ? (result as any).experimental_diagnostics : null}
               />
             )}
 
@@ -407,36 +480,29 @@ export const App: React.FC = () => {
               <div className="diag-section">
                 <h4 className="diag-section-heading">Execution Latency Breakdown</h4>
                 <div className="diag-grid">
-                  <div className="diag-item">
-                    <span className="diag-label">Input Validation</span>
-                    <span className="diag-value">
-                      {result.latency.input_validation_ms.toFixed(2)} ms
-                    </span>
-                  </div>
-                  <div className="diag-item">
-                    <span className="diag-label">Surrogate Inference</span>
-                    <span className="diag-value">
-                      {result.latency.surrogate_inference_ms.toFixed(2)} ms
-                    </span>
-                  </div>
-                  <div className="diag-item">
-                    <span className="diag-label">Diagnostics Evaluation</span>
-                    <span className="diag-value">
-                      {result.latency.diagnostics_evaluation_ms.toFixed(2)} ms
-                    </span>
-                  </div>
-                  <div className="diag-item">
-                    <span className="diag-label">Solver Fallback</span>
-                    <span className="diag-value">
-                      {result.latency.solver_fallback_ms.toFixed(2)} ms
-                    </span>
-                  </div>
-                  <div className="diag-item">
-                    <span className="diag-label">Total Pipeline</span>
-                    <span className="diag-value" style={{ color: '#60a5fa' }}>
-                      {result.latency.total_pipeline_ms.toFixed(2)} ms
-                    </span>
-                  </div>
+                  {'latency_ms' in result
+                    ? Object.entries((result as SimulationResponse).latency_ms).map(([k, v]) => (
+                        <div key={k} className="diag-item">
+                          <span className="diag-label">{k.replace(/_/g, ' ')}</span>
+                          <span className="diag-value">
+                            {typeof v === 'number' ? `${v.toFixed(2)} ms` : String(v)}
+                          </span>
+                        </div>
+                      ))
+                    : [
+                        { label: 'Input Validation', val: (result as InferenceResult).latency.input_validation_ms },
+                        { label: 'Surrogate Inference', val: (result as InferenceResult).latency.surrogate_inference_ms },
+                        { label: 'Diagnostics Evaluation', val: (result as InferenceResult).latency.diagnostics_evaluation_ms },
+                        { label: 'Solver Fallback', val: (result as InferenceResult).latency.solver_fallback_ms },
+                        { label: 'Total Pipeline', val: (result as InferenceResult).latency.total_pipeline_ms, highlight: true },
+                      ].map((item, idx) => (
+                        <div key={idx} className="diag-item">
+                          <span className="diag-label">{item.label}</span>
+                          <span className="diag-value" style={item.highlight ? { color: '#60a5fa' } : {}}>
+                            {item.val.toFixed(2)} ms
+                          </span>
+                        </div>
+                      ))}
                 </div>
               </div>
             )}

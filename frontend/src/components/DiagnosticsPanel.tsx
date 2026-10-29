@@ -4,17 +4,90 @@
  */
 
 import React from 'react';
-import type { ConformalIntervals, PhysicalDiagnostics } from '../types';
+import type {
+  ConformalIntervals,
+  ExperimentalDiagnostics,
+  NumericalSolverInfo,
+  PhysicalDiagnostics,
+} from '../types';
 
 interface DiagnosticsPanelProps {
   diagnostics: PhysicalDiagnostics | null;
-  intervals: ConformalIntervals | null;
+  intervals?: ConformalIntervals | null;
+  solverInfo?: NumericalSolverInfo | null;
+  experimentalDiagnostics?: ExperimentalDiagnostics | null;
 }
 
-export const DiagnosticsPanel: React.FC<DiagnosticsPanelProps> = ({ diagnostics, intervals }) => {
+export const DiagnosticsPanel: React.FC<DiagnosticsPanelProps> = ({
+  diagnostics,
+  intervals,
+  solverInfo,
+  experimentalDiagnostics,
+}) => {
   return (
     <div className="scientific-diagnostics-panel">
-      {/* 1. Global Heat Balance */}
+      {/* 1. Numerical Solver Provenance (when in Verified Numerical Mode) */}
+      {solverInfo && (
+        <div className="diag-section" style={{ borderLeft: '3px solid #10b981' }}>
+          <h4 className="diag-section-heading" style={{ color: '#34d399' }}>
+            ✓ Verified Numerical Discretization & Solver
+          </h4>
+          <div className="diag-grid">
+            <div className="diag-item">
+              <span className="diag-label">Discretization Method</span>
+              <span className="diag-value" style={{ fontSize: '12px' }}>{solverInfo.method}</span>
+            </div>
+            <div className="diag-item">
+              <span className="diag-label">Linear System Solver</span>
+              <span className="diag-value" style={{ fontSize: '12px' }}>{solverInfo.linear_solver}</span>
+            </div>
+            <div className="diag-item">
+              <span className="diag-label">Spatial Truncation Error</span>
+              <span className="diag-value">{solverInfo.discretization_order}</span>
+            </div>
+            <div className="diag-item">
+              <span className="diag-label">Algebraic Residual ||b - AT||_2</span>
+              <span className="diag-value value-ok">{solverInfo.algebraic_residual_norm.toExponential(3)} W</span>
+            </div>
+          </div>
+          <p className="conformal-disclaimer-note" style={{ color: '#a7f3d0' }}>
+            ℹ️ <strong>Convergence Distinction:</strong> {solverInfo.notice}
+          </p>
+        </div>
+      )}
+
+      {/* 2. Experimental Quality Indicators (when in Experimental Neural Mode) */}
+      {experimentalDiagnostics && (
+        <div className="diag-section" style={{ borderLeft: '3px solid #f59e0b' }}>
+          <h4 className="diag-section-heading" style={{ color: '#fbbf24' }}>
+            ⚠️ Experimental Quality Indicators
+          </h4>
+          <div className="diag-grid">
+            <div className="diag-item">
+              <span className="diag-label">Peak Jacobi Residual (ΔT_loc)</span>
+              <span className={`diag-value ${experimentalDiagnostics.pointwise_jacobi_residual_max_k > 5.0 ? 'value-warn' : 'value-ok'}`}>
+                {experimentalDiagnostics.pointwise_jacobi_residual_max_k.toFixed(3)} K
+              </span>
+            </div>
+            <div className="diag-item">
+              <span className="diag-label">PDE Residual Rel L2</span>
+              <span className="diag-value">{experimentalDiagnostics.pde_residual_relative.toExponential(3)}</span>
+            </div>
+            <div className="diag-item">
+              <span className="diag-label">PDE Residual L_inf</span>
+              <span className="diag-value">{experimentalDiagnostics.pde_residual_linf_w.toFixed(2)} W</span>
+            </div>
+          </div>
+          <div style={{ marginTop: '8px', fontSize: '12px', color: '#fde68a' }}>
+            <strong>Indicator Taxonomy:</strong> {experimentalDiagnostics.indicator_taxonomy}
+          </div>
+          <div style={{ marginTop: '4px', fontSize: '12px', color: '#fca5a5' }}>
+            <strong>Safety Limit:</strong> {experimentalDiagnostics.safety_disclosure}
+          </div>
+        </div>
+      )}
+
+      {/* 3. Global Heat Balance */}
       <div className="diag-section">
         <h4 className="diag-section-heading">Global Heat Conservation</h4>
         {diagnostics ? (
@@ -59,7 +132,7 @@ export const DiagnosticsPanel: React.FC<DiagnosticsPanelProps> = ({ diagnostics,
         )}
       </div>
 
-      {/* 2. Discrete PDE Residuals */}
+      {/* 4. Discrete PDE Residuals */}
       <div className="diag-section">
         <h4 className="diag-section-heading">Discrete PDE Residuals</h4>
         {diagnostics ? (
@@ -84,10 +157,10 @@ export const DiagnosticsPanel: React.FC<DiagnosticsPanelProps> = ({ diagnostics,
         )}
       </div>
 
-      {/* 3. Conformal Prediction Intervals */}
-      <div className="diag-section">
-        <h4 className="diag-section-heading">Conformal Prediction Intervals</h4>
-        {intervals ? (
+      {/* 5. Conformal Prediction Intervals (Legacy Hybrid Mode) */}
+      {intervals && (
+        <div className="diag-section">
+          <h4 className="diag-section-heading">Conformal Prediction Intervals</h4>
           <div>
             <div className="diag-grid">
               <div className="diag-item">
@@ -111,12 +184,8 @@ export const DiagnosticsPanel: React.FC<DiagnosticsPanelProps> = ({ diagnostics,
               ℹ️ <strong>Coverage Note:</strong> {intervals.disclaimer}
             </p>
           </div>
-        ) : (
-          <p className="diag-unavailable-text">
-            Conformal intervals not applicable to deterministic reference solve.
-          </p>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

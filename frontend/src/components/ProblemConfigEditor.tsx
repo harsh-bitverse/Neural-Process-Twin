@@ -132,15 +132,45 @@ export const ProblemConfigEditor: React.FC<ProblemConfigEditorProps> = ({
       updated.boundary_conditions.right = { side: 'right', type: 'dirichlet', value: 300.0 };
       updated.boundary_conditions.bottom = { side: 'bottom', type: 'dirichlet', value: 300.0 };
       updated.boundary_conditions.top = { side: 'top', type: 'dirichlet', value: 300.0 };
+    } else if (presetName === 'grid_32') {
+      updated.grid.nx = 32;
+      updated.grid.ny = 32;
     } else if (presetName === 'grid_64') {
       updated.grid.nx = 64;
       updated.grid.ny = 64;
+    } else if (presetName === 'grid_128') {
+      updated.grid.nx = 128;
+      updated.grid.ny = 128;
+    } else if (presetName === 'grid_256') {
+      updated.grid.nx = 256;
+      updated.grid.ny = 256;
     }
 
     onChange(updated);
   };
 
   const isGrid32 = config.grid.nx === 32 && config.grid.ny === 32;
+  const isMultiResSupported =
+    config.grid.nx === config.grid.ny && [32, 64, 128, 256].includes(config.grid.nx);
+
+  let gridBadgeText = '✓ Verified Numerical Mesh';
+  let gridBadgeClass = 'badge-surrogate-supported';
+
+  if (mode === 'experimental_neural' || mode === 'experimental_neural_corrected') {
+    if (isMultiResSupported) {
+      gridBadgeText = `✓ ${config.grid.nx}x${config.grid.ny} Multi-Res Surrogate Validated`;
+      gridBadgeClass = 'badge-surrogate-supported';
+    } else {
+      gridBadgeText = `⚠️ Unvalidated for Neural Surrogate (Requires 32, 64, 128, 256)`;
+      gridBadgeClass = 'badge-fvm-routed';
+    }
+  } else if (mode === 'legacy_hybrid') {
+    gridBadgeText = isGrid32 ? '✓ 32x32 Surrogate Optimized' : 'ℹ️ Direct FVM Solver Route';
+    gridBadgeClass = isGrid32 ? 'badge-surrogate-supported' : 'badge-fvm-routed';
+  } else {
+    gridBadgeText = `✓ ${config.grid.nx}x${config.grid.ny} Conservative Numerical Reference`;
+    gridBadgeClass = 'badge-surrogate-supported';
+  }
 
   return (
     <div className="problem-editor-container">
@@ -150,24 +180,38 @@ export const ProblemConfigEditor: React.FC<ProblemConfigEditorProps> = ({
         <div className="mode-button-group">
           <button
             type="button"
-            className={`mode-btn ${mode === 'hybrid' ? 'active-mode' : ''}`}
-            onClick={() => onModeChange('hybrid')}
+            className={`mode-btn ${mode === 'numerical_fvm' ? 'active-mode' : ''}`}
+            onClick={() => onModeChange('numerical_fvm')}
           >
-            🛡️ Hybrid Twin (Screener + Fallback)
+            📐 Verified Numerical FVM (Trusted Reference)
           </button>
           <button
             type="button"
-            className={`mode-btn ${mode === 'fvm' ? 'active-mode' : ''}`}
-            onClick={() => onModeChange('fvm')}
+            className={`mode-btn ${mode === 'experimental_neural' ? 'active-mode' : ''}`}
+            onClick={() => onModeChange('experimental_neural')}
           >
-            📐 Direct Reference FVM
+            ⚡ Experimental Neural (A3 Refined FNO)
+          </button>
+          <button
+            type="button"
+            className={`mode-btn ${mode === 'experimental_neural_corrected' ? 'active-mode' : ''}`}
+            onClick={() => onModeChange('experimental_neural_corrected')}
+          >
+            🧪 Experimental Neural + Jacobi (A4 Corrected)
           </button>
           <button
             type="button"
             className={`mode-btn ${mode === 'comparison' ? 'active-mode' : ''}`}
             onClick={() => onModeChange('comparison')}
           >
-            🔬 Research Comparison (Both)
+            🔬 Dual-Mode Comparison (Reference vs Neural)
+          </button>
+          <button
+            type="button"
+            className={`mode-btn ${mode === 'legacy_hybrid' ? 'active-mode' : ''}`}
+            onClick={() => onModeChange('legacy_hybrid')}
+          >
+            🛡️ Legacy Hybrid Twin (32x32 R1)
           </button>
         </div>
       </div>
@@ -188,8 +232,20 @@ export const ProblemConfigEditor: React.FC<ProblemConfigEditorProps> = ({
           <button type="button" className="preset-pill" onClick={() => applyPreset('extreme_source')}>
             Extreme Source (OOD)
           </button>
+        </div>
+        <div className="preset-buttons-row" style={{ marginTop: '8px' }}>
+          <span style={{ fontSize: '12px', color: '#94a3b8', alignSelf: 'center', marginRight: '6px' }}>Mesh:</span>
+          <button type="button" className="preset-pill" onClick={() => applyPreset('grid_32')}>
+            32x32
+          </button>
           <button type="button" className="preset-pill" onClick={() => applyPreset('grid_64')}>
-            64x64 Fine Mesh
+            64x64
+          </button>
+          <button type="button" className="preset-pill" onClick={() => applyPreset('grid_128')}>
+            128x128
+          </button>
+          <button type="button" className="preset-pill" onClick={() => applyPreset('grid_256')}>
+            256x256
           </button>
         </div>
       </div>
@@ -198,8 +254,8 @@ export const ProblemConfigEditor: React.FC<ProblemConfigEditorProps> = ({
       <div className="editor-card">
         <div className="card-header-with-badge">
           <label className="section-title">Domain Geometry & Resolution</label>
-          <span className={`grid-badge ${isGrid32 ? 'badge-surrogate-supported' : 'badge-fvm-routed'}`}>
-            {isGrid32 ? '✓ 32x32 Surrogate Optimized' : 'ℹ️ Direct FVM Solver Route'}
+          <span className={`grid-badge ${gridBadgeClass}`}>
+            {gridBadgeText}
           </span>
         </div>
 
@@ -241,12 +297,12 @@ export const ProblemConfigEditor: React.FC<ProblemConfigEditorProps> = ({
 
         <div className="editor-form-grid-2">
           <div className="form-group">
-            <label>Grid Cells nx</label>
+            <label>Grid Cells nx (max 256)</label>
             <input
               type="number"
               step="1"
               min="4"
-              max="128"
+              max="256"
               value={config.grid.nx}
               onChange={(e) =>
                 onChange({ ...config, grid: { ...config.grid, nx: parseInt(e.target.value, 10) || 32 } })
@@ -254,12 +310,12 @@ export const ProblemConfigEditor: React.FC<ProblemConfigEditorProps> = ({
             />
           </div>
           <div className="form-group">
-            <label>Grid Cells ny</label>
+            <label>Grid Cells ny (max 256)</label>
             <input
               type="number"
               step="1"
               min="4"
-              max="128"
+              max="256"
               value={config.grid.ny}
               onChange={(e) =>
                 onChange({ ...config, grid: { ...config.grid, ny: parseInt(e.target.value, 10) || 32 } })
