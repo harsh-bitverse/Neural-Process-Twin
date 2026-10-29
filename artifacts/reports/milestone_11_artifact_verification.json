@@ -1,0 +1,43 @@
+{
+  "status": "ready",
+  "artifacts_verified": [
+    {
+      "name": "A3_RefinedFNO2D",
+      "path": "artifacts\\checkpoints\\milestone_08f\\A3_hybrid_refined_fno\\best_model.pt",
+      "sha256": "7b412133904819bcc654a06525c334923454bd26378312623ce5251d9b5f0f1d",
+      "status": "verified"
+    },
+    {
+      "name": "scaled_fno_supervised_seed42",
+      "path": "artifacts\\checkpoints\\scaled_fno_supervised_seed42\\best_model.pt",
+      "sha256": "37b0b1a4b717a9c6be2558420fcde6aaff498c79d76aec7e1712b16eb5f82b02",
+      "status": "verified"
+    },
+    {
+      "name": "scaled_fno_supervised_seed43",
+      "path": "artifacts\\checkpoints\\scaled_fno_supervised_seed43\\best_model.pt",
+      "sha256": "b7ef5e3c9e59b467be8c9fb783f0ea4a2f1c5316661ed1fc38f36a7e7b34e90a",
+      "status": "verified"
+    },
+    {
+      "name": "scaled_fno_supervised_seed44",
+      "path": "artifacts\\checkpoints\\scaled_fno_supervised_seed44\\best_model.pt",
+      "sha256": "379bbdf16b28553e15431844bc94e71ab6785e45fdc0093117b9350966261434",
+      "status": "verified"
+    },
+    {
+      "name": "scaled_fno_supervised_seed45",
+      "path": "artifacts\\checkpoints\\scaled_fno_supervised_seed45\\best_model.pt",
+      "sha256": "b407a34628f7953122a18e003a44b2013b7d387b6d9e95b039b6eeef96777bf8",
+      "status": "verified"
+    },
+    {
+      "name": "scaled_fno_supervised_seed46",
+      "path": "artifacts\\checkpoints\\scaled_fno_supervised_seed46\\best_model.pt",
+      "sha256": "722123f37783b48eaf58c537df21af64af0a3f434dae037b9246a43f751a3905",
+      "status": "verified"
+    }
+  ],
+  "artifacts_missing": [],
+  "integrity_failures": []
+}

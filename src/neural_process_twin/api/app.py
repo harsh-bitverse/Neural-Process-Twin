@@ -3,15 +3,34 @@
 from __future__ import annotations
 
 import logging
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+from neural_process_twin.api.deployment_config import SETTINGS
+from neural_process_twin.api.middleware import ResourceSafetyMiddleware
 from neural_process_twin.api.routes import router
 
 logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Application lifespan context managing startup warmup and graceful shutdown."""
+    logger.info("Initializing Neural Process Twin application lifecycle...")
+    try:
+        from neural_process_twin.api.routes import get_experimental_surrogate, get_solver
+
+        get_solver()
+        get_experimental_surrogate()
+        logger.info("Scientific solvers and neural surrogate models initialized successfully.")
+    except Exception as exc:
+        logger.warning("Startup pre-warmup encountered issue (will initialize lazily): %s", exc)
+    yield
+    logger.info("Shutting down Neural Process Twin application.")
 
 
 def create_app(static_dir: str | Path | None = None) -> FastAPI:
@@ -26,14 +45,19 @@ def create_app(static_dir: str | Path | None = None) -> FastAPI:
         version="0.1.0",
         docs_url="/docs",
         redoc_url="/redoc",
+        lifespan=lifespan,
     )
 
-    # Configure CORS for local development and dashboard access
+    # 1. Enforce payload size limits, request ID injection, and error sanitization
+    app.add_middleware(ResourceSafetyMiddleware)
+
+    # 2. Configure CORS securely for deployment
+    allow_wildcard = SETTINGS.cors_allowed_origins == ["*"]
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
-        allow_credentials=True,
-        allow_methods=["*"],
+        allow_origins=SETTINGS.cors_allowed_origins,
+        allow_credentials=not allow_wildcard,  # Wildcard credentials violate browser CORS standards
+        allow_methods=["GET", "POST", "OPTIONS"],
         allow_headers=["*"],
     )
 

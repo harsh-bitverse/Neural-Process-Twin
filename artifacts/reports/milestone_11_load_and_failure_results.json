@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "test_suite": "Milestone 11 Production Load and Failure Testing",
+    "timestamp": "2026-10-29T17:41:00Z"
+  },
+  "single_user_baseline": {
+    "numerical_fvm_32": {
+      "count": 15,
+      "mean_ms": 8.86,
+      "std_ms": 5.03,
+      "p50_ms": 6.94,
+      "p95_ms": 21.0,
+      "p99_ms": 22.59,
+      "min_ms": 5.96,
+      "max_ms": 22.99
+    },
+    "numerical_fvm_64": {
+      "count": 15,
+      "mean_ms": 18.98,
+      "std_ms": 0.75,
+      "p50_ms": 18.92,
+      "p95_ms": 20.15,
+      "p99_ms": 20.16,
+      "min_ms": 17.84,
+      "max_ms": 20.16
+    },
+    "numerical_fvm_128": {
+      "count": 15,
+      "mean_ms": 70.84,
+      "std_ms": 2.07,
+      "p50_ms": 70.53,
+      "p95_ms": 73.93,
+      "p99_ms": 76.62,
+      "min_ms": 68.72,
+      "max_ms": 77.3
+    },
+    "numerical_fvm_256": {
+      "count": 15,
+      "mean_ms": 338.44,
+      "std_ms": 11.8,
+      "p50_ms": 333.5,
+      "p95_ms": 361.62,
+      "p99_ms": 365.88,
+      "min_ms": 326.39,
+      "max_ms": 366.95
+    },
+    "neural_32_opt": {
+      "count": 15,
+      "mean_ms": 25.79,
+      "std_ms": 13.84,
+      "p50_ms": 21.28,
+      "p95_ms": 46.03,
+      "p99_ms": 69.47,
+      "min_ms": 16.75,
+      "max_ms": 75.33
+    },
+    "neural_64_opt": {
+      "count": 15,
+      "mean_ms": 28.45,
+      "std_ms": 3.63,
+      "p50_ms": 28.81,
+      "p95_ms": 34.8,
+      "p99_ms": 35.72,
+      "min_ms": 23.47,
+      "max_ms": 35.95
+    },
+    "neural_128_opt": {
+      "count": 15,
+      "mean_ms": 45.26,
+      "std_ms": 4.38,
+      "p50_ms": 45.51,
+      "p95_ms": 50.4,
+      "p99_ms": 50.65,
+      "min_ms": 38.08,
+      "max_ms": 50.72
+    },
+    "neural_256_opt": {
+      "count": 15,
+      "mean_ms": 122.25,
+      "std_ms": 11.51,
+      "p50_ms": 119.56,
+      "p95_ms": 140.13,
+      "p99_ms": 141.81,
+      "min_ms": 102.51,
+      "max_ms": 142.24
+    }
+  },
+  "concurrent_mixed_workload": {
+    "count": 30,
+    "mean_ms": 279.48,
+    "std_ms": 80.12,
+    "p50_ms": 304.54,
+    "p95_ms": 378.77,
+    "p99_ms": 381.44,
+    "min_ms": 129.12,
+    "max_ms": 381.94,
+    "total_duration_sec": 1.11,
+    "throughput_req_per_sec": 26.96,
+    "success_count": 30,
+    "error_count": 0
+  },
+  "burst_traffic_saturation": {
+    "count": 20,
+    "mean_ms": 942.0,
+    "std_ms": 317.31,
+    "p50_ms": 914.8,
+    "p95_ms": 1356.71,
+    "p99_ms": 1357.37,
+    "min_ms": 427.24,
+    "max_ms": 1357.53,
+    "burst_size": 20,
+    "duration_sec": 1.39,
+    "status_code_distribution": {
+      "200": 20
+    }
+  },
+  "failure_modes_and_recovery": {
+    "oversized_payload_413": {
+      "status_code": 413,
+      "error_code": "PAYLOAD_TOO_LARGE",
+      "passed": true
+    },
+    "cell_limit_exceeded": {
+      "status_code": 422,
+      "passed": true
+    },
+    "negative_conductivity": {
+      "status_code": 422,
+      "passed": true
+    },
+    "pure_neumann_rejection": {
+      "status_code": 422,
+      "passed": true
+    },
+    "unsupported_neural_resolution": {
+      "status_code": 400,
+      "passed": true
+    },
+    "post_failure_recovery": {
+      "status_code": 200,
+      "passed": true
+    }
+  }
+}

@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import logging
+import threading
 import time
+from typing import Any
 
 import numpy as np
 import torch
@@ -22,6 +24,7 @@ from neural_process_twin.api.converters import (
     format_legacy_hybrid_simulation_response,
     format_solver_result_to_response,
 )
+from neural_process_twin.api.deployment_config import GOVERNOR, METRICS
 from neural_process_twin.api.models import (
     CapabilitiesResponse,
     ComparisonResponse,
@@ -49,44 +52,55 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api", tags=["Inference & Diagnostics"])
 
-# Singleton engine instance, initialized lazily or via startup event
+# Singleton engine instance, initialized lazily with thread lock protection
 _ENGINE_INSTANCE: HybridInferenceEngine | None = None
 _VALIDATOR_INSTANCE: InputValidator | None = None
 _SOLVER_INSTANCE: HeatConductionSolver2D | None = None
 _EXPERIMENTAL_SURROGATE: ExperimentalSurrogateService | None = None
+_SINGLETON_LOCK = threading.Lock()
 
 
 def get_experimental_surrogate() -> ExperimentalSurrogateService:
-    """Retrieve or lazily initialize the singleton ExperimentalSurrogateService."""
+    """Retrieve or lazily initialize the singleton ExperimentalSurrogateService with thread safety."""
     global _EXPERIMENTAL_SURROGATE
     if _EXPERIMENTAL_SURROGATE is None:
-        logger.info("Initializing ExperimentalSurrogateService (A3 RefinedFNO2D)...")
-        _EXPERIMENTAL_SURROGATE = ExperimentalSurrogateService(device="cpu")
+        with _SINGLETON_LOCK:
+            if _EXPERIMENTAL_SURROGATE is None:
+                logger.info("Initializing ExperimentalSurrogateService (A3 RefinedFNO2D)...")
+                _EXPERIMENTAL_SURROGATE = ExperimentalSurrogateService(device="cpu")
     return _EXPERIMENTAL_SURROGATE
 
 
 def get_engine() -> HybridInferenceEngine:
-    """Retrieve or lazily initialize the singleton HybridInferenceEngine."""
+    """Retrieve or lazily initialize the singleton HybridInferenceEngine with thread safety."""
     global _ENGINE_INSTANCE
     if _ENGINE_INSTANCE is None:
-        logger.info("Initializing HybridInferenceEngine from authoritative repository artifacts...")
-        _ENGINE_INSTANCE = HybridInferenceEngine.from_artifacts(device="cpu")
+        with _SINGLETON_LOCK:
+            if _ENGINE_INSTANCE is None:
+                logger.info(
+                    "Initializing HybridInferenceEngine from authoritative repository artifacts..."
+                )
+                _ENGINE_INSTANCE = HybridInferenceEngine.from_artifacts(device="cpu")
     return _ENGINE_INSTANCE
 
 
 def get_validator() -> InputValidator:
-    """Retrieve or lazily initialize the singleton InputValidator."""
+    """Retrieve or lazily initialize the singleton InputValidator with thread safety."""
     global _VALIDATOR_INSTANCE
     if _VALIDATOR_INSTANCE is None:
-        _VALIDATOR_INSTANCE = InputValidator()
+        with _SINGLETON_LOCK:
+            if _VALIDATOR_INSTANCE is None:
+                _VALIDATOR_INSTANCE = InputValidator()
     return _VALIDATOR_INSTANCE
 
 
 def get_solver() -> HeatConductionSolver2D:
-    """Retrieve or lazily initialize the reference HeatConductionSolver2D."""
+    """Retrieve or lazily initialize the reference HeatConductionSolver2D with thread safety."""
     global _SOLVER_INSTANCE
     if _SOLVER_INSTANCE is None:
-        _SOLVER_INSTANCE = HeatConductionSolver2D(tolerance=1e-10)
+        with _SINGLETON_LOCK:
+            if _SOLVER_INSTANCE is None:
+                _SOLVER_INSTANCE = HeatConductionSolver2D(tolerance=1e-10)
     return _SOLVER_INSTANCE
 
 
@@ -102,6 +116,49 @@ def health_check() -> HealthResponse:
         ensemble_loaded=engine.ensemble is not None,
         ensemble_member_count=len(engine.ensemble.members) if engine.ensemble else 0,
     )
+
+
+@router.get("/ready")
+def readiness_check() -> dict[str, Any]:
+    """Kubernetes / container readiness probe checking model availability and solver initialization."""
+    checks: dict[str, str] = {}
+    is_ready = True
+
+    try:
+        solver = get_solver()
+        checks["fvm_solver"] = "ok" if solver is not None else "unavailable"
+    except Exception as exc:
+        checks["fvm_solver"] = f"error: {exc}"
+        is_ready = False
+
+    try:
+        surr = get_experimental_surrogate()
+        checks["experimental_surrogate"] = (
+            "ok" if surr.model is not None and surr.normalizer is not None else "unavailable"
+        )
+    except Exception as exc:
+        checks["experimental_surrogate"] = f"error: {exc}"
+        is_ready = False
+
+    try:
+        engine = get_engine()
+        checks["hybrid_engine"] = "ok" if engine is not None else "unavailable"
+    except Exception as exc:
+        checks["hybrid_engine"] = f"error: {exc}"
+        is_ready = False
+
+    if not is_ready:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail={"status": "not_ready", "checks": checks},
+        )
+    return {"status": "ready", "checks": checks}
+
+
+@router.get("/metrics")
+def get_operational_metrics() -> dict[str, Any]:
+    """Retrieve operational telemetry, queue load, and latency percentiles."""
+    return METRICS.get_summary()
 
 
 @router.get("/capabilities", response_model=CapabilitiesResponse)
@@ -232,8 +289,12 @@ def run_hybrid_inference(req: InferenceRequestModel) -> InferenceResponse:
             detail=f"Invalid physical problem specification: {exc}",
         ) from exc
 
-    engine = get_engine()
-    result = engine.predict(inf_req)
+    GOVERNOR.acquire_neural()
+    try:
+        engine = get_engine()
+        result = engine.predict(inf_req)
+    finally:
+        GOVERNOR.release_neural()
     return format_hybrid_result_to_response(result, inf_req.grid, k_field, q_field)
 
 
@@ -259,9 +320,10 @@ def run_direct_fvm_solve(req: InferenceRequestModel) -> InferenceResponse:
             detail=f"Physical problem failed validation: {val_res.rejection.message}",
         )
 
-    solver = get_solver()
+    GOVERNOR.acquire_numerical()
     t0 = time.perf_counter()
     try:
+        solver = get_solver()
         solver_res = solver.solve(
             grid=inf_req.grid,
             conductivity=k_field,
@@ -273,8 +335,11 @@ def run_direct_fvm_solve(req: InferenceRequestModel) -> InferenceResponse:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Finite-volume reference solver failed: {exc}",
         ) from exc
+    finally:
+        GOVERNOR.release_numerical()
 
     latency_ms = (time.perf_counter() - t0) * 1000.0
+    METRICS.record_stage_latency("fvm_solve", latency_ms)
     return format_solver_result_to_response(solver_res, inf_req.grid, k_field, q_field, latency_ms)
 
 
@@ -405,9 +470,10 @@ def run_simulation(req: SimulationRequestModel) -> SimulationResponse:
 
     # 1. Mode: Verified Numerical FVM Reference (Default Trusted Path)
     if req.mode == "numerical_fvm":
-        solver = get_solver()
+        GOVERNOR.acquire_numerical()
         t0 = time.perf_counter()
         try:
+            solver = get_solver()
             solver_res = solver.solve(
                 grid=grid,
                 conductivity=k_field,
@@ -419,14 +485,19 @@ def run_simulation(req: SimulationRequestModel) -> SimulationResponse:
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail=f"Numerical reference solver execution failed: {exc}",
             ) from exc
+        finally:
+            GOVERNOR.release_numerical()
+
         latency_ms = (time.perf_counter() - t0) * 1000.0
+        METRICS.record_stage_latency("fvm_solve", latency_ms)
         return format_fvm_simulation_response(solver_res, grid, k_field, q_field, bcs, latency_ms)
 
     # 2. Mode: Experimental Neural Surrogate (A3 or A4)
     if req.mode in ("experimental_neural", "experimental_neural_corrected"):
         apply_correction = req.mode == "experimental_neural_corrected"
-        surrogate_service = get_experimental_surrogate()
+        GOVERNOR.acquire_neural()
         try:
+            surrogate_service = get_experimental_surrogate()
             surr_res = surrogate_service.predict(
                 grid=grid,
                 k_field=k_field,
@@ -435,6 +506,9 @@ def run_simulation(req: SimulationRequestModel) -> SimulationResponse:
                 apply_physics_correction=apply_correction,
                 compute_diagnostics=req.compute_diagnostics,
             )
+            METRICS.record_stage_latency("neural_forward", surr_res.inference_time_ms)
+            if apply_correction:
+                METRICS.record_stage_latency("physics_correction", surr_res.correction_time_ms)
         except ValueError as exc:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
@@ -445,6 +519,8 @@ def run_simulation(req: SimulationRequestModel) -> SimulationResponse:
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail=f"Experimental neural surrogate execution failed: {exc}",
             ) from exc
+        finally:
+            GOVERNOR.release_neural()
 
         return format_experimental_simulation_response(
             surr_res, grid, k_field, q_field, bcs, mode_name=req.mode
@@ -460,8 +536,12 @@ def run_simulation(req: SimulationRequestModel) -> SimulationResponse:
             boundary_conditions=bcs,
             options=options,
         )
-        engine = get_engine()
-        hybrid_res = engine.predict(inf_req)
+        GOVERNOR.acquire_neural()
+        try:
+            engine = get_engine()
+            hybrid_res = engine.predict(inf_req)
+        finally:
+            GOVERNOR.release_neural()
         return format_legacy_hybrid_simulation_response(hybrid_res, grid, k_field, q_field, bcs)
 
     raise HTTPException(
@@ -489,9 +569,10 @@ def run_dual_mode_comparison(req: SimulationRequestModel) -> DualModeComparisonR
         ) from exc
 
     # 1. Execute Verified Numerical Reference solve
-    solver = get_solver()
+    GOVERNOR.acquire_numerical()
     t0 = time.perf_counter()
     try:
+        solver = get_solver()
         solver_res = solver.solve(
             grid=grid,
             conductivity=k_field,
@@ -503,15 +584,20 @@ def run_dual_mode_comparison(req: SimulationRequestModel) -> DualModeComparisonR
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Numerical reference solver execution failed: {exc}",
         ) from exc
+    finally:
+        GOVERNOR.release_numerical()
+
     fvm_lat_ms = (time.perf_counter() - t0) * 1000.0
+    METRICS.record_stage_latency("fvm_solve", fvm_lat_ms)
     fvm_response = format_fvm_simulation_response(
         solver_res, grid, k_field, q_field, bcs, fvm_lat_ms
     )
 
     # 2. Execute Experimental Neural Surrogate
     apply_corr = req.mode == "experimental_neural_corrected"
-    surrogate_service = get_experimental_surrogate()
+    GOVERNOR.acquire_neural()
     try:
+        surrogate_service = get_experimental_surrogate()
         surr_res = surrogate_service.predict(
             grid=grid,
             k_field=k_field,
@@ -519,6 +605,9 @@ def run_dual_mode_comparison(req: SimulationRequestModel) -> DualModeComparisonR
             bcs=bcs,
             apply_physics_correction=apply_corr,
         )
+        METRICS.record_stage_latency("neural_forward", surr_res.inference_time_ms)
+        if apply_corr:
+            METRICS.record_stage_latency("physics_correction", surr_res.correction_time_ms)
     except ValueError as exc:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -529,6 +618,8 @@ def run_dual_mode_comparison(req: SimulationRequestModel) -> DualModeComparisonR
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Experimental neural surrogate execution failed: {exc}",
         ) from exc
+    finally:
+        GOVERNOR.release_neural()
 
     surr_response = format_experimental_simulation_response(
         surr_res,

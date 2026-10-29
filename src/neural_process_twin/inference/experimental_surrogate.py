@@ -97,6 +97,17 @@ class ExperimentalSurrogateService:
             self.checkpoint_sha256,
         )
 
+        from neural_process_twin.api.deployment_config import SETTINGS
+
+        if (
+            SETTINGS.enforce_sha256_verification
+            and self.checkpoint_sha256 != SETTINGS.authorized_a3_sha256
+        ):
+            raise PermissionError(
+                f"Untrusted checkpoint detected! SHA-256 '{self.checkpoint_sha256}' does not match "
+                f"authorized checksum '{SETTINGS.authorized_a3_sha256}'. Refusing to deserialize."
+            )
+
         checkpoint = torch.load(self.checkpoint_path, map_location=self.device, weights_only=False)
 
         # Normalization parameters from authoritative training fit

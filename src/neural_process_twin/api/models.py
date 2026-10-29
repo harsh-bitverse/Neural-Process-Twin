@@ -29,6 +29,10 @@ class GridModel(BaseModel):
             raise ValueError(
                 f"y_max ({self.y_max}) must be strictly greater than y_min ({self.y_min})."
             )
+        if self.nx * self.ny > 65536:
+            raise ValueError(
+                f"Total grid cells ({self.nx * self.ny}) exceeds maximum safe cell limit of 65,536."
+            )
         return self
 
 
@@ -94,6 +98,29 @@ class FieldPatternModel(BaseModel):
         None, description="2D matrix (ny, nx) of conductivity values."
     )
 
+    @field_validator("custom_values")
+    @classmethod
+    def validate_custom_conductivity(cls, v: list[list[float]] | None) -> list[list[float]] | None:
+        if v is None:
+            return v
+        ny = len(v)
+        if ny < 2 or ny > 256:
+            raise ValueError(f"Custom conductivity rows ({ny}) must be between 2 and 256.")
+        nx = len(v[0])
+        if nx < 2 or nx > 256:
+            raise ValueError(f"Custom conductivity cols ({nx}) must be between 2 and 256.")
+        if ny * nx > 65536:
+            raise ValueError(f"Custom conductivity elements ({ny * nx}) exceeds limit of 65,536.")
+        for row in v:
+            if len(row) != nx:
+                raise ValueError("All rows in custom_values must have identical column length.")
+            for val in row:
+                if not np.isfinite(val) or val <= 0.0:
+                    raise ValueError(
+                        f"Custom conductivity values must be finite and strictly positive (got {val})."
+                    )
+        return v
+
 
 class HeatSourcePatternModel(BaseModel):
     """Specification for generating or inputting volumetric heat source fields q(x, y)."""
@@ -107,6 +134,29 @@ class HeatSourcePatternModel(BaseModel):
     custom_values: list[list[float]] | None = Field(
         None, description="2D matrix (ny, nx) of source values."
     )
+
+    @field_validator("custom_values")
+    @classmethod
+    def validate_custom_source(cls, v: list[list[float]] | None) -> list[list[float]] | None:
+        if v is None:
+            return v
+        ny = len(v)
+        if ny < 2 or ny > 256:
+            raise ValueError(f"Custom source rows ({ny}) must be between 2 and 256.")
+        nx = len(v[0])
+        if nx < 2 or nx > 256:
+            raise ValueError(f"Custom source cols ({nx}) must be between 2 and 256.")
+        if ny * nx > 65536:
+            raise ValueError(f"Custom source elements ({ny * nx}) exceeds limit of 65,536.")
+        for row in v:
+            if len(row) != nx:
+                raise ValueError("All rows in custom_values must have identical column length.")
+            for val in row:
+                if not np.isfinite(val):
+                    raise ValueError(
+                        f"Custom source values must be finite numerical scalars (got {val})."
+                    )
+        return v
 
 
 class OptionsModel(BaseModel):
