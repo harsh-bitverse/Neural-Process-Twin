@@ -1,0 +1,40 @@
+{
+  "milestone": "08G",
+  "phase": 3,
+  "title": "Uncertainty Recalibration for A3 Refined Surrogate",
+  "models": {
+    "U1_heteroscedastic_head": {
+      "path": "artifacts\\checkpoints\\milestone_08g\\A3_heteroscedastic\\best_model.pt",
+      "sha256": "d228cfd380a0eb6a6599cb3078a901b6d4534c08380f1807c566a32f3f6ed4d4",
+      "param_count": 13313,
+      "loss": "Gaussian NLL"
+    },
+    "U3_mc_dropout": {
+      "base_model": "artifacts\\checkpoints\\milestone_08f\\A3_hybrid_refined_fno\\best_model.pt",
+      "passes_evaluated": [
+        3,
+        5
+      ],
+      "dropout_rate": 0.1,
+      "type": "Spatial MC Dropout on refinement hidden layers"
+    },
+    "U_res_residual_predictor": {
+      "path": "artifacts\\checkpoints\\milestone_08g\\A3_residual_predictor\\best_model.pt",
+      "sha256": "13780acc2fc95ea513b54e4369aa9517bd8cc840a4a0d759e5a8e9ac919e8112",
+      "param_count": 13313,
+      "loss": "L1 + Peak Error Penalty"
+    },
+    "U_phys_residual_indicator": {
+      "types": [
+        "boundary_flux_imbalance_ratio",
+        "linear_system_relative_residual"
+      ],
+      "overhead_estimate_ms": "< 1.5 ms at 32x32, ~5 ms at 256x256"
+    }
+  },
+  "calibration_samples_used": 400,
+  "calibration_resolutions": [
+    32,
+    64
+  ]
+}

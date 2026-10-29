@@ -1,0 +1,4412 @@
+{
+  "milestone": "08G",
+  "phase": 4,
+  "title": "Localized Error Detection and Risk Calibration across Resolutions",
+  "provenance": {
+    "a3_checkpoint_sha256": "7b412133904819bcc654a06525c334923454bd26378312623ce5251d9b5f0f1d",
+    "het_checkpoint_sha256": "d228cfd380a0eb6a6599cb3078a901b6d4534c08380f1807c566a32f3f6ed4d4",
+    "res_checkpoint_sha256": "13780acc2fc95ea513b54e4369aa9517bd8cc840a4a0d759e5a8e9ac919e8112"
+  },
+  "benchmarks": {
+    "32x32": {
+      "test_iid": {
+        "n_samples": 200,
+        "n_unsafe_10k": 38,
+        "pct_unsafe_10k": 19.0,
+        "n_unsafe_5k": 111,
+        "pct_unsafe_5k": 55.50000000000001,
+        "signals": {
+          "U1_heteroscedastic": {
+            "pearson_r": 0.3485675893398238,
+            "spearman_rho": 0.2962064051601291,
+            "auroc_10k": 0.6859974009096816,
+            "auprc_10k": 0.4307016048420206,
+            "auroc_5k": 0.6730438303472012,
+            "auprc_5k": 0.7426847026914755,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 6.1517822265625,
+                "p90_maxae": 11.09209899902344,
+                "unsafe_count": 3,
+                "conditional_failure_rate": 0.15
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 6.078022766113281,
+                "p90_maxae": 11.09209899902344,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 0.125
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 5.923712666829427,
+                "p90_maxae": 10.358380126953126,
+                "unsafe_count": 7,
+                "conditional_failure_rate": 0.11666666666666667
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 5.69506950378418,
+                "p90_maxae": 9.975762939453128,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.1
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 5.725777587890625,
+                "p90_maxae": 9.975762939453128,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 0.1
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 6.181934483846029,
+                "p90_maxae": 10.998840332031254,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 0.125
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 6.3807616097586495,
+                "p90_maxae": 11.476626586914067,
+                "unsafe_count": 19,
+                "conditional_failure_rate": 0.1357142857142857
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 6.379775333404541,
+                "p90_maxae": 11.015731811523436,
+                "unsafe_count": 21,
+                "conditional_failure_rate": 0.13125
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 6.563778940836588,
+                "p90_maxae": 12.144699096679686,
+                "unsafe_count": 27,
+                "conditional_failure_rate": 0.15
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 7.019374313354493,
+                "p90_maxae": 12.859646606445311,
+                "unsafe_count": 38,
+                "conditional_failure_rate": 0.19
+              }
+            ]
+          },
+          "U3_mcd_t3": {
+            "pearson_r": 0.11075362702569776,
+            "spearman_rho": 0.08108752718817971,
+            "auroc_10k": 0.6333658219623132,
+            "auprc_10k": 0.3133208986363908,
+            "auroc_5k": 0.5135135135135136,
+            "auprc_5k": 0.6062638166774177,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 5.937956237792969,
+                "p90_maxae": 8.983282470703125,
+                "unsafe_count": 1,
+                "conditional_failure_rate": 0.05
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 5.430421447753906,
+                "p90_maxae": 8.565106201171876,
+                "unsafe_count": 2,
+                "conditional_failure_rate": 0.05
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 6.386445109049479,
+                "p90_maxae": 10.40491943359375,
+                "unsafe_count": 7,
+                "conditional_failure_rate": 0.11666666666666667
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 6.436858367919922,
+                "p90_maxae": 10.871261596679693,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 0.125
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 6.682103576660157,
+                "p90_maxae": 12.14469909667969,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 0.15
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 6.829861831665039,
+                "p90_maxae": 12.372845458984377,
+                "unsafe_count": 18,
+                "conditional_failure_rate": 0.15
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 6.944934409005302,
+                "p90_maxae": 12.58900146484375,
+                "unsafe_count": 22,
+                "conditional_failure_rate": 0.15714285714285714
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 6.9194512367248535,
+                "p90_maxae": 12.589001464843749,
+                "unsafe_count": 27,
+                "conditional_failure_rate": 0.16875
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 6.898762596978082,
+                "p90_maxae": 12.719519042968749,
+                "unsafe_count": 31,
+                "conditional_failure_rate": 0.17222222222222222
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 7.019374313354493,
+                "p90_maxae": 12.859646606445311,
+                "unsafe_count": 38,
+                "conditional_failure_rate": 0.19
+              }
+            ]
+          },
+          "U3_mcd_t5": {
+            "pearson_r": 0.20562713843011504,
+            "spearman_rho": 0.15679141978549466,
+            "auroc_10k": 0.6258934372969461,
+            "auprc_10k": 0.3298701093803117,
+            "auroc_5k": 0.5890272294766677,
+            "auprc_5k": 0.6438265823246747,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 6.821723937988281,
+                "p90_maxae": 10.18941345214844,
+                "unsafe_count": 2,
+                "conditional_failure_rate": 0.1
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 6.005392074584961,
+                "p90_maxae": 9.407077026367189,
+                "unsafe_count": 3,
+                "conditional_failure_rate": 0.075
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 6.468518575032552,
+                "p90_maxae": 10.884230041503908,
+                "unsafe_count": 7,
+                "conditional_failure_rate": 0.11666666666666667
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 6.832588577270508,
+                "p90_maxae": 12.601855468750003,
+                "unsafe_count": 12,
+                "conditional_failure_rate": 0.15
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 6.67888671875,
+                "p90_maxae": 12.372845458984377,
+                "unsafe_count": 16,
+                "conditional_failure_rate": 0.16
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 6.57799072265625,
+                "p90_maxae": 12.372845458984377,
+                "unsafe_count": 19,
+                "conditional_failure_rate": 0.15833333333333333
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 6.50745130266462,
+                "p90_maxae": 12.018502807617189,
+                "unsafe_count": 21,
+                "conditional_failure_rate": 0.15
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 6.463752937316895,
+                "p90_maxae": 11.47662658691406,
+                "unsafe_count": 23,
+                "conditional_failure_rate": 0.14375
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 6.72650129530165,
+                "p90_maxae": 12.372845458984374,
+                "unsafe_count": 30,
+                "conditional_failure_rate": 0.16666666666666666
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 7.019374313354493,
+                "p90_maxae": 12.859646606445311,
+                "unsafe_count": 38,
+                "conditional_failure_rate": 0.19
+              }
+            ]
+          },
+          "U_res_predictor": {
+            "pearson_r": 0.29330009976616084,
+            "spearman_rho": 0.31416785419635496,
+            "auroc_10k": 0.603638726445744,
+            "auprc_10k": 0.36387194641699566,
+            "auroc_5k": 0.6827614130984917,
+            "auprc_5k": 0.7608571280640988,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 5.4530517578125,
+                "p90_maxae": 9.165319824218752,
+                "unsafe_count": 2,
+                "conditional_failure_rate": 0.1
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 5.651512145996094,
+                "p90_maxae": 11.09209899902344,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 0.125
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 5.800604248046875,
+                "p90_maxae": 12.378274536132812,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.13333333333333333
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 6.232917785644531,
+                "p90_maxae": 12.378274536132816,
+                "unsafe_count": 13,
+                "conditional_failure_rate": 0.1625
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 6.2101571655273435,
+                "p90_maxae": 12.041345214843753,
+                "unsafe_count": 16,
+                "conditional_failure_rate": 0.16
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 6.278267161051432,
+                "p90_maxae": 12.378274536132816,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 0.16666666666666666
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 6.404073224748884,
+                "p90_maxae": 12.378274536132816,
+                "unsafe_count": 23,
+                "conditional_failure_rate": 0.16428571428571428
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 6.52105073928833,
+                "p90_maxae": 12.581356811523436,
+                "unsafe_count": 26,
+                "conditional_failure_rate": 0.1625
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 6.5937355041503904,
+                "p90_maxae": 12.372845458984374,
+                "unsafe_count": 28,
+                "conditional_failure_rate": 0.15555555555555556
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 7.019374313354493,
+                "p90_maxae": 12.859646606445311,
+                "unsafe_count": 38,
+                "conditional_failure_rate": 0.19
+              }
+            ]
+          },
+          "U_phys_bnd_flux": {
+            "pearson_r": 0.03698214270261914,
+            "spearman_rho": 0.1769849246231156,
+            "auroc_10k": 0.4991877842755036,
+            "auprc_10k": 0.185999443840418,
+            "auroc_5k": 0.6103856665654418,
+            "auprc_5k": 0.6448260558500309,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 7.821244812011718,
+                "p90_maxae": 15.416870117187504,
+                "unsafe_count": 6,
+                "conditional_failure_rate": 0.3
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 7.0634033203125,
+                "p90_maxae": 15.415927124023442,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 6.647555541992188,
+                "p90_maxae": 14.362765502929689,
+                "unsafe_count": 11,
+                "conditional_failure_rate": 0.18333333333333332
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 6.1440673828125,
+                "p90_maxae": 12.859646606445315,
+                "unsafe_count": 12,
+                "conditional_failure_rate": 0.15
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 6.135709686279297,
+                "p90_maxae": 12.65071716308594,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 0.15
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 6.413256454467773,
+                "p90_maxae": 13.503799438476568,
+                "unsafe_count": 21,
+                "conditional_failure_rate": 0.175
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 6.648898206438337,
+                "p90_maxae": 13.116360473632815,
+                "unsafe_count": 27,
+                "conditional_failure_rate": 0.19285714285714287
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 7.090617752075195,
+                "p90_maxae": 14.040960693359374,
+                "unsafe_count": 33,
+                "conditional_failure_rate": 0.20625
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 7.144773356119791,
+                "p90_maxae": 13.503799438476559,
+                "unsafe_count": 37,
+                "conditional_failure_rate": 0.20555555555555555
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 7.019374313354493,
+                "p90_maxae": 12.859646606445311,
+                "unsafe_count": 38,
+                "conditional_failure_rate": 0.19
+              }
+            ]
+          },
+          "U_phys_lin_res": {
+            "pearson_r": 0.5488848247421695,
+            "spearman_rho": 0.5808550213755345,
+            "auroc_10k": 0.7782651072124755,
+            "auprc_10k": 0.5708146731000115,
+            "auroc_5k": 0.7573641056787124,
+            "auprc_5k": 0.832740860407265,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 4.121482086181641,
+                "p90_maxae": 8.001202392578127,
+                "unsafe_count": 1,
+                "conditional_failure_rate": 0.05
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 4.27092170715332,
+                "p90_maxae": 6.980786132812502,
+                "unsafe_count": 1,
+                "conditional_failure_rate": 0.025
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 4.7780306498209635,
+                "p90_maxae": 9.210632324218752,
+                "unsafe_count": 4,
+                "conditional_failure_rate": 0.06666666666666667
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 4.90634937286377,
+                "p90_maxae": 9.400228881835943,
+                "unsafe_count": 6,
+                "conditional_failure_rate": 0.075
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 5.0993876647949214,
+                "p90_maxae": 9.400228881835943,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.08
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 5.362429555257162,
+                "p90_maxae": 9.400228881835943,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 0.08333333333333333
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 5.560222516741072,
+                "p90_maxae": 9.925823974609376,
+                "unsafe_count": 13,
+                "conditional_failure_rate": 0.09285714285714286
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 5.937022972106933,
+                "p90_maxae": 11.47662658691406,
+                "unsafe_count": 19,
+                "conditional_failure_rate": 0.11875
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 6.404208797878689,
+                "p90_maxae": 12.144699096679686,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 0.1388888888888889
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 7.019374313354493,
+                "p90_maxae": 12.859646606445311,
+                "unsafe_count": 38,
+                "conditional_failure_rate": 0.19
+              }
+            ]
+          }
+        }
+      },
+      "test_ood": {
+        "n_samples": 200,
+        "n_unsafe_10k": 200,
+        "pct_unsafe_10k": 100.0,
+        "n_unsafe_5k": 200,
+        "pct_unsafe_5k": 100.0,
+        "signals": {
+          "U1_heteroscedastic": {
+            "pearson_r": 0.8093956094317403,
+            "spearman_rho": 0.8746928673216832,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 25.65898742675781,
+                "p90_maxae": 36.03025512695313,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 26.725757598876953,
+                "p90_maxae": 37.2228759765625,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 28.193705240885418,
+                "p90_maxae": 39.64100952148438,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 29.20903434753418,
+                "p90_maxae": 41.27346496582032,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 31.534113006591795,
+                "p90_maxae": 44.068215942382814,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 36.329397964477536,
+                "p90_maxae": 62.07560424804688,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 44.745621817452566,
+                "p90_maxae": 87.30141601562501,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 54.40725378990173,
+                "p90_maxae": 122.43970947265625,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 65.49565179612901,
+                "p90_maxae": 140.34740600585937,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 77.5332555770874,
+                "p90_maxae": 182.46271514892578,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U3_mcd_t3": {
+            "pearson_r": 0.42770332718313075,
+            "spearman_rho": 0.3781384534613366,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 46.19490509033203,
+                "p90_maxae": 84.3406951904297,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 54.07556228637695,
+                "p90_maxae": 141.74435729980473,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 57.58366419474284,
+                "p90_maxae": 145.1687683105469,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 52.531783485412596,
+                "p90_maxae": 124.04605102539077,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 55.05927749633789,
+                "p90_maxae": 124.04605102539077,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 61.63446413675944,
+                "p90_maxae": 145.00584259033218,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 65.91944111415319,
+                "p90_maxae": 161.66156768798828,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 68.27629137039185,
+                "p90_maxae": 161.66156768798828,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 69.83882073296441,
+                "p90_maxae": 163.22435913085937,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 77.5332555770874,
+                "p90_maxae": 182.46271514892578,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U3_mcd_t5": {
+            "pearson_r": 0.5374613987397282,
+            "spearman_rho": 0.46909022725568145,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 39.65848007202148,
+                "p90_maxae": 77.45454254150391,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 38.838586044311526,
+                "p90_maxae": 70.01156616210939,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 42.49280370076497,
+                "p90_maxae": 81.69535675048829,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 46.10440464019776,
+                "p90_maxae": 84.45417480468751,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 50.634880218505856,
+                "p90_maxae": 107.10716094970705,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 58.35991592407227,
+                "p90_maxae": 123.94658813476565,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 60.79959100995745,
+                "p90_maxae": 126.06220626831055,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 65.24577956199646,
+                "p90_maxae": 148.45153808593747,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 69.9082834455702,
+                "p90_maxae": 163.22435913085937,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 77.5332555770874,
+                "p90_maxae": 182.46271514892578,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_res_predictor": {
+            "pearson_r": 0.8916499475322746,
+            "spearman_rho": 0.8710432760819022,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 23.191569519042968,
+                "p90_maxae": 30.147576904296876,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 24.936054229736328,
+                "p90_maxae": 30.681430053710937,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 29.435977681477866,
+                "p90_maxae": 40.53126831054688,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 30.770232582092284,
+                "p90_maxae": 44.69841613769537,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 33.755184173583984,
+                "p90_maxae": 58.34214782714846,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 38.638278834025066,
+                "p90_maxae": 69.52666168212895,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 46.173431287493024,
+                "p90_maxae": 99.45728454589845,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 54.509629583358766,
+                "p90_maxae": 122.43970947265625,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 66.50503306918674,
+                "p90_maxae": 144.10333862304685,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 77.5332555770874,
+                "p90_maxae": 182.46271514892578,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_phys_bnd_flux": {
+            "pearson_r": -0.0308695575389904,
+            "spearman_rho": -0.020993024825620644,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 92.1615203857422,
+                "p90_maxae": 167.96502380371095,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 90.51644630432129,
+                "p90_maxae": 182.546142578125,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 96.96129633585612,
+                "p90_maxae": 193.5101745605469,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 84.18616046905518,
+                "p90_maxae": 192.85114135742188,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 76.87770065307618,
+                "p90_maxae": 190.8298126220703,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 75.94446970621745,
+                "p90_maxae": 183.90714263916016,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 79.21853463309152,
+                "p90_maxae": 190.8298126220703,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 76.04929008483887,
+                "p90_maxae": 183.90714263916016,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 76.37855131361219,
+                "p90_maxae": 183.90714263916016,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 77.5332555770874,
+                "p90_maxae": 182.46271514892578,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_phys_lin_res": {
+            "pearson_r": 0.5299926563594143,
+            "spearman_rho": 0.5091382284557114,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 23.98111572265625,
+                "p90_maxae": 35.40834655761719,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 30.384676361083983,
+                "p90_maxae": 46.40992736816406,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 42.070197041829424,
+                "p90_maxae": 77.67593994140626,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 48.60212459564209,
+                "p90_maxae": 91.76830139160158,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 52.477089385986325,
+                "p90_maxae": 95.77130737304698,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 55.51847089131673,
+                "p90_maxae": 111.86173400878907,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 59.31875288827079,
+                "p90_maxae": 125.8759880065918,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 63.96114363670349,
+                "p90_maxae": 139.79679565429686,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 70.97324901156955,
+                "p90_maxae": 163.22435913085937,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 77.5332555770874,
+                "p90_maxae": 182.46271514892578,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "64x64": {
+      "test_iid": {
+        "n_samples": 200,
+        "n_unsafe_10k": 58,
+        "pct_unsafe_10k": 28.999999999999996,
+        "n_unsafe_5k": 150,
+        "pct_unsafe_5k": 75.0,
+        "signals": {
+          "U1_heteroscedastic": {
+            "pearson_r": 0.3464438675301926,
+            "spearman_rho": 0.2914737868446712,
+            "auroc_10k": 0.6500728508984944,
+            "auprc_10k": 0.48442166959166433,
+            "auroc_5k": 0.6469333333333334,
+            "auprc_5k": 0.8561758817277421,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 8.177914428710938,
+                "p90_maxae": 14.680310058593761,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 0.25
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 7.448175048828125,
+                "p90_maxae": 12.646054077148438,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 7.195393880208333,
+                "p90_maxae": 12.646054077148438,
+                "unsafe_count": 12,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 6.920267868041992,
+                "p90_maxae": 12.596865844726564,
+                "unsafe_count": 14,
+                "conditional_failure_rate": 0.175
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 7.2213372802734375,
+                "p90_maxae": 12.646054077148438,
+                "unsafe_count": 18,
+                "conditional_failure_rate": 0.18
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 7.628374862670898,
+                "p90_maxae": 12.81211547851563,
+                "unsafe_count": 26,
+                "conditional_failure_rate": 0.21666666666666667
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 7.768602752685547,
+                "p90_maxae": 13.31708679199219,
+                "unsafe_count": 32,
+                "conditional_failure_rate": 0.22857142857142856
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 7.81176986694336,
+                "p90_maxae": 13.317086791992185,
+                "unsafe_count": 38,
+                "conditional_failure_rate": 0.2375
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 8.12403072781033,
+                "p90_maxae": 14.234149169921873,
+                "unsafe_count": 45,
+                "conditional_failure_rate": 0.25
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 8.61598846435547,
+                "p90_maxae": 15.228443908691405,
+                "unsafe_count": 58,
+                "conditional_failure_rate": 0.29
+              }
+            ]
+          },
+          "U3_mcd_t3": {
+            "pearson_r": 0.101261273658478,
+            "spearman_rho": 0.17785494637365937,
+            "auroc_10k": 0.5892423506556581,
+            "auprc_10k": 0.367683205119701,
+            "auroc_5k": 0.6606666666666667,
+            "auprc_5k": 0.8304052621792188,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 6.895526123046875,
+                "p90_maxae": 9.575976562500005,
+                "unsafe_count": 2,
+                "conditional_failure_rate": 0.1
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 8.191046524047852,
+                "p90_maxae": 17.85338439941407,
+                "unsafe_count": 7,
+                "conditional_failure_rate": 0.175
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 7.988569895426433,
+                "p90_maxae": 14.636962890625002,
+                "unsafe_count": 12,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 7.988065338134765,
+                "p90_maxae": 14.230096435546876,
+                "unsafe_count": 19,
+                "conditional_failure_rate": 0.2375
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 8.082129974365234,
+                "p90_maxae": 14.530694580078132,
+                "unsafe_count": 24,
+                "conditional_failure_rate": 0.24
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 8.083703740437825,
+                "p90_maxae": 15.228443908691407,
+                "unsafe_count": 30,
+                "conditional_failure_rate": 0.25
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 8.378126198904855,
+                "p90_maxae": 15.228443908691407,
+                "unsafe_count": 38,
+                "conditional_failure_rate": 0.2714285714285714
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 8.40868158340454,
+                "p90_maxae": 15.228443908691405,
+                "unsafe_count": 43,
+                "conditional_failure_rate": 0.26875
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 8.576386854383681,
+                "p90_maxae": 15.28083038330078,
+                "unsafe_count": 50,
+                "conditional_failure_rate": 0.2777777777777778
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 8.61598846435547,
+                "p90_maxae": 15.228443908691405,
+                "unsafe_count": 58,
+                "conditional_failure_rate": 0.29
+              }
+            ]
+          },
+          "U3_mcd_t5": {
+            "pearson_r": 0.1696164568036716,
+            "spearman_rho": 0.2032400810020251,
+            "auroc_10k": 0.6313744536182613,
+            "auprc_10k": 0.3927535502769909,
+            "auroc_5k": 0.6018666666666667,
+            "auprc_5k": 0.8099914766117364,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 7.5379638671875,
+                "p90_maxae": 9.82202453613282,
+                "unsafe_count": 2,
+                "conditional_failure_rate": 0.1
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 7.80921630859375,
+                "p90_maxae": 13.92799987792969,
+                "unsafe_count": 7,
+                "conditional_failure_rate": 0.175
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 7.789817555745443,
+                "p90_maxae": 14.271569824218751,
+                "unsafe_count": 12,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 7.500755691528321,
+                "p90_maxae": 13.86169128417969,
+                "unsafe_count": 14,
+                "conditional_failure_rate": 0.175
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 7.3785467529296875,
+                "p90_maxae": 13.145742797851568,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 7.730182139078776,
+                "p90_maxae": 13.639468383789064,
+                "unsafe_count": 29,
+                "conditional_failure_rate": 0.24166666666666667
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 7.748303549630301,
+                "p90_maxae": 13.31708679199219,
+                "unsafe_count": 32,
+                "conditional_failure_rate": 0.22857142857142856
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 8.228249645233154,
+                "p90_maxae": 14.234149169921873,
+                "unsafe_count": 42,
+                "conditional_failure_rate": 0.2625
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 8.479948933919271,
+                "p90_maxae": 14.889642333984375,
+                "unsafe_count": 49,
+                "conditional_failure_rate": 0.2722222222222222
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 8.61598846435547,
+                "p90_maxae": 15.228443908691405,
+                "unsafe_count": 58,
+                "conditional_failure_rate": 0.29
+              }
+            ]
+          },
+          "U_res_predictor": {
+            "pearson_r": 0.28954294262933183,
+            "spearman_rho": 0.2854706367659192,
+            "auroc_10k": 0.6142544924720739,
+            "auprc_10k": 0.45879251969830603,
+            "auroc_5k": 0.7142666666666666,
+            "auprc_5k": 0.8940844860909749,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 6.816448974609375,
+                "p90_maxae": 12.6094970703125,
+                "unsafe_count": 4,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 7.007170104980469,
+                "p90_maxae": 12.866113281250001,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 7.180534362792969,
+                "p90_maxae": 12.866113281250001,
+                "unsafe_count": 11,
+                "conditional_failure_rate": 0.18333333333333332
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 7.377930068969727,
+                "p90_maxae": 12.81211547851563,
+                "unsafe_count": 16,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 7.574130859375,
+                "p90_maxae": 13.337536621093754,
+                "unsafe_count": 23,
+                "conditional_failure_rate": 0.23
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 7.771186319986979,
+                "p90_maxae": 14.271569824218755,
+                "unsafe_count": 31,
+                "conditional_failure_rate": 0.25833333333333336
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 7.730721500941685,
+                "p90_maxae": 14.271569824218755,
+                "unsafe_count": 34,
+                "conditional_failure_rate": 0.24285714285714285
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 8.008262062072754,
+                "p90_maxae": 14.531561279296874,
+                "unsafe_count": 41,
+                "conditional_failure_rate": 0.25625
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 8.208314514160156,
+                "p90_maxae": 14.531561279296874,
+                "unsafe_count": 47,
+                "conditional_failure_rate": 0.2611111111111111
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 8.61598846435547,
+                "p90_maxae": 15.228443908691405,
+                "unsafe_count": 58,
+                "conditional_failure_rate": 0.29
+              }
+            ]
+          },
+          "U_phys_bnd_flux": {
+            "pearson_r": -0.09809446255460189,
+            "spearman_rho": 0.040630015750393766,
+            "auroc_10k": 0.4856726566294318,
+            "auprc_10k": 0.2707837258747983,
+            "auroc_5k": 0.5212,
+            "auprc_5k": 0.7436988380938216,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 10.352374267578124,
+                "p90_maxae": 19.012203979492195,
+                "unsafe_count": 7,
+                "conditional_failure_rate": 0.35
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 7.913051986694336,
+                "p90_maxae": 17.243167114257815,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 7.957820638020833,
+                "p90_maxae": 16.777188110351563,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 0.25
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 7.9978515625,
+                "p90_maxae": 14.495086669921879,
+                "unsafe_count": 21,
+                "conditional_failure_rate": 0.2625
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 8.359371490478516,
+                "p90_maxae": 15.36685333251954,
+                "unsafe_count": 28,
+                "conditional_failure_rate": 0.28
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 8.610541661580404,
+                "p90_maxae": 15.296208190917971,
+                "unsafe_count": 36,
+                "conditional_failure_rate": 0.3
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 9.062446158272879,
+                "p90_maxae": 16.320791625976565,
+                "unsafe_count": 45,
+                "conditional_failure_rate": 0.32142857142857145
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 9.03452796936035,
+                "p90_maxae": 16.32079162597656,
+                "unsafe_count": 52,
+                "conditional_failure_rate": 0.325
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 8.77743869357639,
+                "p90_maxae": 15.296208190917968,
+                "unsafe_count": 54,
+                "conditional_failure_rate": 0.3
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 8.61598846435547,
+                "p90_maxae": 15.228443908691405,
+                "unsafe_count": 58,
+                "conditional_failure_rate": 0.29
+              }
+            ]
+          },
+          "U_phys_lin_res": {
+            "pearson_r": 0.4585996230566413,
+            "spearman_rho": 0.49549838745968655,
+            "auroc_10k": 0.7455075279261777,
+            "auprc_10k": 0.6335675902129222,
+            "auroc_5k": 0.7538666666666667,
+            "auprc_5k": 0.9111809053839113,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 6.926951599121094,
+                "p90_maxae": 12.673947143554688,
+                "unsafe_count": 4,
+                "conditional_failure_rate": 0.2
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 6.079863739013672,
+                "p90_maxae": 12.269204711914062,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 0.125
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 6.346573893229166,
+                "p90_maxae": 12.269204711914062,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.13333333333333333
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 6.616797256469726,
+                "p90_maxae": 12.269204711914066,
+                "unsafe_count": 11,
+                "conditional_failure_rate": 0.1375
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 6.65191879272461,
+                "p90_maxae": 12.269204711914066,
+                "unsafe_count": 14,
+                "conditional_failure_rate": 0.14
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 7.19360466003418,
+                "p90_maxae": 13.639468383789064,
+                "unsafe_count": 21,
+                "conditional_failure_rate": 0.175
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 7.350402069091797,
+                "p90_maxae": 13.837762451171876,
+                "unsafe_count": 24,
+                "conditional_failure_rate": 0.17142857142857143
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 7.650777149200439,
+                "p90_maxae": 14.122265624999997,
+                "unsafe_count": 31,
+                "conditional_failure_rate": 0.19375
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 7.990835401746962,
+                "p90_maxae": 14.122265624999997,
+                "unsafe_count": 41,
+                "conditional_failure_rate": 0.22777777777777777
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 8.61598846435547,
+                "p90_maxae": 15.228443908691405,
+                "unsafe_count": 58,
+                "conditional_failure_rate": 0.29
+              }
+            ]
+          }
+        }
+      },
+      "test_ood": {
+        "n_samples": 200,
+        "n_unsafe_10k": 200,
+        "pct_unsafe_10k": 100.0,
+        "n_unsafe_5k": 200,
+        "pct_unsafe_5k": 100.0,
+        "signals": {
+          "U1_heteroscedastic": {
+            "pearson_r": 0.8181614447899772,
+            "spearman_rho": 0.881254031350784,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 27.79986572265625,
+                "p90_maxae": 40.10689697265625,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 29.57607192993164,
+                "p90_maxae": 40.10689697265625,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 30.45948181152344,
+                "p90_maxae": 40.50398559570313,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 32.00505123138428,
+                "p90_maxae": 42.141256713867186,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 35.752290649414064,
+                "p90_maxae": 48.811267089843795,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 39.866015116373696,
+                "p90_maxae": 65.96725463867189,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 48.4581221989223,
+                "p90_maxae": 92.45626831054688,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 58.630107927322385,
+                "p90_maxae": 127.43096313476562,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 70.04399015638563,
+                "p90_maxae": 149.97138061523435,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 82.40997909545898,
+                "p90_maxae": 191.88766784667968,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U3_mcd_t3": {
+            "pearson_r": 0.33378946750290317,
+            "spearman_rho": 0.32730218255456395,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 32.823646545410156,
+                "p90_maxae": 43.24757080078127,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 45.37038230895996,
+                "p90_maxae": 91.53766632080082,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 54.6394152323405,
+                "p90_maxae": 125.02490844726563,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 66.44232921600342,
+                "p90_maxae": 159.1797607421875,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 66.67388572692872,
+                "p90_maxae": 161.97996826171877,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 71.12566165924072,
+                "p90_maxae": 163.4352996826172,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 73.60721528189522,
+                "p90_maxae": 168.141716003418,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 76.61347298622131,
+                "p90_maxae": 171.999787902832,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 79.21845546298557,
+                "p90_maxae": 179.3025299072265,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 82.40997909545898,
+                "p90_maxae": 191.88766784667968,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U3_mcd_t5": {
+            "pearson_r": 0.5810296188921465,
+            "spearman_rho": 0.49449336233405844,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 30.463221740722656,
+                "p90_maxae": 42.644271850585945,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 47.10414695739746,
+                "p90_maxae": 94.81903686523441,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 46.21609776814778,
+                "p90_maxae": 92.60134582519531,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 50.261368370056154,
+                "p90_maxae": 102.35508117675792,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 53.190251159667966,
+                "p90_maxae": 106.52307434082039,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 56.383127784729005,
+                "p90_maxae": 116.94162750244148,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 64.57393455505371,
+                "p90_maxae": 134.00923919677734,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 69.71363987922669,
+                "p90_maxae": 154.56648559570309,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 73.32486911349827,
+                "p90_maxae": 161.97996826171874,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 82.40997909545898,
+                "p90_maxae": 191.88766784667968,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_res_predictor": {
+            "pearson_r": 0.8869587666667501,
+            "spearman_rho": 0.8596309907747696,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 26.56298065185547,
+                "p90_maxae": 37.109292602539064,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 29.22976951599121,
+                "p90_maxae": 39.01542663574219,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 33.32932103474935,
+                "p90_maxae": 43.828179931640626,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 35.12868690490723,
+                "p90_maxae": 53.88812561035158,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 37.09282928466797,
+                "p90_maxae": 60.39638519287112,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 42.4415231068929,
+                "p90_maxae": 71.80041656494144,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 49.80256712777274,
+                "p90_maxae": 101.51746215820316,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 58.74139723777771,
+                "p90_maxae": 127.43096313476562,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 70.60478981865776,
+                "p90_maxae": 154.3073791503906,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 82.40997909545898,
+                "p90_maxae": 191.88766784667968,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_phys_bnd_flux": {
+            "pearson_r": -0.13570652063599364,
+            "spearman_rho": -0.13062926573164332,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 92.5921142578125,
+                "p90_maxae": 201.75088806152345,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 101.79734802246094,
+                "p90_maxae": 196.55569763183595,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 103.2965077718099,
+                "p90_maxae": 201.25684204101563,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 102.03191413879395,
+                "p90_maxae": 204.58776245117187,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 89.85188323974609,
+                "p90_maxae": 201.20308227539064,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 85.32944564819336,
+                "p90_maxae": 196.55569763183598,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 88.06368822370257,
+                "p90_maxae": 201.20308227539064,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 86.51079840660095,
+                "p90_maxae": 200.16503601074217,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 85.29882168240017,
+                "p90_maxae": 194.09115905761718,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 82.40997909545898,
+                "p90_maxae": 191.88766784667968,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_phys_lin_res": {
+            "pearson_r": 0.6020457534475118,
+            "spearman_rho": 0.6041821045526139,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 29.816868591308594,
+                "p90_maxae": 43.23964843750001,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 30.69785919189453,
+                "p90_maxae": 41.95670776367188,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 44.01288859049479,
+                "p90_maxae": 78.74854736328126,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 51.61514396667481,
+                "p90_maxae": 93.25149841308598,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 53.709764862060545,
+                "p90_maxae": 99.56972351074229,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 54.08093821207682,
+                "p90_maxae": 99.56972351074229,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 57.86206730433873,
+                "p90_maxae": 116.98853759765632,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 65.38854575157166,
+                "p90_maxae": 135.39395599365233,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 72.36116027832031,
+                "p90_maxae": 157.0084350585937,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 82.40997909545898,
+                "p90_maxae": 191.88766784667968,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "128x128": {
+      "test_iid": {
+        "n_samples": 200,
+        "n_unsafe_10k": 95,
+        "pct_unsafe_10k": 47.5,
+        "n_unsafe_5k": 189,
+        "pct_unsafe_5k": 94.5,
+        "signals": {
+          "U1_heteroscedastic": {
+            "pearson_r": 0.34265732638134677,
+            "spearman_rho": 0.2748353708842722,
+            "auroc_10k": 0.6213533834586465,
+            "auprc_10k": 0.6307328679896163,
+            "auroc_5k": 0.7479557479557479,
+            "auprc_5k": 0.9820044435615093,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 9.943522644042968,
+                "p90_maxae": 16.719442749023447,
+                "unsafe_count": 7,
+                "conditional_failure_rate": 0.35
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 10.120940399169921,
+                "p90_maxae": 15.635095214843751,
+                "unsafe_count": 17,
+                "conditional_failure_rate": 0.425
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 9.905161539713541,
+                "p90_maxae": 15.630096435546875,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 0.4166666666666667
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 9.524571990966797,
+                "p90_maxae": 15.207955932617189,
+                "unsafe_count": 31,
+                "conditional_failure_rate": 0.3875
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 9.48664520263672,
+                "p90_maxae": 15.207955932617189,
+                "unsafe_count": 36,
+                "conditional_failure_rate": 0.36
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 10.06676648457845,
+                "p90_maxae": 15.988226318359375,
+                "unsafe_count": 47,
+                "conditional_failure_rate": 0.39166666666666666
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 10.248286328996931,
+                "p90_maxae": 16.91517028808594,
+                "unsafe_count": 56,
+                "conditional_failure_rate": 0.4
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 10.2986083984375,
+                "p90_maxae": 16.915170288085935,
+                "unsafe_count": 67,
+                "conditional_failure_rate": 0.41875
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 10.654959445529514,
+                "p90_maxae": 17.14426574707031,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 0.4444444444444444
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 11.15114761352539,
+                "p90_maxae": 17.7375,
+                "unsafe_count": 95,
+                "conditional_failure_rate": 0.475
+              }
+            ]
+          },
+          "U3_mcd_t3": {
+            "pearson_r": 0.2624168485076379,
+            "spearman_rho": 0.3032595814895373,
+            "auroc_10k": 0.673984962406015,
+            "auprc_10k": 0.6296793696984713,
+            "auroc_5k": 0.6253006253006252,
+            "auprc_5k": 0.9713831374052366,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 7.962649536132813,
+                "p90_maxae": 10.119113159179689,
+                "unsafe_count": 3,
+                "conditional_failure_rate": 0.15
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 9.056011199951172,
+                "p90_maxae": 16.750100708007814,
+                "unsafe_count": 11,
+                "conditional_failure_rate": 0.275
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 9.465498352050782,
+                "p90_maxae": 16.0965087890625,
+                "unsafe_count": 18,
+                "conditional_failure_rate": 0.3
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 9.98102035522461,
+                "p90_maxae": 16.750100708007814,
+                "unsafe_count": 27,
+                "conditional_failure_rate": 0.3375
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 9.981780853271484,
+                "p90_maxae": 16.73541259765625,
+                "unsafe_count": 36,
+                "conditional_failure_rate": 0.36
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 9.82868283589681,
+                "p90_maxae": 16.096508789062504,
+                "unsafe_count": 42,
+                "conditional_failure_rate": 0.35
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 10.300697653634208,
+                "p90_maxae": 17.05841064453125,
+                "unsafe_count": 54,
+                "conditional_failure_rate": 0.38571428571428573
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 10.818861293792725,
+                "p90_maxae": 17.355062866210936,
+                "unsafe_count": 69,
+                "conditional_failure_rate": 0.43125
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 10.777262454562717,
+                "p90_maxae": 17.12520751953125,
+                "unsafe_count": 81,
+                "conditional_failure_rate": 0.45
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 11.15114761352539,
+                "p90_maxae": 17.7375,
+                "unsafe_count": 95,
+                "conditional_failure_rate": 0.475
+              }
+            ]
+          },
+          "U3_mcd_t5": {
+            "pearson_r": 0.3192997232581737,
+            "spearman_rho": 0.30948773719342987,
+            "auroc_10k": 0.6674686716791979,
+            "auprc_10k": 0.6434541169989529,
+            "auroc_5k": 0.6430976430976431,
+            "auprc_5k": 0.9732720258910943,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 9.9601318359375,
+                "p90_maxae": 15.453845214843753,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.4
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 9.742513275146484,
+                "p90_maxae": 16.1203125,
+                "unsafe_count": 14,
+                "conditional_failure_rate": 0.35
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 9.611777750651042,
+                "p90_maxae": 15.797308349609375,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 0.3333333333333333
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 9.687491989135742,
+                "p90_maxae": 16.07551879882813,
+                "unsafe_count": 24,
+                "conditional_failure_rate": 0.3
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 9.73702178955078,
+                "p90_maxae": 15.797308349609377,
+                "unsafe_count": 34,
+                "conditional_failure_rate": 0.34
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 10.037264251708985,
+                "p90_maxae": 17.121417236328124,
+                "unsafe_count": 43,
+                "conditional_failure_rate": 0.35833333333333334
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 10.287725394112723,
+                "p90_maxae": 17.176895141601562,
+                "unsafe_count": 56,
+                "conditional_failure_rate": 0.4
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 10.440023612976074,
+                "p90_maxae": 17.121417236328124,
+                "unsafe_count": 68,
+                "conditional_failure_rate": 0.425
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 10.605142042371963,
+                "p90_maxae": 17.121417236328124,
+                "unsafe_count": 81,
+                "conditional_failure_rate": 0.45
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 11.15114761352539,
+                "p90_maxae": 17.7375,
+                "unsafe_count": 95,
+                "conditional_failure_rate": 0.475
+              }
+            ]
+          },
+          "U_res_predictor": {
+            "pearson_r": 0.26232695188760446,
+            "spearman_rho": 0.21519987999699997,
+            "auroc_10k": 0.5890726817042607,
+            "auprc_10k": 0.6130678565611329,
+            "auroc_5k": 0.7763347763347763,
+            "auprc_5k": 0.9845630476058873,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 9.54404296875,
+                "p90_maxae": 15.30372314453125,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.4
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 9.490772247314453,
+                "p90_maxae": 15.630096435546875,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 0.375
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 9.85009053548177,
+                "p90_maxae": 15.988226318359375,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 0.4166666666666667
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 10.01236801147461,
+                "p90_maxae": 15.9388671875,
+                "unsafe_count": 33,
+                "conditional_failure_rate": 0.4125
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 10.288570251464844,
+                "p90_maxae": 17.054785156250002,
+                "unsafe_count": 43,
+                "conditional_failure_rate": 0.43
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 10.398309326171875,
+                "p90_maxae": 17.144265747070314,
+                "unsafe_count": 52,
+                "conditional_failure_rate": 0.43333333333333335
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 10.345994894845145,
+                "p90_maxae": 17.144265747070314,
+                "unsafe_count": 58,
+                "conditional_failure_rate": 0.4142857142857143
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 10.693834686279297,
+                "p90_maxae": 17.434951782226562,
+                "unsafe_count": 68,
+                "conditional_failure_rate": 0.425
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 10.765399848090278,
+                "p90_maxae": 17.355062866210936,
+                "unsafe_count": 81,
+                "conditional_failure_rate": 0.45
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 11.15114761352539,
+                "p90_maxae": 17.7375,
+                "unsafe_count": 95,
+                "conditional_failure_rate": 0.475
+              }
+            ]
+          },
+          "U_phys_bnd_flux": {
+            "pearson_r": 0.05474148668453498,
+            "spearman_rho": 0.04011400285007126,
+            "auroc_10k": 0.513483709273183,
+            "auprc_10k": 0.47191413352631617,
+            "auroc_5k": 0.4372294372294372,
+            "auprc_5k": 0.9353847260086321,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 9.777691650390626,
+                "p90_maxae": 15.176797485351567,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.4
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 9.817518615722657,
+                "p90_maxae": 15.109130859375004,
+                "unsafe_count": 14,
+                "conditional_failure_rate": 0.35
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 10.058822123209636,
+                "p90_maxae": 16.899061584472655,
+                "unsafe_count": 24,
+                "conditional_failure_rate": 0.4
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 10.882913970947266,
+                "p90_maxae": 17.871743774414067,
+                "unsafe_count": 36,
+                "conditional_failure_rate": 0.45
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 10.845184631347657,
+                "p90_maxae": 17.222460937500006,
+                "unsafe_count": 44,
+                "conditional_failure_rate": 0.44
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 11.275399271647135,
+                "p90_maxae": 18.489477539062502,
+                "unsafe_count": 59,
+                "conditional_failure_rate": 0.49166666666666664
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 11.284675380161831,
+                "p90_maxae": 17.871743774414067,
+                "unsafe_count": 69,
+                "conditional_failure_rate": 0.4928571428571429
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 11.196406364440918,
+                "p90_maxae": 17.7375,
+                "unsafe_count": 77,
+                "conditional_failure_rate": 0.48125
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 11.107459343804253,
+                "p90_maxae": 17.627243041992188,
+                "unsafe_count": 87,
+                "conditional_failure_rate": 0.48333333333333334
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 11.15114761352539,
+                "p90_maxae": 17.7375,
+                "unsafe_count": 95,
+                "conditional_failure_rate": 0.475
+              }
+            ]
+          },
+          "U_phys_lin_res": {
+            "pearson_r": 0.4126932468758265,
+            "spearman_rho": 0.506652666316658,
+            "auroc_10k": 0.774235588972431,
+            "auprc_10k": 0.7938877711986576,
+            "auroc_5k": 0.7498797498797499,
+            "auprc_5k": 0.9813458984350705,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 8.562059020996093,
+                "p90_maxae": 13.544662475585941,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 0.25
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 8.967552185058594,
+                "p90_maxae": 15.541900634765629,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 0.25
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 8.906682332356771,
+                "p90_maxae": 15.3034423828125,
+                "unsafe_count": 14,
+                "conditional_failure_rate": 0.23333333333333334
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 9.11228904724121,
+                "p90_maxae": 15.450708007812509,
+                "unsafe_count": 19,
+                "conditional_failure_rate": 0.2375
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 9.53956558227539,
+                "p90_maxae": 16.445918273925784,
+                "unsafe_count": 29,
+                "conditional_failure_rate": 0.29
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 9.728061803181966,
+                "p90_maxae": 16.445918273925784,
+                "unsafe_count": 36,
+                "conditional_failure_rate": 0.3
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 10.012936510358537,
+                "p90_maxae": 16.91010894775391,
+                "unsafe_count": 45,
+                "conditional_failure_rate": 0.32142857142857145
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 10.207423114776612,
+                "p90_maxae": 16.910108947753905,
+                "unsafe_count": 58,
+                "conditional_failure_rate": 0.3625
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 10.557736375596788,
+                "p90_maxae": 17.12520751953125,
+                "unsafe_count": 76,
+                "conditional_failure_rate": 0.4222222222222222
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 11.15114761352539,
+                "p90_maxae": 17.7375,
+                "unsafe_count": 95,
+                "conditional_failure_rate": 0.475
+              }
+            ]
+          }
+        }
+      },
+      "test_ood": {
+        "n_samples": 200,
+        "n_unsafe_10k": 200,
+        "pct_unsafe_10k": 100.0,
+        "n_unsafe_5k": 200,
+        "pct_unsafe_5k": 100.0,
+        "signals": {
+          "U1_heteroscedastic": {
+            "pearson_r": 0.8385258476806541,
+            "spearman_rho": 0.8812585314632867,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 32.680842590332034,
+                "p90_maxae": 43.81953430175781,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 33.75618667602539,
+                "p90_maxae": 44.21836547851563,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 34.900719197591144,
+                "p90_maxae": 44.20224304199219,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 36.31893196105957,
+                "p90_maxae": 44.64685974121094,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 38.99006561279297,
+                "p90_maxae": 51.256509399414064,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 44.63450813293457,
+                "p90_maxae": 69.3415435791016,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 53.03658403669085,
+                "p90_maxae": 98.35283813476562,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 63.028749799728395,
+                "p90_maxae": 132.23636474609373,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 75.22281968858508,
+                "p90_maxae": 159.48663940429688,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 87.88520408630372,
+                "p90_maxae": 197.26179199218748,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U3_mcd_t3": {
+            "pearson_r": 0.5298174955672658,
+            "spearman_rho": 0.4783334583364585,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 44.8843017578125,
+                "p90_maxae": 59.14867553710944,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 46.53337631225586,
+                "p90_maxae": 78.64058227539063,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 49.99924189249675,
+                "p90_maxae": 82.37093811035157,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 58.134444046020505,
+                "p90_maxae": 100.86551818847674,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 62.17284477233887,
+                "p90_maxae": 122.29339904785162,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 68.77686627705891,
+                "p90_maxae": 148.58952636718752,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 72.54006162370955,
+                "p90_maxae": 158.25949707031256,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 76.24981412887573,
+                "p90_maxae": 167.02869262695313,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 79.94800321790908,
+                "p90_maxae": 174.04202270507812,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 87.88520408630372,
+                "p90_maxae": 197.26179199218748,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U3_mcd_t5": {
+            "pearson_r": 0.5591625930302881,
+            "spearman_rho": 0.5368184204605116,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 36.303915405273436,
+                "p90_maxae": 51.775796508789064,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 43.35581283569336,
+                "p90_maxae": 65.71717224121093,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 50.567247772216795,
+                "p90_maxae": 93.95408325195314,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 55.49587993621826,
+                "p90_maxae": 120.25570678710939,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 59.942367782592775,
+                "p90_maxae": 127.57534408569336,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 64.39534130096436,
+                "p90_maxae": 135.12330932617192,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 66.64592650277274,
+                "p90_maxae": 139.2874206542969,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 70.99851040840149,
+                "p90_maxae": 151.4724655151367,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 78.7511215209961,
+                "p90_maxae": 167.2758773803711,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 87.88520408630372,
+                "p90_maxae": 197.26179199218748,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_res_predictor": {
+            "pearson_r": 0.8907169334273167,
+            "spearman_rho": 0.8663961599039978,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 29.882893371582032,
+                "p90_maxae": 40.03281860351562,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 33.7400619506836,
+                "p90_maxae": 42.944268798828126,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 35.62714436848958,
+                "p90_maxae": 44.20224304199219,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 38.636407661437985,
+                "p90_maxae": 51.256509399414064,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 41.62080810546875,
+                "p90_maxae": 64.39441833496096,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 47.110097122192386,
+                "p90_maxae": 77.1451614379883,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 53.742219761439735,
+                "p90_maxae": 103.23876037597663,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 63.638639736175534,
+                "p90_maxae": 135.90682373046874,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 76.0706285264757,
+                "p90_maxae": 161.03401489257809,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 87.88520408630372,
+                "p90_maxae": 197.26179199218748,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_phys_bnd_flux": {
+            "pearson_r": -0.05305045410224525,
+            "spearman_rho": -0.150108752718818,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 87.05283737182617,
+                "p90_maxae": 198.3935241699219,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 102.98733482360839,
+                "p90_maxae": 198.3935241699219,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 112.48064804077148,
+                "p90_maxae": 212.68334045410157,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 108.15778675079346,
+                "p90_maxae": 213.25809326171876,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 95.9857991027832,
+                "p90_maxae": 212.68334045410157,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 91.39671007792155,
+                "p90_maxae": 208.72677001953127,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 93.65103519984655,
+                "p90_maxae": 212.68334045410157,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 93.50765089988708,
+                "p90_maxae": 210.2849624633789,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 90.17328855726454,
+                "p90_maxae": 201.44780273437496,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 87.88520408630372,
+                "p90_maxae": 197.26179199218748,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_phys_lin_res": {
+            "pearson_r": 0.606693151980982,
+            "spearman_rho": 0.626508662716568,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 20,
+                "mean_maxae": 32.773277282714844,
+                "p90_maxae": 45.24930725097657,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 40,
+                "mean_maxae": 34.83044662475586,
+                "p90_maxae": 43.81953430175781,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 60,
+                "mean_maxae": 48.18646138509114,
+                "p90_maxae": 82.63897705078125,
+                "unsafe_count": 60,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 80,
+                "mean_maxae": 55.14982395172119,
+                "p90_maxae": 97.23617401123049,
+                "unsafe_count": 80,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 100,
+                "mean_maxae": 57.328899993896485,
+                "p90_maxae": 99.29411926269536,
+                "unsafe_count": 100,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 120,
+                "mean_maxae": 59.00965843200684,
+                "p90_maxae": 105.28833312988289,
+                "unsafe_count": 120,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 140,
+                "mean_maxae": 63.30531888689313,
+                "p90_maxae": 134.8292205810547,
+                "unsafe_count": 140,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 160,
+                "mean_maxae": 71.15986204147339,
+                "p90_maxae": 144.46391296386716,
+                "unsafe_count": 160,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 180,
+                "mean_maxae": 77.29729783799914,
+                "p90_maxae": 167.02869262695313,
+                "unsafe_count": 180,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 200,
+                "mean_maxae": 87.88520408630372,
+                "p90_maxae": 197.26179199218748,
+                "unsafe_count": 200,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "256x256": {
+      "test_iid": {
+        "n_samples": 50,
+        "n_unsafe_10k": 33,
+        "pct_unsafe_10k": 66.0,
+        "n_unsafe_5k": 50,
+        "pct_unsafe_5k": 100.0,
+        "signals": {
+          "U1_heteroscedastic": {
+            "pearson_r": 0.26886974464662955,
+            "spearman_rho": 0.13171668667466988,
+            "auroc_10k": 0.5508021390374331,
+            "auprc_10k": 0.6957224713698401,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 15.931341552734375,
+                "p90_maxae": 24.85418701171875,
+                "unsafe_count": 4,
+                "conditional_failure_rate": 0.8
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 14.117266845703124,
+                "p90_maxae": 22.271789550781246,
+                "unsafe_count": 7,
+                "conditional_failure_rate": 0.7
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 12.812782796223958,
+                "p90_maxae": 20.502087402343747,
+                "unsafe_count": 9,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 12.488551330566406,
+                "p90_maxae": 21.218984985351565,
+                "unsafe_count": 12,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 12.272344970703125,
+                "p90_maxae": 20.144537353515627,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 12.080008951822917,
+                "p90_maxae": 18.875967407226565,
+                "unsafe_count": 18,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 12.844673374720982,
+                "p90_maxae": 20.144537353515627,
+                "unsafe_count": 22,
+                "conditional_failure_rate": 0.6285714285714286
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 13.156305694580078,
+                "p90_maxae": 21.218984985351565,
+                "unsafe_count": 27,
+                "conditional_failure_rate": 0.675
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 12.792072211371528,
+                "p90_maxae": 20.144537353515627,
+                "unsafe_count": 29,
+                "conditional_failure_rate": 0.6444444444444445
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 13.666157836914062,
+                "p90_maxae": 21.218984985351565,
+                "unsafe_count": 33,
+                "conditional_failure_rate": 0.66
+              }
+            ]
+          },
+          "U3_mcd_t3": {
+            "pearson_r": -0.09413356391601373,
+            "spearman_rho": -0.05277310924369748,
+            "auroc_10k": 0.48128342245989303,
+            "auprc_10k": 0.7051027650301244,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 10.33782958984375,
+                "p90_maxae": 11.05050048828125,
+                "unsafe_count": 4,
+                "conditional_failure_rate": 0.8
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 14.619186401367188,
+                "p90_maxae": 26.07130126953125,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.8
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 16.235774739583334,
+                "p90_maxae": 26.54285888671875,
+                "unsafe_count": 11,
+                "conditional_failure_rate": 0.7333333333333333
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 15.397337341308594,
+                "p90_maxae": 26.07130126953125,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 0.75
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 14.736619873046875,
+                "p90_maxae": 24.288317871093756,
+                "unsafe_count": 17,
+                "conditional_failure_rate": 0.68
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 14.150927734375,
+                "p90_maxae": 22.177478027343756,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 0.6666666666666666
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 13.497447858537946,
+                "p90_maxae": 20.853833007812504,
+                "unsafe_count": 22,
+                "conditional_failure_rate": 0.6285714285714286
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 13.922010803222657,
+                "p90_maxae": 22.177478027343756,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 0.625
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 13.826883273654515,
+                "p90_maxae": 21.516943359375002,
+                "unsafe_count": 29,
+                "conditional_failure_rate": 0.6444444444444445
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 13.666157836914062,
+                "p90_maxae": 21.218984985351565,
+                "unsafe_count": 33,
+                "conditional_failure_rate": 0.66
+              }
+            ]
+          },
+          "U3_mcd_t5": {
+            "pearson_r": 0.3651660195250009,
+            "spearman_rho": 0.46861944777911163,
+            "auroc_10k": 0.7094474153297683,
+            "auprc_10k": 0.8569324291428411,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 9.680767822265626,
+                "p90_maxae": 11.05050048828125,
+                "unsafe_count": 3,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 8.663287353515624,
+                "p90_maxae": 11.023446655273437,
+                "unsafe_count": 4,
+                "conditional_failure_rate": 0.4
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 10.802421061197917,
+                "p90_maxae": 13.915222167968748,
+                "unsafe_count": 7,
+                "conditional_failure_rate": 0.4666666666666667
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 10.966098022460937,
+                "p90_maxae": 14.577639770507815,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 0.5
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 11.623685302734375,
+                "p90_maxae": 15.978369140625,
+                "unsafe_count": 13,
+                "conditional_failure_rate": 0.52
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 11.98541971842448,
+                "p90_maxae": 18.563229370117188,
+                "unsafe_count": 17,
+                "conditional_failure_rate": 0.5666666666666667
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 11.931739153180803,
+                "p90_maxae": 18.5960205078125,
+                "unsafe_count": 19,
+                "conditional_failure_rate": 0.5428571428571428
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 12.340351867675782,
+                "p90_maxae": 18.710189819335938,
+                "unsafe_count": 23,
+                "conditional_failure_rate": 0.575
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 12.687852647569445,
+                "p90_maxae": 19.149871826171875,
+                "unsafe_count": 28,
+                "conditional_failure_rate": 0.6222222222222222
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 13.666157836914062,
+                "p90_maxae": 21.218984985351565,
+                "unsafe_count": 33,
+                "conditional_failure_rate": 0.66
+              }
+            ]
+          },
+          "U_res_predictor": {
+            "pearson_r": 0.08806070430648333,
+            "spearman_rho": 0.06650660264105643,
+            "auroc_10k": 0.5258467023172905,
+            "auprc_10k": 0.6702609687998035,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 12.929803466796875,
+                "p90_maxae": 19.85078125,
+                "unsafe_count": 3,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 12.304891967773438,
+                "p90_maxae": 18.935559082031247,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 0.5
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 12.381357828776041,
+                "p90_maxae": 20.502087402343747,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.5333333333333333
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 13.250550842285156,
+                "p90_maxae": 21.218984985351565,
+                "unsafe_count": 13,
+                "conditional_failure_rate": 0.65
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 12.556396484375,
+                "p90_maxae": 20.144537353515627,
+                "unsafe_count": 16,
+                "conditional_failure_rate": 0.64
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 12.937583414713542,
+                "p90_maxae": 18.875967407226565,
+                "unsafe_count": 21,
+                "conditional_failure_rate": 0.7
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 12.973359026227678,
+                "p90_maxae": 20.144537353515627,
+                "unsafe_count": 24,
+                "conditional_failure_rate": 0.6857142857142857
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 13.017133331298828,
+                "p90_maxae": 19.667395019531252,
+                "unsafe_count": 26,
+                "conditional_failure_rate": 0.65
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 13.256142171223958,
+                "p90_maxae": 20.496282958984377,
+                "unsafe_count": 30,
+                "conditional_failure_rate": 0.6666666666666666
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 13.666157836914062,
+                "p90_maxae": 21.218984985351565,
+                "unsafe_count": 33,
+                "conditional_failure_rate": 0.66
+              }
+            ]
+          },
+          "U_phys_bnd_flux": {
+            "pearson_r": 0.359796624009507,
+            "spearman_rho": 0.21805522208883554,
+            "auroc_10k": 0.6274509803921567,
+            "auprc_10k": 0.7672302951591449,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 9.5246337890625,
+                "p90_maxae": 12.095941162109375,
+                "unsafe_count": 2,
+                "conditional_failure_rate": 0.4
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 9.267938232421875,
+                "p90_maxae": 12.152536010742187,
+                "unsafe_count": 3,
+                "conditional_failure_rate": 0.3
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 11.555135091145834,
+                "p90_maxae": 16.766943359375,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.5333333333333333
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 13.116667175292969,
+                "p90_maxae": 19.35772705078126,
+                "unsafe_count": 12,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 12.591966552734375,
+                "p90_maxae": 18.5960205078125,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 12.454843139648437,
+                "p90_maxae": 18.875967407226565,
+                "unsafe_count": 18,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 12.833428083147322,
+                "p90_maxae": 19.149871826171875,
+                "unsafe_count": 22,
+                "conditional_failure_rate": 0.6285714285714286
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 12.770001220703126,
+                "p90_maxae": 18.710189819335938,
+                "unsafe_count": 26,
+                "conditional_failure_rate": 0.65
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 13.139889187282986,
+                "p90_maxae": 20.496282958984377,
+                "unsafe_count": 29,
+                "conditional_failure_rate": 0.6444444444444445
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 13.666157836914062,
+                "p90_maxae": 21.218984985351565,
+                "unsafe_count": 33,
+                "conditional_failure_rate": 0.66
+              }
+            ]
+          },
+          "U_phys_lin_res": {
+            "pearson_r": 0.34639929247296025,
+            "spearman_rho": 0.4373109243697479,
+            "auroc_10k": 0.6524064171122994,
+            "auprc_10k": 0.8366750190804674,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 10.700439453125,
+                "p90_maxae": 14.17633056640625,
+                "unsafe_count": 3,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 13.204861450195313,
+                "p90_maxae": 19.17706298828124,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 0.5
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 13.432362874348959,
+                "p90_maxae": 25.692053222656245,
+                "unsafe_count": 8,
+                "conditional_failure_rate": 0.5333333333333333
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 13.401394653320313,
+                "p90_maxae": 18.437664794921897,
+                "unsafe_count": 13,
+                "conditional_failure_rate": 0.65
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 12.611741943359375,
+                "p90_maxae": 16.673486328125,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 0.6
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 12.132413736979167,
+                "p90_maxae": 16.34713134765625,
+                "unsafe_count": 17,
+                "conditional_failure_rate": 0.5666666666666667
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 11.987428501674108,
+                "p90_maxae": 16.093359375000002,
+                "unsafe_count": 19,
+                "conditional_failure_rate": 0.5428571428571428
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 12.176869964599609,
+                "p90_maxae": 16.34713134765625,
+                "unsafe_count": 23,
+                "conditional_failure_rate": 0.575
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 12.872039794921875,
+                "p90_maxae": 19.149871826171875,
+                "unsafe_count": 28,
+                "conditional_failure_rate": 0.6222222222222222
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 13.666157836914062,
+                "p90_maxae": 21.218984985351565,
+                "unsafe_count": 33,
+                "conditional_failure_rate": 0.66
+              }
+            ]
+          }
+        }
+      },
+      "test_ood": {
+        "n_samples": 50,
+        "n_unsafe_10k": 50,
+        "pct_unsafe_10k": 100.0,
+        "n_unsafe_5k": 50,
+        "pct_unsafe_5k": 100.0,
+        "signals": {
+          "U1_heteroscedastic": {
+            "pearson_r": 0.7886325042820184,
+            "spearman_rho": 0.876110444177671,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 37.42752685546875,
+                "p90_maxae": 46.510870361328124,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 43.73536682128906,
+                "p90_maxae": 52.17281799316406,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 41.62235921223958,
+                "p90_maxae": 49.689385986328126,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 47.58883819580078,
+                "p90_maxae": 63.79164428710941,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 53.99526611328125,
+                "p90_maxae": 91.21036987304689,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 67.46616109212239,
+                "p90_maxae": 132.9432098388672,
+                "unsafe_count": 30,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 76.20646013532367,
+                "p90_maxae": 145.92480773925783,
+                "unsafe_count": 35,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 85.65567550659179,
+                "p90_maxae": 153.4406463623047,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 94.26531372070312,
+                "p90_maxae": 172.67034912109375,
+                "unsafe_count": 45,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 104.68597290039062,
+                "p90_maxae": 185.88843231201173,
+                "unsafe_count": 50,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U3_mcd_t3": {
+            "pearson_r": 0.5012769592186537,
+            "spearman_rho": 0.42175270108043217,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 43.55225830078125,
+                "p90_maxae": 54.84725341796875,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 50.630245971679685,
+                "p90_maxae": 65.54401550292967,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 72.9316416422526,
+                "p90_maxae": 134.97150268554688,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 76.12720260620117,
+                "p90_maxae": 126.12808837890627,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 78.05602600097656,
+                "p90_maxae": 135.26223754882815,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 89.26419830322266,
+                "p90_maxae": 172.44978485107424,
+                "unsafe_count": 30,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 93.40273829868862,
+                "p90_maxae": 176.2969909667969,
+                "unsafe_count": 35,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 100.13559112548828,
+                "p90_maxae": 182.42882080078127,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 96.59359063042535,
+                "p90_maxae": 181.00787353515625,
+                "unsafe_count": 45,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 104.68597290039062,
+                "p90_maxae": 185.88843231201173,
+                "unsafe_count": 50,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U3_mcd_t5": {
+            "pearson_r": 0.4183682911539523,
+            "spearman_rho": 0.4449939975990396,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 41.4936279296875,
+                "p90_maxae": 54.84725341796875,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 57.04591369628906,
+                "p90_maxae": 104.1814239501953,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 72.91646525065104,
+                "p90_maxae": 160.39755859374998,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 76.77530212402344,
+                "p90_maxae": 172.44978485107424,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 83.40557861328125,
+                "p90_maxae": 176.2969909667969,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 92.86920827229818,
+                "p90_maxae": 179.64694213867188,
+                "unsafe_count": 30,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 95.9837659563337,
+                "p90_maxae": 181.00787353515625,
+                "unsafe_count": 35,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 96.85333671569825,
+                "p90_maxae": 182.42882080078127,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 100.50672539605034,
+                "p90_maxae": 184.08983154296877,
+                "unsafe_count": 45,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 104.68597290039062,
+                "p90_maxae": 185.88843231201173,
+                "unsafe_count": 50,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_res_predictor": {
+            "pearson_r": 0.8500716356488551,
+            "spearman_rho": 0.8913805522208883,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 35.19822998046875,
+                "p90_maxae": 43.75352172851562,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 38.824432373046875,
+                "p90_maxae": 47.239324951171874,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 40.04195760091146,
+                "p90_maxae": 47.371038818359374,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 47.49168853759765,
+                "p90_maxae": 64.5427398681641,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 58.08589477539063,
+                "p90_maxae": 112.4733337402344,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 67.46616109212239,
+                "p90_maxae": 132.9432098388672,
+                "unsafe_count": 30,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 75.54584394182477,
+                "p90_maxae": 142.3186767578125,
+                "unsafe_count": 35,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 86.88544731140136,
+                "p90_maxae": 158.3827911376953,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 95.86798163519965,
+                "p90_maxae": 176.95699462890627,
+                "unsafe_count": 45,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 104.68597290039062,
+                "p90_maxae": 185.88843231201173,
+                "unsafe_count": 50,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_phys_bnd_flux": {
+            "pearson_r": 0.11330994776244398,
+            "spearman_rho": -0.12201680672268908,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 87.17345581054687,
+                "p90_maxae": 158.7365234375,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 110.52469787597656,
+                "p90_maxae": 203.06851806640626,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 116.14320882161458,
+                "p90_maxae": 195.21807861328125,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 128.8183166503906,
+                "p90_maxae": 215.01099243164063,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 114.65238525390625,
+                "p90_maxae": 209.65592041015626,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 106.73879801432291,
+                "p90_maxae": 203.06851806640626,
+                "unsafe_count": 30,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 106.13086373465401,
+                "p90_maxae": 195.21807861328128,
+                "unsafe_count": 35,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 108.72487983703613,
+                "p90_maxae": 191.28000946044924,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 106.87229749891493,
+                "p90_maxae": 188.23739318847657,
+                "unsafe_count": 45,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 104.68597290039062,
+                "p90_maxae": 185.88843231201173,
+                "unsafe_count": 50,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          },
+          "U_phys_lin_res": {
+            "pearson_r": 0.5785508198078976,
+            "spearman_rho": 0.5713805522208883,
+            "auroc_10k": 0.5,
+            "auprc_10k": 1.0,
+            "auroc_5k": 0.5,
+            "auprc_5k": 1.0,
+            "risk_coverage_curve": [
+              {
+                "coverage": 0.1,
+                "n_accepted": 5,
+                "mean_maxae": 37.62027587890625,
+                "p90_maxae": 46.030828857421874,
+                "unsafe_count": 5,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.2,
+                "n_accepted": 10,
+                "mean_maxae": 57.393218994140625,
+                "p90_maxae": 99.51566467285156,
+                "unsafe_count": 10,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.3,
+                "n_accepted": 15,
+                "mean_maxae": 70.41097106933594,
+                "p90_maxae": 119.59827880859373,
+                "unsafe_count": 15,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.4,
+                "n_accepted": 20,
+                "mean_maxae": 74.99476547241211,
+                "p90_maxae": 134.51810913085941,
+                "unsafe_count": 20,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.5,
+                "n_accepted": 25,
+                "mean_maxae": 75.65363525390624,
+                "p90_maxae": 147.4498413085938,
+                "unsafe_count": 25,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.6,
+                "n_accepted": 30,
+                "mean_maxae": 80.45810496012369,
+                "p90_maxae": 158.3827911376953,
+                "unsafe_count": 30,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.7,
+                "n_accepted": 35,
+                "mean_maxae": 87.65413600376674,
+                "p90_maxae": 161.32061157226565,
+                "unsafe_count": 35,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.8,
+                "n_accepted": 40,
+                "mean_maxae": 89.76774978637695,
+                "p90_maxae": 164.47181549072266,
+                "unsafe_count": 40,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 0.9,
+                "n_accepted": 45,
+                "mean_maxae": 96.50298733181424,
+                "p90_maxae": 176.95699462890627,
+                "unsafe_count": 45,
+                "conditional_failure_rate": 1.0
+              },
+              {
+                "coverage": 1.0,
+                "n_accepted": 50,
+                "mean_maxae": 104.68597290039062,
+                "p90_maxae": 185.88843231201173,
+                "unsafe_count": 50,
+                "conditional_failure_rate": 1.0
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

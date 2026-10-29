@@ -1,0 +1,24 @@
+{
+  "milestone": "08G",
+  "phase": 7,
+  "title": "Independent Confirmation Cohort Manifest",
+  "dataset_path": "artifacts\\data\\independent_cohort_08g.h5",
+  "dataset_sha256": "093c6e7998b335af541a1a339175317c104e5948b52fc172c6231b02b4252b27",
+  "num_iid": 30,
+  "num_ood": 30,
+  "seed_range_iid": [
+    1000000,
+    1000029
+  ],
+  "seed_range_ood": [
+    1010000,
+    1010029
+  ],
+  "resolutions": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "generation_time_seconds": 43.13771019998239
+}
