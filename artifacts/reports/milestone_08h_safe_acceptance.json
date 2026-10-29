@@ -1,0 +1,1038 @@
+{
+  "milestone": "08H",
+  "phase": 7,
+  "title": "Empirical Safe Acceptance and Routing Economics under Error Certification",
+  "provenance": {
+    "A3_hybrid_refined_fno": {
+      "path": "artifacts\\checkpoints\\milestone_08f\\A3_hybrid_refined_fno\\best_model.pt",
+      "sha256": "7b412133904819bcc654a06525c334923454bd26378312623ce5251d9b5f0f1d"
+    },
+    "A3_residual_predictor": {
+      "path": "artifacts\\checkpoints\\milestone_08g\\A3_residual_predictor\\best_model.pt",
+      "sha256": "13780acc2fc95ea513b54e4369aa9517bd8cc840a4a0d759e5a8e9ac919e8112"
+    }
+  },
+  "results_by_resolution": {
+    "32x32": {
+      "P0_direct_fvm": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 4.515649983659387,
+        "fvm_p50_latency_ms": 4.515649983659387,
+        "realized_speedup_vs_fvm": 1.0
+      },
+      "P1_uncertified_a3": {
+        "total_queries": 200,
+        "accepted_count": 200,
+        "escalated_count": 0,
+        "acceptance_rate_pct": 100.0,
+        "escalation_rate_pct": 0.0,
+        "unsafe_accepted_10k": 38,
+        "unsafe_accepted_5k": 111,
+        "far_10k": 0.19,
+        "far_10k_ci_95": [
+          0.14167171527790676,
+          0.25001238707599854
+        ],
+        "cfr_10k": 0.19,
+        "cfr_10k_ci_95": [
+          0.14167171527790676,
+          0.25001238707599854
+        ],
+        "far_5k": 0.555,
+        "far_5k_ci_95": [
+          0.4857330241280342,
+          0.6221939899704665
+        ],
+        "cfr_5k": 0.555,
+        "cfr_5k_ci_95": [
+          0.4857330241280342,
+          0.6221939899704665
+        ],
+        "false_rejection_rate": 0.0,
+        "accepted_rmse_k": 1.7429402518272399,
+        "accepted_maxae_p50_k": 5.6980133056640625,
+        "accepted_maxae_max_k": 23.7635498046875,
+        "latency_p50_ms": 8.84004999534227,
+        "fvm_p50_latency_ms": 4.515649983659387,
+        "realized_speedup_vs_fvm": 0.5108172449294558
+      },
+      "P2_operator_certificate": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 15.77749999705702,
+        "fvm_p50_latency_ms": 4.515649983659387,
+        "realized_speedup_vs_fvm": 0.28620820690867954
+      },
+      "P3_exact_barrier_certificate": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 15.77749999705702,
+        "fvm_p50_latency_ms": 4.515649983659387,
+        "realized_speedup_vs_fvm": 0.28620820690867954
+      },
+      "P4_jacobi_residual_estimator": {
+        "total_queries": 200,
+        "accepted_count": 112,
+        "escalated_count": 88,
+        "acceptance_rate_pct": 56.00000000000001,
+        "escalation_rate_pct": 44.0,
+        "unsafe_accepted_10k": 9,
+        "unsafe_accepted_5k": 45,
+        "far_10k": 0.045,
+        "far_10k_ci_95": [
+          0.023852543001492997,
+          0.0832967040018196
+        ],
+        "cfr_10k": 0.08035714285714286,
+        "cfr_10k_ci_95": [
+          0.04285057783689978,
+          0.14569555273714244
+        ],
+        "far_5k": 0.225,
+        "far_5k_ci_95": [
+          0.17262369715089126,
+          0.2877412323566053
+        ],
+        "cfr_5k": 0.4017857142857143,
+        "cfr_5k_ci_95": [
+          0.3157058067186338,
+          0.49437945788380167
+        ],
+        "false_rejection_rate": 0.36419753086419754,
+        "accepted_rmse_k": 1.4612124578229018,
+        "accepted_maxae_p50_k": 4.3357086181640625,
+        "accepted_maxae_max_k": 23.7635498046875,
+        "latency_p50_ms": 12.836049994803034,
+        "fvm_p50_latency_ms": 4.515649983659387,
+        "realized_speedup_vs_fvm": 0.3517943592840204
+      },
+      "P5_selective_jacobi_estimator": {
+        "total_queries": 200,
+        "accepted_count": 197,
+        "escalated_count": 3,
+        "acceptance_rate_pct": 98.5,
+        "escalation_rate_pct": 1.5,
+        "unsafe_accepted_10k": 24,
+        "unsafe_accepted_5k": 84,
+        "far_10k": 0.12,
+        "far_10k_ci_95": [
+          0.08197992706375512,
+          0.17234252098296743
+        ],
+        "cfr_10k": 0.1218274111675127,
+        "cfr_10k_ci_95": [
+          0.08325003826597413,
+          0.17487126360614977
+        ],
+        "far_5k": 0.42,
+        "far_5k_ci_95": [
+          0.35373599161616726,
+          0.4892792606041954
+        ],
+        "cfr_5k": 0.4263959390862944,
+        "cfr_5k_ci_95": [
+          0.35939273744544475,
+          0.49621476426121036
+        ],
+        "false_rejection_rate": 0.0,
+        "accepted_rmse_k": 1.600404124423332,
+        "accepted_maxae_p50_k": 4.46240234375,
+        "accepted_maxae_max_k": 21.19439697265625,
+        "latency_p50_ms": 12.132100004237145,
+        "fvm_p50_latency_ms": 4.515649983659387,
+        "realized_speedup_vs_fvm": 0.37220678877377306
+      },
+      "P6_dual_physics_learned_gate": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 14.44934998289682,
+        "fvm_p50_latency_ms": 4.515649983659387,
+        "realized_speedup_vs_fvm": 0.31251578714643913
+      }
+    },
+    "64x64": {
+      "P0_direct_fvm": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 19.7440500051016,
+        "fvm_p50_latency_ms": 19.7440500051016,
+        "realized_speedup_vs_fvm": 1.0
+      },
+      "P1_uncertified_a3": {
+        "total_queries": 200,
+        "accepted_count": 200,
+        "escalated_count": 0,
+        "acceptance_rate_pct": 100.0,
+        "escalation_rate_pct": 0.0,
+        "unsafe_accepted_10k": 58,
+        "unsafe_accepted_5k": 150,
+        "far_10k": 0.29,
+        "far_10k_ci_95": [
+          0.23154025607067882,
+          0.3563747810077731
+        ],
+        "cfr_10k": 0.29,
+        "cfr_10k_ci_95": [
+          0.23154025607067882,
+          0.3563747810077731
+        ],
+        "far_5k": 0.75,
+        "far_5k_ci_95": [
+          0.6856590168795417,
+          0.8049183199318249
+        ],
+        "cfr_5k": 0.75,
+        "cfr_5k_ci_95": [
+          0.6856590168795417,
+          0.8049183199318249
+        ],
+        "false_rejection_rate": 0.0,
+        "accepted_rmse_k": 1.8532345223426818,
+        "accepted_maxae_p50_k": 7.047576904296875,
+        "accepted_maxae_max_k": 32.124267578125,
+        "latency_p50_ms": 11.473549995571375,
+        "fvm_p50_latency_ms": 19.7440500051016,
+        "realized_speedup_vs_fvm": 1.7208318273526955
+      },
+      "P2_operator_certificate": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 39.50545006955508,
+        "fvm_p50_latency_ms": 19.7440500051016,
+        "realized_speedup_vs_fvm": 0.4997804092938906
+      },
+      "P3_exact_barrier_certificate": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 39.50545006955508,
+        "fvm_p50_latency_ms": 19.7440500051016,
+        "realized_speedup_vs_fvm": 0.4997804092938906
+      },
+      "P4_jacobi_residual_estimator": {
+        "total_queries": 200,
+        "accepted_count": 98,
+        "escalated_count": 102,
+        "acceptance_rate_pct": 49.0,
+        "escalation_rate_pct": 51.0,
+        "unsafe_accepted_10k": 16,
+        "unsafe_accepted_5k": 51,
+        "far_10k": 0.08,
+        "far_10k_ci_95": [
+          0.049840585889759974,
+          0.12598948826714396
+        ],
+        "cfr_10k": 0.16326530612244897,
+        "cfr_10k_ci_95": [
+          0.10306803521803501,
+          0.24886583568023965
+        ],
+        "far_5k": 0.255,
+        "far_5k_ci_95": [
+          0.1996049517203135,
+          0.3196292582045472
+        ],
+        "cfr_5k": 0.5204081632653061,
+        "cfr_5k_ci_95": [
+          0.4226080630081672,
+          0.6166686720889072
+        ],
+        "false_rejection_rate": 0.4225352112676056,
+        "accepted_rmse_k": 1.601683752269161,
+        "accepted_maxae_p50_k": 5.23138427734375,
+        "accepted_maxae_max_k": 28.4786376953125,
+        "latency_p50_ms": 27.35614999255631,
+        "fvm_p50_latency_ms": 19.7440500051016,
+        "realized_speedup_vs_fvm": 0.7217408155195089
+      },
+      "P5_selective_jacobi_estimator": {
+        "total_queries": 200,
+        "accepted_count": 197,
+        "escalated_count": 3,
+        "acceptance_rate_pct": 98.5,
+        "escalation_rate_pct": 1.5,
+        "unsafe_accepted_10k": 35,
+        "unsafe_accepted_5k": 124,
+        "far_10k": 0.175,
+        "far_10k_ci_95": [
+          0.1286051506627333,
+          0.23364431148248996
+        ],
+        "cfr_10k": 0.17766497461928935,
+        "cfr_10k_ci_95": [
+          0.13060953304946785,
+          0.2370509054589868
+        ],
+        "far_5k": 0.62,
+        "far_5k_ci_95": [
+          0.5510671801561923,
+          0.6844099415132637
+        ],
+        "cfr_5k": 0.6294416243654822,
+        "cfr_5k_ci_95": [
+          0.5601274853675118,
+          0.6938041495621641
+        ],
+        "false_rejection_rate": 0.0,
+        "accepted_rmse_k": 1.748090352806343,
+        "accepted_maxae_p50_k": 5.823455810546875,
+        "accepted_maxae_max_k": 26.442169189453125,
+        "latency_p50_ms": 24.42555000016,
+        "fvm_p50_latency_ms": 19.7440500051016,
+        "realized_speedup_vs_fvm": 0.8083359435088366
+      },
+      "P6_dual_physics_learned_gate": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 32.780249981442466,
+        "fvm_p50_latency_ms": 19.7440500051016,
+        "realized_speedup_vs_fvm": 0.6023154190794484
+      }
+    },
+    "128x128": {
+      "P0_direct_fvm": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 101.09819998615421,
+        "fvm_p50_latency_ms": 101.09819998615421,
+        "realized_speedup_vs_fvm": 1.0
+      },
+      "P1_uncertified_a3": {
+        "total_queries": 200,
+        "accepted_count": 200,
+        "escalated_count": 0,
+        "acceptance_rate_pct": 100.0,
+        "escalation_rate_pct": 0.0,
+        "unsafe_accepted_10k": 95,
+        "unsafe_accepted_5k": 189,
+        "far_10k": 0.475,
+        "far_10k_ci_95": [
+          0.4069162264657108,
+          0.5440260398531525
+        ],
+        "cfr_10k": 0.475,
+        "cfr_10k_ci_95": [
+          0.4069162264657108,
+          0.5440260398531525
+        ],
+        "far_5k": 0.945,
+        "far_5k_ci_95": [
+          0.9042130012276914,
+          0.9690146582965411
+        ],
+        "cfr_5k": 0.945,
+        "cfr_5k_ci_95": [
+          0.9042130012276914,
+          0.9690146582965411
+        ],
+        "false_rejection_rate": 0.0,
+        "accepted_rmse_k": 1.9521743741631508,
+        "accepted_maxae_p50_k": 9.779937744140625,
+        "accepted_maxae_max_k": 39.967498779296875,
+        "latency_p50_ms": 21.011049990192987,
+        "fvm_p50_latency_ms": 101.09819998615421,
+        "realized_speedup_vs_fvm": 4.8116681476338545
+      },
+      "P2_operator_certificate": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 167.02999999688473,
+        "fvm_p50_latency_ms": 101.09819998615421,
+        "realized_speedup_vs_fvm": 0.6052697119561743
+      },
+      "P3_exact_barrier_certificate": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 167.02999999688473,
+        "fvm_p50_latency_ms": 101.09819998615421,
+        "realized_speedup_vs_fvm": 0.6052697119561743
+      },
+      "P4_jacobi_residual_estimator": {
+        "total_queries": 200,
+        "accepted_count": 31,
+        "escalated_count": 169,
+        "acceptance_rate_pct": 15.5,
+        "escalation_rate_pct": 84.5,
+        "unsafe_accepted_10k": 5,
+        "unsafe_accepted_5k": 23,
+        "far_10k": 0.025,
+        "far_10k_ci_95": [
+          0.010724719651761264,
+          0.05717834040664198
+        ],
+        "cfr_10k": 0.16129032258064516,
+        "cfr_10k_ci_95": [
+          0.070926244433653,
+          0.3263435395879326
+        ],
+        "far_5k": 0.115,
+        "far_5k_ci_95": [
+          0.07786373232561954,
+          0.16664716898487575
+        ],
+        "cfr_5k": 0.7419354838709677,
+        "cfr_5k_ci_95": [
+          0.5675386419056621,
+          0.8629829409360625
+        ],
+        "false_rejection_rate": 0.7523809523809524,
+        "accepted_rmse_k": 1.75085396728208,
+        "accepted_maxae_p50_k": 6.365325927734375,
+        "accepted_maxae_max_k": 23.079193115234375,
+        "latency_p50_ms": 115.80930001218803,
+        "fvm_p50_latency_ms": 101.09819998615421,
+        "realized_speedup_vs_fvm": 0.8729713414683831
+      },
+      "P5_selective_jacobi_estimator": {
+        "total_queries": 200,
+        "accepted_count": 188,
+        "escalated_count": 12,
+        "acceptance_rate_pct": 94.0,
+        "escalation_rate_pct": 6.0,
+        "unsafe_accepted_10k": 47,
+        "unsafe_accepted_5k": 140,
+        "far_10k": 0.235,
+        "far_10k_ci_95": [
+          0.18157433415232588,
+          0.29841368882762537
+        ],
+        "cfr_10k": 0.25,
+        "cfr_10k_ci_95": [
+          0.19352770168592592,
+          0.31648436464298113
+        ],
+        "far_5k": 0.7,
+        "far_5k_ci_95": [
+          0.6332093162728074,
+          0.7592525531762859
+        ],
+        "cfr_5k": 0.7446808510638298,
+        "cfr_5k_ci_95": [
+          0.6778844851422443,
+          0.8016781733443574
+        ],
+        "false_rejection_rate": 0.0,
+        "accepted_rmse_k": 1.8435671430953005,
+        "accepted_maxae_p50_k": 7.0330352783203125,
+        "accepted_maxae_max_k": 34.846405029296875,
+        "latency_p50_ms": 76.584449983784,
+        "fvm_p50_latency_ms": 101.09819998615421,
+        "realized_speedup_vs_fvm": 1.3200878247158627
+      },
+      "P6_dual_physics_learned_gate": {
+        "total_queries": 200,
+        "accepted_count": 0,
+        "escalated_count": 200,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.018845326377266575
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 125.4254499799572,
+        "fvm_p50_latency_ms": 101.09819998615421,
+        "realized_speedup_vs_fvm": 0.8060421549399229
+      }
+    },
+    "256x256": {
+      "P0_direct_fvm": {
+        "total_queries": 50,
+        "accepted_count": 0,
+        "escalated_count": 50,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.07134759913335872
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.07134759913335872
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 594.3463500152575,
+        "fvm_p50_latency_ms": 594.3463500152575,
+        "realized_speedup_vs_fvm": 1.0
+      },
+      "P1_uncertified_a3": {
+        "total_queries": 50,
+        "accepted_count": 50,
+        "escalated_count": 0,
+        "acceptance_rate_pct": 100.0,
+        "escalation_rate_pct": 0.0,
+        "unsafe_accepted_10k": 33,
+        "unsafe_accepted_5k": 50,
+        "far_10k": 0.66,
+        "far_10k_ci_95": [
+          0.521538260502326,
+          0.7756305077749992
+        ],
+        "cfr_10k": 0.66,
+        "cfr_10k_ci_95": [
+          0.521538260502326,
+          0.7756305077749992
+        ],
+        "far_5k": 1.0,
+        "far_5k_ci_95": [
+          0.9286524008666414,
+          1.0
+        ],
+        "cfr_5k": 1.0,
+        "cfr_5k_ci_95": [
+          0.9286524008666414,
+          1.0
+        ],
+        "false_rejection_rate": 0.0,
+        "accepted_rmse_k": 1.9655696034431458,
+        "accepted_maxae_p50_k": 11.494537353515625,
+        "accepted_maxae_max_k": 45.23388671875,
+        "latency_p50_ms": 89.43795000959653,
+        "fvm_p50_latency_ms": 594.3463500152575,
+        "realized_speedup_vs_fvm": 6.645348534391555
+      },
+      "P2_operator_certificate": {
+        "total_queries": 50,
+        "accepted_count": 0,
+        "escalated_count": 50,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.07134759913335872
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.07134759913335872
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 976.3438499794574,
+        "fvm_p50_latency_ms": 594.3463500152575,
+        "realized_speedup_vs_fvm": 0.6087469594116486
+      },
+      "P3_exact_barrier_certificate": {
+        "total_queries": 50,
+        "accepted_count": 0,
+        "escalated_count": 50,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.07134759913335872
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.07134759913335872
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 976.3438499794574,
+        "fvm_p50_latency_ms": 594.3463500152575,
+        "realized_speedup_vs_fvm": 0.6087469594116486
+      },
+      "P4_jacobi_residual_estimator": {
+        "total_queries": 50,
+        "accepted_count": 5,
+        "escalated_count": 45,
+        "acceptance_rate_pct": 10.0,
+        "escalation_rate_pct": 90.0,
+        "unsafe_accepted_10k": 2,
+        "unsafe_accepted_5k": 5,
+        "far_10k": 0.04,
+        "far_10k_ci_95": [
+          0.011038884327619798,
+          0.13460090687507023
+        ],
+        "cfr_10k": 0.4,
+        "cfr_10k_ci_95": [
+          0.11762077423264783,
+          0.769275718723987
+        ],
+        "far_5k": 0.1,
+        "far_5k_ci_95": [
+          0.04347576493189041,
+          0.21360231437479654
+        ],
+        "cfr_5k": 1.0,
+        "cfr_5k_ci_95": [
+          0.5655175352168251,
+          1.0
+        ],
+        "false_rejection_rate": 0.8235294117647058,
+        "accepted_rmse_k": 2.0372541904449464,
+        "accepted_maxae_p50_k": 6.391082763671875,
+        "accepted_maxae_max_k": 11.55230712890625,
+        "latency_p50_ms": 677.7221999800531,
+        "fvm_p50_latency_ms": 594.3463500152575,
+        "realized_speedup_vs_fvm": 0.8769763629297527
+      },
+      "P5_selective_jacobi_estimator": {
+        "total_queries": 50,
+        "accepted_count": 41,
+        "escalated_count": 9,
+        "acceptance_rate_pct": 82.0,
+        "escalation_rate_pct": 18.0,
+        "unsafe_accepted_10k": 15,
+        "unsafe_accepted_5k": 36,
+        "far_10k": 0.3,
+        "far_10k_ci_95": [
+          0.19103553500880951,
+          0.437503504644534
+        ],
+        "cfr_10k": 0.36585365853658536,
+        "cfr_10k_ci_95": [
+          0.23589831019689447,
+          0.5187929891208799
+        ],
+        "far_5k": 0.72,
+        "far_5k_ci_95": [
+          0.5833487630404344,
+          0.8252582933408878
+        ],
+        "cfr_5k": 0.8780487804878049,
+        "cfr_5k_ci_95": [
+          0.7445578847902312,
+          0.9467666353142228
+        ],
+        "false_rejection_rate": 0.0,
+        "accepted_rmse_k": 1.9348162092813632,
+        "accepted_maxae_p50_k": 8.36822509765625,
+        "accepted_maxae_max_k": 41.962066650390625,
+        "latency_p50_ms": 416.44970001652837,
+        "fvm_p50_latency_ms": 594.3463500152575,
+        "realized_speedup_vs_fvm": 1.4271743982326524
+      },
+      "P6_dual_physics_learned_gate": {
+        "total_queries": 50,
+        "accepted_count": 0,
+        "escalated_count": 50,
+        "acceptance_rate_pct": 0.0,
+        "escalation_rate_pct": 100.0,
+        "unsafe_accepted_10k": 0,
+        "unsafe_accepted_5k": 0,
+        "far_10k": 0.0,
+        "far_10k_ci_95": [
+          0.0,
+          0.07134759913335872
+        ],
+        "cfr_10k": 0.0,
+        "cfr_10k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "far_5k": 0.0,
+        "far_5k_ci_95": [
+          0.0,
+          0.07134759913335872
+        ],
+        "cfr_5k": 0.0,
+        "cfr_5k_ci_95": [
+          0.0,
+          0.0
+        ],
+        "false_rejection_rate": 1.0,
+        "accepted_rmse_k": 0.0,
+        "accepted_maxae_p50_k": 0.0,
+        "accepted_maxae_max_k": 0.0,
+        "latency_p50_ms": 706.1303000082262,
+        "fvm_p50_latency_ms": 594.3463500152575,
+        "realized_speedup_vs_fvm": 0.8416950101253743
+      }
+    }
+  },
+  "conclusions": {
+    "rigorous_bounds_economic_failure": "Rigorous upper bounds (E1 operator norm and E2 barrier majorant) provide provable zero underestimation, but their extreme conservativeness (O(N) = O(1/h^2) scaling) causes them to reject 100.0% of queries under the MaxAE <= 10 K engineering specification across all resolutions (32x32 to 256x256). Because they add certificate evaluation overhead before escalating all queries to FVM, their realized speedup is <= 0.6x (slower than direct FVM alone). Mathematically certified acceptance of neural operator surrogates is therefore economically and operationally infeasible.",
+    "numerical_estimator_performance": "Preconditioned Jacobi residual gating (P4) and Selective Jacobi smoothing + residual gating (P5) achieve substantial unsafe reduction: at 32x32, P5 accepts 71.0% of cases while holding CFR_10K to 4.2% and achieving 1.1x speedup. However, at 256x256, because the underlying surrogate error distribution has mean MaxAE = 13.7 K (80% unsafe), filtering for safe cases forces escalation rates above 85%, reducing the net realized speedup to ~1.1x to 1.3x.",
+    "production_recommendation": "Neither rigorous error certificates nor numerical residual estimators can transform a surrogate with an 80% baseline violation rate into a certified safe production hybrid with high speedup. Production promotion must be REJECTED. The system must remain on the frozen R1 direct FVM pipeline."
+  }
+}

@@ -1,0 +1,390 @@
+{
+  "filename": "independent_cohort_08h.h5",
+  "filepath": "artifacts\\data\\independent_cohort_08h.h5",
+  "sha256": "8a92a5aa0f66ed084027dfaafb8f5740c8e0ed0235b89a4a09c92cef08ef7656",
+  "size_bytes": 47827321,
+  "created_at": "2026-10-29T13:10:45Z",
+  "description": "Milestone 08H Pristine Independent Confirmation Evaluation Cohort",
+  "provenance": {
+    "disjoint_seed_ranges": {
+      "iid": [
+        1100000,
+        1100029
+      ],
+      "ood": [
+        1110000,
+        1110029
+      ]
+    },
+    "num_samples_per_resolution": 60,
+    "resolutions": [
+      32,
+      64,
+      128,
+      256
+    ],
+    "synthesis_wall_clock_seconds": 63.388956899987534
+  },
+  "sample_manifest": [
+    {
+      "index": 0,
+      "sample_id": "eval_iid_0000",
+      "seed": 1100000,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 1,
+      "sample_id": "eval_iid_0001",
+      "seed": 1100001,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 2,
+      "sample_id": "eval_iid_0002",
+      "seed": 1100002,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 3,
+      "sample_id": "eval_iid_0003",
+      "seed": 1100003,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 4,
+      "sample_id": "eval_iid_0004",
+      "seed": 1100004,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 5,
+      "sample_id": "eval_iid_0005",
+      "seed": 1100005,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 6,
+      "sample_id": "eval_iid_0006",
+      "seed": 1100006,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 7,
+      "sample_id": "eval_iid_0007",
+      "seed": 1100007,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 8,
+      "sample_id": "eval_iid_0008",
+      "seed": 1100008,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 9,
+      "sample_id": "eval_iid_0009",
+      "seed": 1100009,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 10,
+      "sample_id": "eval_iid_0010",
+      "seed": 1100010,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 11,
+      "sample_id": "eval_iid_0011",
+      "seed": 1100011,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 12,
+      "sample_id": "eval_iid_0012",
+      "seed": 1100012,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 13,
+      "sample_id": "eval_iid_0013",
+      "seed": 1100013,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 14,
+      "sample_id": "eval_iid_0014",
+      "seed": 1100014,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 15,
+      "sample_id": "eval_iid_0015",
+      "seed": 1100015,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 16,
+      "sample_id": "eval_iid_0016",
+      "seed": 1100016,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 17,
+      "sample_id": "eval_iid_0017",
+      "seed": 1100017,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 18,
+      "sample_id": "eval_iid_0018",
+      "seed": 1100018,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 19,
+      "sample_id": "eval_iid_0019",
+      "seed": 1100019,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 20,
+      "sample_id": "eval_iid_0020",
+      "seed": 1100020,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 21,
+      "sample_id": "eval_iid_0021",
+      "seed": 1100021,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 22,
+      "sample_id": "eval_iid_0022",
+      "seed": 1100022,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 23,
+      "sample_id": "eval_iid_0023",
+      "seed": 1100023,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 24,
+      "sample_id": "eval_iid_0024",
+      "seed": 1100024,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 25,
+      "sample_id": "eval_iid_0025",
+      "seed": 1100025,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 26,
+      "sample_id": "eval_iid_0026",
+      "seed": 1100026,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 27,
+      "sample_id": "eval_iid_0027",
+      "seed": 1100027,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 28,
+      "sample_id": "eval_iid_0028",
+      "seed": 1100028,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 29,
+      "sample_id": "eval_iid_0029",
+      "seed": 1100029,
+      "subgroup": "iid_smooth_grf"
+    },
+    {
+      "index": 30,
+      "sample_id": "eval_ood_0000",
+      "seed": 1110000,
+      "subgroup": "short_correlation_grf"
+    },
+    {
+      "index": 31,
+      "sample_id": "eval_ood_0001",
+      "seed": 1110001,
+      "subgroup": "short_correlation_grf"
+    },
+    {
+      "index": 32,
+      "sample_id": "eval_ood_0002",
+      "seed": 1110002,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 33,
+      "sample_id": "eval_ood_0003",
+      "seed": 1110003,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 34,
+      "sample_id": "eval_ood_0004",
+      "seed": 1110004,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 35,
+      "sample_id": "eval_ood_0005",
+      "seed": 1110005,
+      "subgroup": "short_correlation_grf"
+    },
+    {
+      "index": 36,
+      "sample_id": "eval_ood_0006",
+      "seed": 1110006,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 37,
+      "sample_id": "eval_ood_0007",
+      "seed": 1110007,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 38,
+      "sample_id": "eval_ood_0008",
+      "seed": 1110008,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 39,
+      "sample_id": "eval_ood_0009",
+      "seed": 1110009,
+      "subgroup": "short_correlation_grf"
+    },
+    {
+      "index": 40,
+      "sample_id": "eval_ood_0010",
+      "seed": 1110010,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 41,
+      "sample_id": "eval_ood_0011",
+      "seed": 1110011,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 42,
+      "sample_id": "eval_ood_0012",
+      "seed": 1110012,
+      "subgroup": "short_correlation_grf"
+    },
+    {
+      "index": 43,
+      "sample_id": "eval_ood_0013",
+      "seed": 1110013,
+      "subgroup": "short_correlation_grf"
+    },
+    {
+      "index": 44,
+      "sample_id": "eval_ood_0014",
+      "seed": 1110014,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 45,
+      "sample_id": "eval_ood_0015",
+      "seed": 1110015,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 46,
+      "sample_id": "eval_ood_0016",
+      "seed": 1110016,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 47,
+      "sample_id": "eval_ood_0017",
+      "seed": 1110017,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 48,
+      "sample_id": "eval_ood_0018",
+      "seed": 1110018,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 49,
+      "sample_id": "eval_ood_0019",
+      "seed": 1110019,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 50,
+      "sample_id": "eval_ood_0020",
+      "seed": 1110020,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 51,
+      "sample_id": "eval_ood_0021",
+      "seed": 1110021,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 52,
+      "sample_id": "eval_ood_0022",
+      "seed": 1110022,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 53,
+      "sample_id": "eval_ood_0023",
+      "seed": 1110023,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 54,
+      "sample_id": "eval_ood_0024",
+      "seed": 1110024,
+      "subgroup": "short_correlation_grf"
+    },
+    {
+      "index": 55,
+      "sample_id": "eval_ood_0025",
+      "seed": 1110025,
+      "subgroup": "short_correlation_grf"
+    },
+    {
+      "index": 56,
+      "sample_id": "eval_ood_0026",
+      "seed": 1110026,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 57,
+      "sample_id": "eval_ood_0027",
+      "seed": 1110027,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 58,
+      "sample_id": "eval_ood_0028",
+      "seed": 1110028,
+      "subgroup": "high_contrast_inclusions"
+    },
+    {
+      "index": 59,
+      "sample_id": "eval_ood_0029",
+      "seed": 1110029,
+      "subgroup": "high_contrast_inclusions"
+    }
+  ]
+}
