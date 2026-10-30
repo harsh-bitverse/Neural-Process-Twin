@@ -18,7 +18,7 @@
 
 ## 1. Executive Summary
 
-Milestone 08E developed, audited, and benchmarked an adaptive reliability-aware hybrid inference system designed to dynamically route thermal steady-state queries between numerical Finite Volume Modeling ([`PyAMGSolver`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/numerical/fvm.py)), single-pass neural inference ([`U1_heteroscedastic`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/models/uncertainty_fno.py)), and multi-pass Monte Carlo neural inference ([`U3_mcdropout`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/models/uncertainty_fno.py)).
+Milestone 08E developed, audited, and benchmarked an adaptive reliability-aware hybrid inference system designed to dynamically route thermal steady-state queries between numerical Finite Volume Modeling ([`HeatConductionSolver2D`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/solvers/solver.py)), single-pass neural inference ([`U1_heteroscedastic`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/models/uncertainty_fno.py)), and multi-pass Monte Carlo neural inference ([`U3_mcdropout`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/models/uncertainty_fno.py)).
 
 The primary operational goal was to achieve maximal throughput acceleration over direct numerical solving while rigorously controlling false acceptance risk under physical out-of-distribution (OOD) distribution shifts across grid resolutions ($32\times 32, 64\times 64, 128\times 128, 256\times 256$).
 
@@ -54,7 +54,7 @@ R5       Adaptive Cascade  503.84 ms      1.08x            13.71 K              
    - The conditional false acceptance probability on accepted OOD cases is $100\%$ with a Wilson 95% confidence interval of $[0.741, 1.000]$. **$R_2$ is strictly unacceptable for safety-critical deployment.**
 
 2. **The "122.2 Residual" Myth Disproved and Replaced**:
-   - We audited the origin of the $122.2$ residual threshold from Milestone 08D. In Milestone 08D, line 285 of the routing script evaluated `res_norm = float(diag.relative_imbalance * 100.0)` from [`compute_heat_balance()`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/diagnostics/heat_balance.py).
+   - We audited the origin of the $122.2$ residual threshold from Milestone 08D. In Milestone 08D, line 285 of the routing script evaluated `res_norm = float(diag.relative_imbalance * 100.0)` from [`compute_heat_balance()`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/solvers/diagnostics.py).
    - This value represented the **dimensionless relative boundary heat flux imbalance percentage** ($100 \times |Q_{\text{boundary}} - Q_{\text{generated}}| / \max(|Q_{\text{boundary}}|, |Q_{\text{generated}}|)$), **not** the cell-centred algebraic PDE residual $\|A T - b\|_2 / \|b\|_2$.
    - Mathematical derivation demonstrated that the algebraic relative residual $\|A T - b\|_2 / \|b\|_2$ stays constant at $\sim 0.008 - 0.011$ ($0.8\% - 1.1\%$) across mesh refinement, while the numerator $\|A T - b\|_2$ scales as $\mathcal{O}(\sqrt{N})$ with cell count. Applying $122.2$ to the algebraic residual would have falsely accepted gross unphysical errors.
    - The gate is now strictly formalized and calibrated as $\tau_{\text{flux\_imb}} = 115.16\%$, operating on physical heat conservation.
@@ -177,7 +177,7 @@ We implemented the production-grade module [`src/neural_process_twin/inference/a
 ### 4.2 Candidate Policy Execution Logic
 
 1. **`R0_DIRECT_FVM`**:  
-   Direct execution of numerical solver [`PyAMGSolver`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/numerical/fvm.py).
+   Direct execution of numerical solver [`HeatConductionSolver2D`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/solvers/solver.py).
    - Speedup: $1.00\times$.
    - Safety: $100\%$ guaranteed within discretization error.
 2. **`R1_PRODUCTION_HYBRID`**:  

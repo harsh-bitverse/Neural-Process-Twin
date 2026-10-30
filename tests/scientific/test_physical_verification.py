@@ -314,3 +314,51 @@ def test_global_physical_heat_balance() -> None:
     assert abs(eb.q_boundary_out_total - eb.q_generated_total) < 1.0e-10, (
         f"Heat flow imbalance {eb.flux_imbalance} W exceeds 1e-10 W."
     )
+
+
+@pytest.mark.scientific
+def test_signed_heat_source_and_heat_sink_conservation() -> None:
+    """Test 11: Verify that endothermic heat sinks (q < 0) and mixed signed sources solve correctly.
+
+    The governing elliptic PDE -div(k grad T) = q is linear with respect to the source term.
+    Heat sinks (negative q) remove thermal energy, causing interior temperature to decrease
+    below Dirichlet boundary temperatures while strictly preserving global energy conservation.
+    """
+    grid = Grid2D(x_min=0.0, x_max=1.0, y_min=0.0, y_max=1.0, nx=32, ny=32)
+    k_val = 2.0
+    q_sink = -150.0  # Endothermic sink [W/m^3]
+    t_boundary = 350.0
+
+    bcs = BoundaryConditions(
+        left=BoundaryCondition(BoundarySide.LEFT, BoundaryType.DIRICHLET, t_boundary),
+        right=BoundaryCondition(BoundarySide.RIGHT, BoundaryType.DIRICHLET, t_boundary),
+        bottom=BoundaryCondition(BoundarySide.BOTTOM, BoundaryType.NEUMANN, 0.0),
+        top=BoundaryCondition(BoundarySide.TOP, BoundaryType.NEUMANN, 0.0),
+    )
+    solver = HeatConductionSolver2D()
+    res = solver.solve(grid=grid, conductivity=k_val, source=q_sink, boundary_conditions=bcs)
+
+    # 1. Physical temperature drop: interior must be cooler than boundary
+    min_temp = float(np.min(res.temperature))
+    assert min_temp < t_boundary, (
+        f"Heat sink should cause temperature to drop below boundary ({t_boundary} K), got {min_temp} K."
+    )
+
+    # 2. Analytical comparison: 1D steady conduction with uniform sink:
+    # d^2 T / dx^2 = -q/k = 150/2 = 75 => T(x) = T_boundary - (|q| / (2k)) * x * (1 - x)
+    x_mesh, _ = np.meshgrid(grid.x_centers, grid.y_centers)
+    t_analytical = t_boundary + (q_sink / (2.0 * k_val)) * x_mesh * (1.0 - x_mesh)
+    max_disc_err = float(np.max(np.abs(res.temperature - t_analytical)))
+    assert max_disc_err < 1.0e-2, (
+        f"Discrete FVM solution error vs analytical 1D sink ({max_disc_err} K) exceeds 1e-2 K."
+    )
+
+    # 3. Energy conservation with negative source
+    eb = res.diagnostics.energy_balance
+    assert eb.relative_imbalance < 1.0e-12, (
+        f"Energy balance relative imbalance ({eb.relative_imbalance}) exceeds 1e-12."
+    )
+    expected_q_total = q_sink * (grid.cell_volume * grid.num_cells)  # -150 W
+    assert abs(eb.q_generated_total - expected_q_total) < 1.0e-10, (
+        f"Total generated heat {eb.q_generated_total} W does not match expected {expected_q_total} W."
+    )

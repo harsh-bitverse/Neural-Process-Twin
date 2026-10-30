@@ -108,7 +108,10 @@ class ExperimentalSurrogateService:
                 f"authorized checksum '{SETTINGS.authorized_a3_sha256}'. Refusing to deserialize."
             )
 
-        checkpoint = torch.load(self.checkpoint_path, map_location=self.device, weights_only=False)
+        with torch.serialization.safe_globals([torch.torch_version.TorchVersion]):
+            checkpoint = torch.load(
+                self.checkpoint_path, map_location=self.device, weights_only=True
+            )
 
         # Normalization parameters from authoritative training fit
         if "normalizer" in checkpoint:

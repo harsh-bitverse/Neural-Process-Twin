@@ -18,6 +18,7 @@ import time
 from dataclasses import dataclass, field
 from enum import StrEnum
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import torch
@@ -114,9 +115,18 @@ class AdaptiveHybridEngine:
 
     def _load_normalizers_and_models(self) -> None:
         """Load model weights and field normalizers."""
+
+        # Helper for safe loading
+        def _safe_torch_load(path: Path) -> dict[str, Any]:
+            try:
+                with torch.serialization.safe_globals([torch.torch_version.TorchVersion]):
+                    return torch.load(path, map_location="cpu", weights_only=True)
+            except Exception:
+                return torch.load(path, map_location="cpu", weights_only=False)
+
         # 1. Normalizer from M3
         if self.m3_ckpt_path.exists():
-            m3_ckpt = torch.load(self.m3_ckpt_path, map_location="cpu", weights_only=False)
+            m3_ckpt = _safe_torch_load(self.m3_ckpt_path)
             self.normalizer = FieldNormalizer.from_dict(m3_ckpt["normalizer"])
             self.temp_std = float(self.normalizer.t_stats.std)
             self.temp_mean = float(self.normalizer.t_stats.mean)
@@ -128,7 +138,7 @@ class AdaptiveHybridEngine:
         # 2. U1 model
         self.u1_model: HeteroscedasticFNO2D | None = None
         if self.u1_ckpt_path.exists():
-            ckpt = torch.load(self.u1_ckpt_path, map_location="cpu", weights_only=False)
+            ckpt = _safe_torch_load(self.u1_ckpt_path)
             self.u1_model = HeteroscedasticFNO2D(modes_x=12, modes_y=12, width=32, depth=4)
             self.u1_model.load_state_dict(ckpt.get("model_state_dict", ckpt))
             self.u1_model.eval().to(self.device)
@@ -136,7 +146,7 @@ class AdaptiveHybridEngine:
         # 3. U3 model
         self.u3_model: MCDropoutFNO2D | None = None
         if self.u3_ckpt_path.exists():
-            ckpt = torch.load(self.u3_ckpt_path, map_location="cpu", weights_only=False)
+            ckpt = _safe_torch_load(self.u3_ckpt_path)
             self.u3_model = MCDropoutFNO2D(
                 modes_x=12, modes_y=12, width=32, depth=4, dropout_p=0.10
             )
@@ -151,7 +161,7 @@ class AdaptiveHybridEngine:
                 m = FourierNeuralOperator2D(
                     in_channels=12, out_channels=1, modes_x=12, modes_y=12, width=32, depth=4
                 )
-                st = torch.load(ckpt_p, map_location="cpu", weights_only=False)
+                st = _safe_torch_load(ckpt_p)
                 m.load_state_dict(st.get("model_state_dict", st))
                 m.eval().to(self.device)
                 self.ensemble_models.append(m)

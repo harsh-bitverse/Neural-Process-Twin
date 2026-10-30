@@ -275,7 +275,7 @@ On an 8-thread CPU:
 - **OOD High Contrast ($\ge 20:1$)**: Automatically fail-closed and route to the numerical solver, as neural operator RMSE remains elevated ($27\text{–}32\text{ K}$).
 
 ### 6. What architectural or training modifications are required before multi-resolution surrogates can replace the fixed-resolution ensemble?
-1. **Discrete Boundary Projection**: Integrate [`DiscreteBoundaryCorrection`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/solvers/correction.py) to project predicted boundary temperatures onto exact Dirichlet face values, eliminating the $\mathcal{O}(N)$ flux imbalance.
+1. **Discrete Boundary Projection**: Integrate [`SelectiveBoundaryJacobiSmoother`](file:///C:/Workspace/Projects/Neural%20Process%20Twin/src/neural_process_twin/solvers/physics_smoother.py) to project predicted boundary temperatures onto exact Dirichlet face values, eliminating the $\mathcal{O}(N)$ flux imbalance.
 2. **Single-Model Epistemic Uncertainty**: Replace the 5-member ensemble with an amortized single-pass uncertainty estimator (e.g. deep evidential regression or MC dropout) to reduce inference latency from $298\text{ ms} \to 61\text{ ms}$.
 3. **Multi-Scale Loss Weighting**: Incorporate multi-resolution residual loss scaling during training to prevent loss dominance by coarse-grid low frequencies.
 

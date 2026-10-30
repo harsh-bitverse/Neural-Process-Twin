@@ -121,7 +121,13 @@ def load_checkpoint(
         raise FileNotFoundError(f"Checkpoint file not found: {chk_path}")
 
     device_obj = torch.device(device) if isinstance(device, str) else device
-    checkpoint: dict[str, Any] = torch.load(chk_path, map_location=device_obj, weights_only=False)
+    try:
+        with torch.serialization.safe_globals([torch.torch_version.TorchVersion]):
+            checkpoint: dict[str, Any] = torch.load(
+                chk_path, map_location=device_obj, weights_only=True
+            )
+    except Exception:
+        checkpoint = torch.load(chk_path, map_location=device_obj, weights_only=False)
 
     # Instantiate model if not provided
     if model is None:

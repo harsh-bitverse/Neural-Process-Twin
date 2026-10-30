@@ -182,3 +182,27 @@ def test_thread_safe_singleton_concurrency() -> None:
     # All threads must receive the exact same singleton instance ID
     assert len(set(solvers)) == 1, "Concurrent access created multiple solver instances!"
     assert len(set(surrogates)) == 1, "Concurrent access created multiple surrogate instances!"
+
+
+def test_signed_heat_source_accepted_in_numerical_simulation(client: TestClient) -> None:
+    """Verify that negative volumetric heat sources (heat sinks) are accepted without 422 errors."""
+    payload = {
+        "mode": "numerical_fvm",
+        "grid": {"nx": 32, "ny": 32, "lx": 1.0, "ly": 1.0},
+        "conductivity": {"pattern_type": "uniform", "uniform_value": 2.0},
+        "source": {"pattern_type": "uniform", "uniform_value": -100.0},  # Negative heat sink
+        "boundary_conditions": {
+            "left": {"side": "left", "type": "dirichlet", "value": 350.0},
+            "right": {"side": "right", "type": "dirichlet", "value": 350.0},
+            "bottom": {"side": "bottom", "type": "neumann", "value": 0.0},
+            "top": {"side": "top", "type": "neumann", "value": 0.0},
+        },
+    }
+    resp = client.post("/api/simulate", json=payload)
+    assert resp.status_code == 200, (
+        f"Expected 200 OK for signed heat source, got {resp.status_code}: {resp.text}"
+    )
+    data = resp.json()
+    assert data["status"] == "numerical_reference_computed"
+    assert data["is_verified_numerical"] is True
+    assert data["diagnostics"]["relative_flux_imbalance"] < 1e-10

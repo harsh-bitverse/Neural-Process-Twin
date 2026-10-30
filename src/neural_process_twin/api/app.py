@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -19,16 +20,25 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Application lifespan context managing startup warmup and graceful shutdown."""
-    logger.info("Initializing Neural Process Twin application lifecycle...")
-    try:
-        from neural_process_twin.api.routes import get_experimental_surrogate, get_solver
+    """Application lifespan context managing startup warmup and graceful shutdown.
 
-        get_solver()
-        get_experimental_surrogate()
-        logger.info("Scientific solvers and neural surrogate models initialized successfully.")
+    Pre-warming is dispatched to worker threads via asyncio.to_thread to prevent
+    blocking the asynchronous event loop during application startup.
+    """
+    logger.info("Initializing Neural Process Twin application lifecycle...")
+    from neural_process_twin.api.routes import get_experimental_surrogate, get_solver
+
+    try:
+        await asyncio.to_thread(get_solver)
+        await asyncio.to_thread(get_experimental_surrogate)
+        logger.info("Scientific solvers and neural surrogate models pre-warmed successfully.")
     except Exception as exc:
-        logger.warning("Startup pre-warmup encountered issue (will initialize lazily): %s", exc)
+        logger.error("Startup pre-warming failed: %s", exc, exc_info=True)
+        if SETTINGS.enforce_sha256_verification:
+            raise RuntimeError(
+                f"Critical startup failure during model verification: {exc}"
+            ) from exc
+        logger.warning("Continuing startup in degraded mode (models will attempt lazy init).")
     yield
     logger.info("Shutting down Neural Process Twin application.")
 

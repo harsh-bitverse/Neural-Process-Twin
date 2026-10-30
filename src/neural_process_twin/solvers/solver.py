@@ -53,7 +53,19 @@ class SolverResult:
 
 
 class HeatConductionSolver2D:
-    """Finite-volume reference numerical solver for 2D steady-state heat conduction."""
+    """Conservative cell-centered Finite Volume Method (FVM) discrete numerical solver for 2D steady heat conduction.
+
+    SCIENTIFIC NOTE & APPROXIMATION SCOPE:
+    This solver computes a numerically verified discrete solution to the linear system A * T = b
+    obtained by cell-centered finite-volume integration over Cartesian control volumes.
+    - It is a discrete numerical approximation, NOT an exact continuum analytical solution; continuum error
+      is governed by spatial truncation error.
+    - Second-order spatial convergence O(h^2) holds asymptotically under smooth conductivities (k in C^1) and
+      smooth volumetric sources (q in C^0) on uniform meshes.
+    - For discontinuous materials (e.g. sharp inclusions or stepped interfaces), empirical convergence reduces
+      to O(h^1) (p ≈ 0.99) due to material interface flux jump conditions, as verified by MMS benchmarks.
+    - Algebraic residual checks (SuperLU solve) verify convergence of the discrete linear system, not continuum error.
+    """
 
     def __init__(self, tolerance: float = 1e-10) -> None:
         """Initialize solver.

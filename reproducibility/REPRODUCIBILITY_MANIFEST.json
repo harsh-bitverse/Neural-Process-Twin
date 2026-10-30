@@ -1,0 +1,46 @@
+{
+  "manifest_version": "1.0.0",
+  "project": "Neural Process Twin",
+  "release": "v1.0.0-rc.1",
+  "generated_at": "2026-10-30T06:20:00Z",
+  "authoritative_repository": "https://github.com/harsh-bitverse/Neural-Process-Twin.git",
+  "environment": {
+    "python_version": "3.12.10",
+    "torch_version": "2.14.1+cpu",
+    "numpy_version": "2.5.4",
+    "scipy_version": "1.17.0",
+    "fastapi_version": "0.115.11",
+    "node_version": "22.x",
+    "os_tested": "Windows 11 / Linux (Docker Debian-slim)"
+  },
+  "canonical_resolutions": [32, 64, 128, 256],
+  "verified_modes": [
+    "numerical_fvm",
+    "experimental_neural",
+    "experimental_neural_corrected",
+    "legacy_hybrid"
+  ],
+  "verification_commands": {
+    "full_pytest_suite": "uv run pytest -q",
+    "artifact_integrity": "uv run python scripts/verify_deployment_artifacts.py",
+    "frozen_benchmark": "uv run python scripts/benchmark_milestone_12_frozen_suite.py",
+    "figure_generation": "uv run python scripts/generate_milestone_12_publication_figures.py",
+    "interactive_demo": "uv run python demo/run_interactive_demo.py",
+    "lint_check": "uv run ruff check .",
+    "format_check": "uv run ruff format --check .",
+    "frontend_build": "cd frontend && npm run build"
+  },
+  "test_metrics": {
+    "total_tests": 318,
+    "passing_tests": 318,
+    "failing_tests": 0,
+    "warnings": 1,
+    "warning_source": "StarletteDeprecationWarning (fastapi.testclient using httpx instead of httpx2, zero functional impact)"
+  },
+  "primary_publications_and_reports": {
+    "technical_report": "reports/NEURAL_PROCESS_TWIN_FINAL_RESEARCH_REPORT.md",
+    "research_paper": "papers/neural_process_twin_research_paper.md",
+    "frozen_benchmark_data": "artifacts/reports/milestone_12_final_benchmark_suite.json",
+    "load_test_data": "artifacts/reports/milestone_11_load_and_failure_results.json"
+  }
+}

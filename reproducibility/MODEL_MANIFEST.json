@@ -1,0 +1,78 @@
+{
+  "manifest_title": "Neural Process Twin Authoritative Checkpoint Manifest",
+  "version": "1.0.0-rc.1",
+  "audit_date": "2026-10-30",
+  "verification_mechanism": "Cryptographic SHA-256 Digest against Immutable Frozen Artifacts",
+  "checkpoints": {
+    "A3_RefinedFNO2D": {
+      "path": "artifacts/checkpoints/milestone_08f/A3_hybrid_refined_fno/best_model.pt",
+      "sha256": "7b412133904819bcc654a06525c334923454bd26378312623ce5251d9b5f0f1d",
+      "model_class": "RefinedFNO2D",
+      "in_channels": 12,
+      "out_channels": 1,
+      "modes_x": 12,
+      "modes_y": 12,
+      "width": 32,
+      "depth": 4,
+      "refinement_hidden": 32,
+      "supported_resolutions": [32, 64, 128, 256],
+      "normalizer_included": true,
+      "role": "Primary experimental multi-resolution surrogate (A3 uncorrected and A4 Selective Jacobi)"
+    },
+    "R1_DeepEnsemble_M0": {
+      "path": "artifacts/checkpoints/scaled_fno_supervised_seed42/best_model.pt",
+      "sha256": "37b0b1a4b717a9c6be2558420fcde6aaff498c79d76aec7e1712b16eb5f82b02",
+      "model_class": "FourierNeuralOperator2D",
+      "modes_x": 12,
+      "modes_y": 12,
+      "width": 32,
+      "depth": 4,
+      "supported_resolutions": [32],
+      "role": "Legacy R1 production hybrid ensemble member (Seed 42)"
+    },
+    "R1_DeepEnsemble_M1": {
+      "path": "artifacts/checkpoints/scaled_fno_supervised_seed43/best_model.pt",
+      "sha256": "b7ef5e3c9e59b467be8c9fb783f0ea4a2f1c5316661ed1fc38f36a7e7b34e90a",
+      "model_class": "FourierNeuralOperator2D",
+      "modes_x": 12,
+      "modes_y": 12,
+      "width": 32,
+      "depth": 4,
+      "supported_resolutions": [32],
+      "role": "Legacy R1 production hybrid ensemble member (Seed 43)"
+    },
+    "R1_DeepEnsemble_M2": {
+      "path": "artifacts/checkpoints/scaled_fno_supervised_seed44/best_model.pt",
+      "sha256": "379bbdf16b28553e15431844bc94e71ab6785e45fdc0093117b9350966261434",
+      "model_class": "FourierNeuralOperator2D",
+      "modes_x": 12,
+      "modes_y": 12,
+      "width": 32,
+      "depth": 4,
+      "supported_resolutions": [32],
+      "role": "Legacy R1 production hybrid ensemble member (Seed 44)"
+    },
+    "R1_DeepEnsemble_M3": {
+      "path": "artifacts/checkpoints/scaled_fno_supervised_seed45/best_model.pt",
+      "sha256": "b407a34628f7953122a18e003a44b2013b7d387b6d9e95b039b6eeef96777bf8",
+      "model_class": "FourierNeuralOperator2D",
+      "modes_x": 12,
+      "modes_y": 12,
+      "width": 32,
+      "depth": 4,
+      "supported_resolutions": [32],
+      "role": "Legacy R1 production hybrid ensemble member (Seed 45)"
+    },
+    "R1_DeepEnsemble_M4": {
+      "path": "artifacts/checkpoints/scaled_fno_supervised_seed46/best_model.pt",
+      "sha256": "722123f37783b48eaf58c537df21af64af0a3f434dae037b9246a43f751a3905",
+      "model_class": "FourierNeuralOperator2D",
+      "modes_x": 12,
+      "modes_y": 12,
+      "width": 32,
+      "depth": 4,
+      "supported_resolutions": [32],
+      "role": "Legacy R1 production hybrid ensemble member (Seed 46)"
+    }
+  }
+}

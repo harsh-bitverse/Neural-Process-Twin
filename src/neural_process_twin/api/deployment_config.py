@@ -68,7 +68,22 @@ class ExecutionTimeoutError(Exception):
 
 
 class ConcurrencyGovernor:
-    """Thread-safe resource governor enforcing concurrency limits on expensive scientific tasks."""
+    """Thread-safe resource governor enforcing concurrency limits on expensive scientific tasks.
+
+    IMPORTANT ARCHITECTURAL & DEPLOYMENT NOTICE:
+    Semaphores, active counters, and model singletons are strictly process-local.
+    In a multi-worker deployment (e.g. `uvicorn --workers W` or Gunicorn process-based workers),
+    each operating system process instantiates its own independent ConcurrencyGovernor,
+    resulting in total cluster concurrency of W * max_concurrent_numerical_solves.
+
+    For CPU-bound scientific computing (SuperLU direct solves and PyTorch FFT operators),
+    the recommended production architecture is:
+    1. Single worker process per container (W=1).
+    2. Horizontal scale-out via container replicas (e.g. Kubernetes Pods, AWS ECS tasks).
+    3. Explicit CPU/memory resource reservations per replica matching settings.
+    If multi-worker execution on a single host is mandatory, scale down
+    `max_concurrent_numerical_solves` and `max_concurrent_neural_inferences` proportionally.
+    """
 
     def __init__(self, settings: DeploymentSettings) -> None:
         self.settings = settings
